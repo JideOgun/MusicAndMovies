@@ -1,3 +1,5 @@
+
+
 var apiController = function () {
     const cliend_Id = `75195b645b894213b9018c1562267908`;
     const client_Secret = `93152cc4c4c84ea7b2ba88d3b693ae4f`;
@@ -22,6 +24,9 @@ const getSpotifyToken = async() => {
 
 return getSpotifyToken();
 }
+
+
+
 async function spotifyGenres () {
 
     const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
@@ -31,6 +36,18 @@ async function spotifyGenres () {
 
     const data = await result.json();
     console.log(data)
+
+    // function to display genres inside genre droplist
+    var genreDroplist = document.getElementById('genre-select');
+    console.log(data.categories.items.length)
+    for (var i = 0; i < data.categories.items.length; i++) {
+        html = document.createElement('option');
+       html.textContent = data.categories.items[i].name; 
+       genreDroplist.append(html);
+    }
+    
+    
+
     
     return data.categories.items;
     
@@ -43,20 +60,33 @@ async function spotifyTracks () {
     });
     const data = await result.json();
     console.log(data);
+    console.log(data.album.name);
+
+    // function to display tracks to dom
+    var displayTracks = function() {
+           var containerEl = document.getElementById('x');
+    newdiv = document.createElement('div');
+    newdiv.textContent = data.album.name;
+    img = document.createElement('img');
+    img.src = 'https://i.scdn.co/image/ab67616d0000b2739c685a39f67e019486f2a03b'
+    containerEl.append(newdiv);
+    newdiv.append(img); 
+    }
+    // displayTracks();
     return data
 }
 
-async function spotifyGenrePlaylist (token, genreId) {
-    const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists`, {
-        method: 'GET',
-        headers: { 'Authorization' : 'Bearer ' + token}
-    });
-    const data = await result.json();
-    var genreId = data.categories.items[0].id;
-    console.log(genreId)
-    console.log(data);
-    return data 
-}
+// async function spotifyGenrePlaylist (token, genreId) {
+//     const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists`, {
+//         method: 'GET',
+//         headers: { 'Authorization' : 'Bearer ' + token}
+//     });
+//     const data = await result.json();
+//     var genreId = data.categories.items[0].id;
+//     console.log(genreId)
+//     console.log(data);
+//     return data 
+// }
 
 async function spotifyNewRelease (token) {
     const result = await fetch(`https://api.spotify.com/v1/browse/new-releases`, {
