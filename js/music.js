@@ -5,7 +5,6 @@ var apiController = function () {
     const client_Secret = `93152cc4c4c84ea7b2ba88d3b693ae4f`;
 
 const getSpotifyToken = async() => {
-
     const result = await fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
         headers: {
@@ -20,13 +19,11 @@ const getSpotifyToken = async() => {
     localStorage.setItem('token', data.access_token);
     return data.access_token;
 }
-
-
 return getSpotifyToken();
 }
 
 
-
+// retrieve Genres from data base and append into genre dropdown list
 async function spotifyGenres () {
 
     const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
@@ -39,18 +36,41 @@ async function spotifyGenres () {
 
     // function to display genres inside genre droplist
     var genreDroplist = document.getElementById('genre-select');
+    var optionEl = document.getElementById('genre-option')
     console.log(data.categories.items.length)
     for (var i = 0; i < data.categories.items.length; i++) {
-        html = document.createElement('option');
-       html.textContent = data.categories.items[i].name; 
-       genreDroplist.append(html);
+        gDroplist = document.createElement('option');
+        gDroplist.textContent = data.categories.items[i].name; 
+       genreDroplist.append(gDroplist);
     }
     
-    
 
+    var logGenreId = function(){
+        console.log(genreDroplist.value)  
+        genreId = data.categories.items[genreDroplist.selectedIndex - 1].id;
+        console.log(genreId) ;
+        localStorage.setItem('genreId', genreId)
+        spotifyGenrePlaylist (token, genreId)
+    }
     
+    genreDroplist.addEventListener('change',logGenreId);
     return data.categories.items;
-    
+}
+
+async function spotifyGenrePlaylist (token, genreId) {
+    const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists`, {
+        method: 'GET',
+        headers: { 'Authorization' : 'Bearer ' + token}
+    });
+    const data = await result.json();
+    console.log(data.playlists.items[0].name);
+    var playlistDroplist = document.getElementById('playlist-select');
+    for (var i = 0; i < data.playlists.items.length; i++) {
+        pDroplist = document.createElement('option');
+        pDroplist.textContent = data.playlists.items[i].name; 
+       playlistDroplist.append(pDroplist);
+    }
+    return data 
 }
 
 async function spotifyTracks () {
@@ -76,17 +96,7 @@ async function spotifyTracks () {
     return data
 }
 
-// async function spotifyGenrePlaylist (token, genreId) {
-//     const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists`, {
-//         method: 'GET',
-//         headers: { 'Authorization' : 'Bearer ' + token}
-//     });
-//     const data = await result.json();
-//     var genreId = data.categories.items[0].id;
-//     console.log(genreId)
-//     console.log(data);
-//     return data 
-// }
+
 
 async function spotifyNewRelease (token) {
     const result = await fetch(`https://api.spotify.com/v1/browse/new-releases`, {
