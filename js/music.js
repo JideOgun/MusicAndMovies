@@ -15,13 +15,14 @@ const getSpotifyToken = async() => {
     const data = await result.json();
     // console.log(data);
     console.log(data.access_token);
+    localStorage.setItem('token', data.access_token);
     return data.access_token;
 }
 
 
 return getSpotifyToken();
 }
-const _getGenres = async (token) => {
+async function spotifyGenres () {
 
     const result = await fetch(`https://api.spotify.com/v1/browse/categories?locale=sv_US`, {
         method: 'GET',
@@ -30,10 +31,49 @@ const _getGenres = async (token) => {
 
     const data = await result.json();
     console.log(data)
+    
     return data.categories.items;
+    
 }
 
-var token = "BQAS4rWEX0utYWLcgKpaeL_vEwXEEbV_bHlYaLsKbjvV5a7WDgEyDx73DYKfafRd51vqTdBqSEkTZF41iC4"
-_getGenres(token);
+async function spotifyTracks () {
+    const result = await fetch(`https://api.spotify.com/v1/tracks/${spotifyId}`, {
+        method: 'GET',
+        headers: { 'Authorization' : 'Bearer ' + token}
+    });
+    const data = await result.json();
+    console.log(data);
+    return data
+}
+
+async function spotifyGenrePlaylist (token, genreId) {
+    const result = await fetch(`https://api.spotify.com/v1/browse/categories/${genreId}/playlists`, {
+        method: 'GET',
+        headers: { 'Authorization' : 'Bearer ' + token}
+    });
+    const data = await result.json();
+    var genreId = data.categories.items[0].id;
+    console.log(genreId)
+    console.log(data);
+    return data 
+}
+
+async function spotifyNewRelease (token) {
+    const result = await fetch(`https://api.spotify.com/v1/browse/new-releases`, {
+        method: 'GET',
+        headers: { 'Authorization' : 'Bearer ' + token}
+    });
+    const data = await result.json();
+    console.log(data);
+    return data
+}
+
+var spotifyId = "5T6wd1ScvJGSz17zMCugW0?si=b4fc4b38a8a4462c"
+var token = localStorage.getItem('token')
+console.log(token);
+spotifyGenres(token);
+spotifyTracks (token);
+spotifyNewRelease (token);
+
 apiController();
 
