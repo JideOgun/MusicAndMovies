@@ -15,7 +15,7 @@ const getSpotifyToken = async() => {
     });
     const data = await result.json();
     // console.log(data);
-    console.log(data.access_token);
+    // console.log(data.access_token);
     localStorage.setItem('token', data.access_token);
     return data.access_token;
 }
@@ -36,8 +36,7 @@ async function spotifyGenres () {
 
     // function to display genres inside genre droplist
     var genreDroplist = document.getElementById('genre-select');
-    var optionEl = document.getElementById('genre-option')
-    console.log(data.categories.items.length)
+    // console.log(data.categories.items.length)
     for (var i = 0; i < data.categories.items.length; i++) {
         gDroplist = document.createElement('option');
         gDroplist.textContent = data.categories.items[i].name; 
@@ -63,57 +62,75 @@ async function spotifyGenrePlaylist (token, genreId) {
         headers: { 'Authorization' : 'Bearer ' + token}
     });
     const data = await result.json();
-    console.log(data.playlists.items[0].name);
+    
+    // adding playlist to drop down menu
     var playlistDroplist = document.getElementById('playlist-select');
     for (var i = 0; i < data.playlists.items.length; i++) {
         pDroplist = document.createElement('option');
         pDroplist.textContent = data.playlists.items[i].name; 
        playlistDroplist.append(pDroplist);
     }
+    console.log(data);
+
+    function logTracksEndPoint () {
+        tracksEndPoint = data.playlists.items[playlistDroplist.selectedIndex].tracks.href;
+        console.log(tracksEndPoint);
+        localStorage.setItem('tracksEndPoint', tracksEndPoint)
+    }
+    playlistDroplist.addEventListener('change',logTracksEndPoint);
     return data 
 }
 
+
+
+// retrieving track information from api
 async function spotifyTracks () {
-    const result = await fetch(`https://api.spotify.com/v1/tracks/${spotifyId}`, {
+    
+    var limit = 10;
+    const result = await fetch(`${tracksEndPoint}?limit=${limit}`, {
         method: 'GET',
         headers: { 'Authorization' : 'Bearer ' + token}
     });
     const data = await result.json();
     console.log(data);
-    console.log(data.album.name);
-
+    console.log(data.items.length)
     // function to display tracks to dom
-    var displayTracks = function() {
-           var containerEl = document.getElementById('x');
-    newdiv = document.createElement('div');
-    newdiv.textContent = data.album.name;
-    img = document.createElement('img');
-    img.src = 'https://i.scdn.co/image/ab67616d0000b2739c685a39f67e019486f2a03b'
-    containerEl.append(newdiv);
-    newdiv.append(img); 
+    function displayTracks() {
+        for (var i = 0; i < data.items.length; i++) {
+            var containerEl = document.getElementById('track-list');
+            newdiv = document.createElement('li');
+            newdiv.textContent = data.items[0].name;
+            console.log(data.items[i].name);
+            // img = document.createElement('img');
+            // img.src = 'https://i.scdn.co/image/ab67616d0000b2739c685a39f67e019486f2a03b'
+            containerEl.append(newdiv);
+            // newdiv.append(img); 
+        }
+
     }
-    // displayTracks();
-    return data
+    displayTracks();
+    return data;
 }
 
 
 
-async function spotifyNewRelease (token) {
-    const result = await fetch(`https://api.spotify.com/v1/browse/new-releases`, {
-        method: 'GET',
-        headers: { 'Authorization' : 'Bearer ' + token}
-    });
-    const data = await result.json();
-    console.log(data);
-    return data
-}
+// async function spotifyNewRelease (token) {
+//     const result = await fetch(`https://api.spotify.com/v1/browse/new-releases`, {
+//         method: 'GET',
+//         headers: { 'Authorization' : 'Bearer ' + token}
+//     });
+//     const data = await result.json();
+//     console.log(data);
+//     return data
+// }
 
-var spotifyId = "5T6wd1ScvJGSz17zMCugW0?si=b4fc4b38a8a4462c"
+var btnEl = document.getElementById('btn-id')
 var token = localStorage.getItem('token')
-console.log(token);
+var tracksEndPoint = localStorage.getItem('tracksEndPoint')
+// console.log(token);
 spotifyGenres(token);
-spotifyTracks (token);
-spotifyNewRelease (token);
+// btnEl.addEventListener('click', spotifyTracks(token, tracksEndPoint));
+// spotifyNewRelease (token);
 
 apiController();
 
