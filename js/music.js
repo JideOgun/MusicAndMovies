@@ -14,7 +14,7 @@ const getSpotifyToken = async() => {
         body: 'grant_type=client_credentials'
     });
     const data = await result.json();
-    // console.log(data);
+    console.log(data);
     // console.log(data.access_token);
     localStorage.setItem('token', data.access_token);
     return data.access_token;
