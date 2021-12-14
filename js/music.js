@@ -73,11 +73,12 @@ async function spotifyGenrePlaylist (token, genreId) {
     console.log(data);
 
     function logTracksEndPoint () {
-        tracksEndPoint = data.playlists.items[playlistDroplist.selectedIndex].tracks.href;
+        tracksEndPoint = data.playlists.items[playlistDroplist.selectedIndex - 1].tracks.href;
         console.log(tracksEndPoint);
         localStorage.setItem('tracksEndPoint', tracksEndPoint)
     }
     playlistDroplist.addEventListener('change',logTracksEndPoint);
+    playlistDroplist.addEventListener('change',spotifyTracks);
     return data 
 }
 
@@ -99,8 +100,8 @@ async function spotifyTracks () {
         for (var i = 0; i < data.items.length; i++) {
             var containerEl = document.getElementById('track-list');
             newdiv = document.createElement('li');
-            newdiv.textContent = data.items[0].name;
-            console.log(data.items[i].name);
+            newdiv.textContent = data.items[i].track.name;
+            console.log(data.items[i].track.name);
             // img = document.createElement('img');
             // img.src = 'https://i.scdn.co/image/ab67616d0000b2739c685a39f67e019486f2a03b'
             containerEl.append(newdiv);
