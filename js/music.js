@@ -14,7 +14,7 @@ const getSpotifyToken = async() => {
         body: 'grant_type=client_credentials'
     });
     const data = await result.json();
-    // console.log(data);
+    console.log(data);
     // console.log(data.access_token);
     localStorage.setItem('token', data.access_token);
     return data.access_token;
@@ -36,6 +36,7 @@ async function spotifyGenres () {
 
     // function to display genres inside genre droplist
     var genreDroplist = document.getElementById('genre-select');
+    
     // console.log(data.categories.items.length)
     for (var i = 0; i < data.categories.items.length; i++) {
         gDroplist = document.createElement('option');
@@ -65,6 +66,7 @@ async function spotifyGenrePlaylist (token, genreId) {
     
     // adding playlist to drop down menu
     var playlistDroplist = document.getElementById('playlist-select');
+    // playlistDroplist.textContent = "";
     for (var i = 0; i < data.playlists.items.length; i++) {
         pDroplist = document.createElement('option');
         pDroplist.textContent = data.playlists.items[i].name; 
@@ -73,11 +75,12 @@ async function spotifyGenrePlaylist (token, genreId) {
     console.log(data);
 
     function logTracksEndPoint () {
-        tracksEndPoint = data.playlists.items[playlistDroplist.selectedIndex].tracks.href;
+        tracksEndPoint = data.playlists.items[playlistDroplist.selectedIndex - 1].tracks.href;
         console.log(tracksEndPoint);
         localStorage.setItem('tracksEndPoint', tracksEndPoint)
     }
     playlistDroplist.addEventListener('change',logTracksEndPoint);
+    playlistDroplist.addEventListener('change',spotifyTracks);
     return data 
 }
 
@@ -93,25 +96,72 @@ async function spotifyTracks () {
     });
     const data = await result.json();
     console.log(data);
-    console.log(data.items.length)
     // function to display tracks to dom
-    function displayTracks() {
+    
+    function displayTrackList() {
+        var tracklistEl = document.getElementById('track-list');
+        // Clearing tracklist before populating new track list
+        tracklistEl.textContent = "";
         for (var i = 0; i < data.items.length; i++) {
-            var containerEl = document.getElementById('track-list');
+            
             newdiv = document.createElement('li');
-            newdiv.textContent = data.items[0].name;
-            console.log(data.items[i].name);
-            // img = document.createElement('img');
-            // img.src = 'https://i.scdn.co/image/ab67616d0000b2739c685a39f67e019486f2a03b'
-            containerEl.append(newdiv);
-            // newdiv.append(img); 
+            newA = document.createElement('a')
+            newA.setAttribute('href', '#');  newA.setAttribute('id', 'track-id');
+            newA.textContent = data.items[i].track.name;
+            newdiv.append(newA)
+            tracklistEl.append(newdiv);
         }
-
+        
+        // function to log track Id to local storage to be used by the getTrackDetail function
+           $('ul li').click(function(e) {
+            trackIndex = $(this).index()
+           
+           trackId = data.items[trackIndex].track.id
+        console.log(trackId)
+            localStorage.setItem('trackId', trackId)
+            spotifyTrack (trackId);
+            }) 
     }
-    displayTracks();
+    displayTrackList();
     return data;
 }
 
+async function spotifyTrack () {
+    
+    var limit = 10;
+    const result = await fetch(`https://api.spotify.com/v1/tracks/${trackId}?limit=${limit}`, {
+        method: 'GET',
+        headers: { 'Authorization' : 'Bearer ' + token}
+    });
+    const data = await result.json();
+    console.log(data);
+var trackDetailEl = document.getElementById('track-detail')
+// clears track detail div before populating div with content
+trackDetailEl.textContent = "";
+
+    // function to display selected track to the dom
+    function displayTrackDetail () {
+        var newTrackdiv = document.createElement('div');
+        var newdivforImg = document.createElement('div');
+        var img = document.createElement('img');
+        var sound = document.createElement('audio');
+        
+        sound.id       = 'audio-player';
+        sound.controls = 'controls';
+        sound.src      = data.preview_url;
+        sound.type     = 'audio/mpeg';
+        var artistname = data.artists[0].name;
+        img.src = data.album.images[1].url
+        newTrackdiv.textContent = data.album.name;
+        newdivforImg.append(img);
+        trackDetailEl.append(artistname);
+        trackDetailEl.append(newTrackdiv);
+        trackDetailEl.append(newdivforImg);
+        trackDetailEl.append(sound);
+        
+    }
+    displayTrackDetail ();
+}
 
 
 // async function spotifyNewRelease (token) {

@@ -14,22 +14,38 @@
   <h3> MUSIC AND MOVIES HOMEPAGE</h1> 
 
   <div class='container'>
-      <form>
-         <label for='Genre' class="">Choose a Genre:</label> 
-         <select name='' id="genre-select"><option id="genre-option">Select</option></select><br>
-         <label for='playlist'>Choose a Playlist:</label>
-         <select name='' id="playlist-select"><option>Select</option></select><br>
-         
-         <button type="submit" id="btn-id" class="btn">SEARCH</button>
-      </form>
+      <div class="card">
+        <form>
+            <label for='Genre' class="">Choose a Genre:</label> 
+            <select name='' id="genre-select"><option id="genre-option">Select</option></select><br>
+            <label for='playlist'>Choose a Playlist:</label>
+            <select name='' id="playlist-select"><option>Select</option></select><br>
+            
+            <button type="submit" id="btn-id" class="btn">SEARCH</button>
+         </form>
+      </div>
+<br>
+      <div class="card">
+        <form>
+            <label for='Genre' class="">Choose a Movie Genre:</label> 
+            <select name='' id="moviegenre-select"><option id="genre-option">Select</option></select><br>
+            <label for='playlist'>Choose a Movie:</label>
+            <select name='' id="movieplaylist-select"><option>Select</option></select><br>
+            
+            <button type="submit" id="btn-id" class="btn">SEARCH</button>
+         </form>
+      </div>
+      
       
     <div id="track-div">
         <ul id="track-list"></ul>
     </div>
-  </div>      
+  </div>
+  <div class = "card" id="track-detail"></div>
   
 
 </body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="./js/music.js"></script>
 <script src="./js/movie.js"></script>
 </html>
