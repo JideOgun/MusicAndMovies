@@ -1,3 +1,12 @@
 .btn {
     background-color: aquamarine;
 }
+
+#new-releases {
+    background-color: rgb(148, 211, 223);
+}
+
+.nar-div{
+    background-color: beige;
+    text-align: center;
+}

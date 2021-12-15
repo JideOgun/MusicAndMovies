@@ -66,6 +66,7 @@ async function spotifyGenrePlaylist (token, genreId) {
     
     // adding playlist to drop down menu
     var playlistDroplist = document.getElementById('playlist-select');
+    // clears old list before populating new list
     // playlistDroplist.textContent = "";
     for (var i = 0; i < data.playlists.items.length; i++) {
         pDroplist = document.createElement('option');
@@ -164,15 +165,38 @@ trackDetailEl.textContent = "";
 }
 
 
-// async function spotifyNewRelease (token) {
-//     const result = await fetch(`https://api.spotify.com/v1/browse/new-releases`, {
-//         method: 'GET',
-//         headers: { 'Authorization' : 'Bearer ' + token}
-//     });
-//     const data = await result.json();
-//     console.log(data);
-//     return data
-// }
+async function spotifyNewRelease (token) {
+    var limit = 10;
+    const result = await fetch(`https://api.spotify.com/v1/browse/new-releases?limit=${limit}`, {
+        method: 'GET',
+        headers: { 'Authorization' : 'Bearer ' + token}
+    });
+    const data = await result.json();
+    console.log(data);
+// function to display new releases to the dom 
+console.log(data.albums.items[0].artists[0].name);
+ function displayNewReleases() {
+     var newReleaseEl =  document.getElementById('new-releases')
+     for( var i = 0; i < data.albums.items.length; i++) {
+        var newReleasediv = document.createElement('div');
+        newReleasediv.className = "col";
+        
+        artistname= data.albums.items[i].artists[0].name;
+        var img = document.createElement('img');
+        img.src = data.albums.items[i].images[1].url;
+        newReleasediv.textContent = artistname + ': ' + data.albums.items[i].name;
+
+        newReleasediv.append(img);
+        newReleaseEl.append(newReleasediv);
+
+
+     }
+    
+ }
+ displayNewReleases();
+
+    return data
+}
 
 var btnEl = document.getElementById('btn-id')
 var token = localStorage.getItem('token')
@@ -180,7 +204,7 @@ var tracksEndPoint = localStorage.getItem('tracksEndPoint')
 // console.log(token);
 spotifyGenres(token);
 // btnEl.addEventListener('click', spotifyTracks(token, tracksEndPoint));
-// spotifyNewRelease (token);
+spotifyNewRelease (token);
 
 apiController();
 
