@@ -17,7 +17,7 @@ var searchMovies = function () {
   var apiUrl =
     'https://api.themoviedb.org/3/movie/now_playing?api_key=' +
     apiKey +
-    '&language=en-US&page=2';
+    '&language=en-US&page=1';
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
