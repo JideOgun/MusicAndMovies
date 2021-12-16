@@ -3,28 +3,32 @@
 // Post movie genre list to HTML dropdown
 
 // Post movie list to HTML dropdown
-var apiKey = '1fcb095f3dea632c59c58e8920d44217';
+let apiKey = '1fcb095f3dea632c59c58e8920d44217';
+let baseUrl = 'https://api.themoviedb.org/3/';
+let genreSearch = 'genre/movie/list?api_key=';
 
-// function successCB(data) {
-//   console.log('Success callback: ' + data);
-// }
+let movieGenreSelect = document.querySelector('#moviegenre-select');
+let movieGenre = document.querySelector('#genre-option');
 
-// function errorCB(data) {
-//   console.log('Error callback: ' + data);
-// }
-
-var searchMovies = function () {
-  var apiUrl =
-    'https://api.themoviedb.org/3/movie/now_playing?api_key=' +
-    apiKey +
-    '&language=en-US&page=1';
+var searchMoviesGenre = () => {
+  var apiUrl = ''.concat(baseUrl + genreSearch + apiKey + '&language=en-US');
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        // console.log(data);
+        getMovie(data);
       });
     }
   });
 };
-searchMovies();
+
+let getMovie = (data) => {
+  for (let i = 0; i < data.genres.length; i++) {
+    let movieGenre = document.createElement('option');
+    movieGenre.textContent = data.genres[i].name;
+
+    movieGenreSelect.appendChild(movieGenre);
+  }
+};
+
+searchMoviesGenre();
