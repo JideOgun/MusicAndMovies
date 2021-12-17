@@ -9,12 +9,15 @@ let genreSearch = 'genre/movie/list?api_key=';
 let moviesByGenre = 'discover/movie?api_key=' + apiKey + '&with_genres=';
 let langEn = '&language=en-US';
 
+let genreListEl = document.querySelector('#genres');
+let movieListEl = document.querySelector('#movies');
+let searchBtn = document.querySelector('#searchBtn');
+
 let movieGenreNums = [
   28, 12, 16, 35, 80, 99, 18, 10751, 14, 36, 27, 10402, 9648, 10749, 878, 10770,
   53, 10752, 37,
 ];
 
-console.log(moviesByGenre);
 // let movieGenreSelect = document.querySelector('#moviegenre-select');
 // let movieGenre = document.querySelector('#genre-option');
 
@@ -37,25 +40,36 @@ let getMovieGenre = (data) => {
     let movieGenre = document.createElement('option');
     movieGenre.textContent = data.genres[i].name;
 
-    // movieGenreSelect.appendChild(movieGenre);
+    genreListEl.appendChild(movieGenre);
   }
-  searchNowPlaying(data);
+  searchMovies(data);
 };
 
-let searchNowPlaying = () => {
-  for (let i = 0; i < movieGenreNums.length; i++) {
-    let apiUrl = ''.concat(
-      baseUrl + moviesByGenre + movieGenreNums[i] + langEn
-    );
+let searchMovies = (movieGenre) => {
+  console.log(movieGenre.genres[0].id);
 
-    fetch(apiUrl).then((response) => {
-      if (response.ok) {
-        response.json().then((data) => {
-          console.log(data);
-        });
-      }
-    });
+  for (let i = 0; i < movieGenreNums.length; i++) {
+    if (movieGenre.genres[i].id === movieGenreNums[i]) {
+      let apiUrl = ''.concat(
+        baseUrl + moviesByGenre + movieGenreNums[i] + langEn
+      );
+
+      fetch(apiUrl).then((response) => {
+        if (response.ok) {
+          response.json().then((data) => {
+            var movieList = document.createElement('option');
+            movieList.textContent = data.results[i].title;
+
+            movieListEl.appendChild(movieList);
+            console.log(data.results[i].title);
+          });
+        }
+      });
+    } else {
+      console.log('oh no');
+    }
   }
 };
 
 searchMoviesGenre();
+searchBtn.addEventListener('click', searchMovies);
