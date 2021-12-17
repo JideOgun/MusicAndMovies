@@ -177,7 +177,6 @@ async function spotifyNewRelease (token) {
     const data = await result.json();
     console.log(data);
 // function to display new releases to the dom 
-console.log(data.albums.items[0].artists[0].name);
  function displayNewReleases() {
      var newReleaseEl =  document.getElementById('new-releases')
      for( var i = 0; i < data.albums.items.length; i++) {
@@ -201,6 +200,22 @@ console.log(data.albums.items[0].artists[0].name);
     return data
 }
 
+// Search for music feature 
+var searchEl = document.getElementById("search-music-btn");
+var searchInput = document.getElementById('search-music')
+
+async function searchMusic () {
+
+    const result = await fetch(`https://api.spotify.com/v1/search?q=name:${searchInput.value.trim()}&type=album,artist,track&include_external=audio`, {
+        method: 'GET',
+        headers: { 'Authorization' : 'Bearer ' + token}
+    });
+
+    const data = await result.json();
+    console.log(data);
+   
+}
+
 var btnEl = document.getElementById('btn-id')
 var token = localStorage.getItem('token')
 var tracksEndPoint = localStorage.getItem('tracksEndPoint')
@@ -208,6 +223,5 @@ var tracksEndPoint = localStorage.getItem('tracksEndPoint')
 spotifyGenres(token);
 // btnEl.addEventListener('click', spotifyTracks(token, tracksEndPoint));
 spotifyNewRelease (token);
-
 apiController();
-
+ searchEl.addEventListener('click', searchMusic)
