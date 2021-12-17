@@ -145,6 +145,7 @@ trackDetailEl.textContent = "";
         var newTrackdiv = document.createElement('div');
         var newdivforImg = document.createElement('div');
         var img = document.createElement('img');
+        var newdivSound = document.createElement('div');
         var sound = document.createElement('audio');
         
         sound.id       = 'audio-player';
@@ -152,16 +153,18 @@ trackDetailEl.textContent = "";
         sound.src      = data.preview_url;
         sound.type     = 'audio/mpeg';
         var artistname = data.artists[0].name;
-        img.src = data.album.images[1].url
+        img.src = data.album.images[0].url
         newTrackdiv.textContent = data.album.name;
         newdivforImg.append(img);
         trackDetailEl.append(artistname);
         trackDetailEl.append(newTrackdiv);
         trackDetailEl.append(newdivforImg);
-        trackDetailEl.append(sound);
+        newdivSound.append(sound)
+        trackDetailEl.append(newdivSound);
         
     }
     displayTrackDetail ();
+    return data;
 }
 
 
@@ -184,7 +187,7 @@ console.log(data.albums.items[0].artists[0].name);
         artistname= data.albums.items[i].artists[0].name;
         var img = document.createElement('img');
         img.src = data.albums.items[i].images[1].url;
-        newReleasediv.textContent = artistname + ': ' + data.albums.items[i].name;
+        newReleasediv.textContent = artistname + ': ' + data.albums.items[i].name + ' Release Date: ' + data.albums.items[i].release_date;
 
         newReleasediv.append(img);
         newReleaseEl.append(newReleasediv);

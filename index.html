@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="./css/style.css" />
     
 </head>
-<body>
-    <h1>GROUP 1 ENTERTAINMENT PORTAL</h1>
-  <h3> MUSIC AND MOVIES HOMEPAGE</h1> 
+<body class="body">
+    <h1 class="group1">GROUP 1 ENTERTAINMENT PORTAL</h1>
+  <h3 class="musicmoviesheader"> MUSIC AND MOVIES HOMEPAGE</h1> 
     
 <div class="nar-div card container-fluid">
   <h4>NEW ALBUM RELEASES</h4>
@@ -20,18 +20,17 @@
 
 
   <div class='container'>
-      <div class="card">
+    <div class="row">
+      <div class="droplist card col">
         <form>
             <label for='Genre' class="">Choose a Genre:</label> 
             <select name='' id="genre-select"><option id="genre-option">Select</option></select><br>
             <label for='playlist'>Choose a Playlist:</label>
             <select name='' id="playlist-select"><option>Select</option></select><br>
-            
-            <button type="submit" id="btn-id" class="btn">SEARCH</button>
          </form>
       </div>
 <br>
-      <div class="card">
+      <!-- <div class="card">
         <form>
             <label for='Genre' class="">Choose a Movie Genre:</label> 
             <select name='' id="moviegenre-select"><option id="genre-option">Select</option></select><br>
@@ -41,13 +40,15 @@
             <button type="submit" id="btn-id" class="btn">SEARCH</button>
          </form>
       </div>
+     -->
       
-      
-    <div id="track-div">
+    <div id="track-div card">
         <ul id="track-list"></ul>
     </div>
   </div>
-  <div class = "card" id="track-detail"></div>
+    <div class = "trackdetail card" id="track-detail"></div>
+  </div>
+  
   
 
 </body>

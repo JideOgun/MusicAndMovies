@@ -10,3 +10,29 @@
     background-color: beige;
     text-align: center;
 }
+
+.body {
+    background-color: bisque;
+}
+
+#track-detail {
+    text-align: center;
+    background-color: rgb(148, 211, 223);
+}
+
+.row {
+    text-align: center;
+    background-color: rgb(148, 211, 223);
+}
+
+.droplist {
+    text-align: center;
+    background-color: rgb(148, 211, 223);
+}
+.musicmoviesheader{
+    text-align: center;
+}
+
+.group1{
+    text-align: center;
+}
