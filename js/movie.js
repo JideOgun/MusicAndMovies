@@ -72,4 +72,4 @@ let searchMovies = (movieGenre) => {
 };
 
 searchMoviesGenre();
-searchBtn.addEventListener('click', searchMovies);
+// searchBtn.addEventListener('click', searchMoviesGenre);
