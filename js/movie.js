@@ -41,7 +41,6 @@ let searchNowPlaying = () => {
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data.results[0].title);
-        console.log(apiUrl);
       });
     }
   });
