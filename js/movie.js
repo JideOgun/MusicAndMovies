@@ -53,7 +53,7 @@ let getMovieGenre = (data) => {
 
               movieList.textContent = data.results[i].title;
               movieListEl.appendChild(movieList);
-              console.log(movieList);
+              console.log(movieList.textContent);
             }
           });
         }
