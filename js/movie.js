@@ -17,7 +17,7 @@ let movieGenreNums = [
   53, 10752, 37,
 ];
 
-genreArray = [];
+// genreArray = [];
 
 // This will call TMDB api to generate genres
 var searchMoviesGenre = () => {
@@ -26,45 +26,42 @@ var searchMoviesGenre = () => {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        for (let i = 0; i < data.genres.length; i++) {
-          let movieGenre = document.createElement('button');
-          movieGenre.setAttribute('id', data.genres[i].id);
-          movieGenre.setAttribute('name', 'display');
-          movieGenre.addEventListener('click', (event) => {
-            console.log(data.genres[i]);
-            $('#movies').html('');
-            searchMovies();
-          });
-          movieGenre.textContent = data.genres[i].name;
-          genreArray.push(movieGenre.textContent);
-
-          genreListEl.appendChild(movieGenre);
-        }
+        getMovieGenre(data);
       });
     }
   });
 };
 
 // This will append the genres to a drop down list
-let getMovieGenre = () => {};
+let getMovieGenre = (data) => {
+  for (let i = 0; i < data.genres.length; i++) {
+    let movieGenre = document.createElement('button');
+    movieGenre.setAttribute('id', data.genres[i].id);
+    movieGenre.dataset.name = `${data.genres[i].name}`;
+    movieGenre.addEventListener('click', (event) => {
+      $('#movies').html('');
+      let apiUrl = ''.concat(
+        baseUrl + moviesByGenre + movieGenreNums[i] + langEn
+      );
 
-let searchMovies = () => {
-  for (let i = 0; i < movieGenreNums.length; i++) {
-    let apiUrl = ''.concat(
-      baseUrl + moviesByGenre + movieGenreNums[i] + langEn
-    );
-
-    fetch(apiUrl).then((response) => {
-      if (response.ok) {
-        response.json().then((data) => {
-          var movieList = document.createElement('button');
-          movieList.textContent = data.results[i].title;
-
-          movieListEl.appendChild(movieList);
-          console.log(data);
-        });
-      }
+      fetch(apiUrl).then((response) => {
+        if (response.ok) {
+          response.json().then((data) => {
+            for (let i = 0; i < data.results.length; i++) {
+              let movieList = document.createElement('button');
+              movieList.setAttribute('id', data.results[i]);
+              movieList.textContent = data.results[i].title;
+              movieListEl.appendChild(movieList);
+              console.log(data.results[i]);
+            }
+          });
+        }
+      });
     });
+    movieGenre.textContent = data.genres[i].name;
+    // genreArray.push(movieGenre.textContent);
+
+    genreListEl.appendChild(movieGenre);
   }
 };
 
