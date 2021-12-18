@@ -12,6 +12,8 @@
     top: 18px;
     left: 10px;
     font-family: 'Vollkorn', serif;
+    margin-top: 15px;
+    margin-right: 200px ;
 }
 
 .header {
@@ -27,26 +29,12 @@ body {
     background: #304543;
 }
 
-.header {
-    margin-top: 0;
-}
 #card-1,
 #card-2 {
     margin-top: 125px;
     flex-wrap: wrap;
 }
 
-#logo {
-    display:flex;
-    flex-wrap: wrap;
-    /* justify-content: space-around; */
-    max-height: 200px;
-    max-width: 200px;
-}
-
-#logo-container {
-    display:flex;
-    justify-content: flex-start;
-    margin: 0;
-    max-height: 50px;
+footer {
+    margin-top: 50px;        
 }
