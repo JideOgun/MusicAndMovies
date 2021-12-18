@@ -59,7 +59,7 @@ let getMovieGenre = (data) => {
 
               movieListEl.append(displayMovies);
 
-              console.log(displayMovies);
+              console.log(apiUrl);
             }
           });
         }
@@ -73,6 +73,3 @@ let getMovieGenre = (data) => {
 };
 
 searchMoviesGenre();
-// document.querySelector('select').addEventListener('change', () => {
-//   displayMovieInfo();
-// });
