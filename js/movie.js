@@ -1,6 +1,7 @@
 let body = document.body;
 let apiKey = '1fcb095f3dea632c59c58e8920d44217';
 let baseUrl = 'https://api.themoviedb.org/3/';
+let posterUrl = 'https://image.tmdb.org/t/p/w342';
 let genreSearch = 'genre/movie/list?api_key=';
 let moviesByGenre = 'discover/movie?api_key=' + apiKey + '&with_genres=';
 let langEn = '&language=en-US';
@@ -49,32 +50,29 @@ let getMovieGenre = (data) => {
         if (response.ok) {
           response.json().then((data) => {
             for (let i = 0; i < data.results.length; i++) {
-              let movieList = document.createElement('option');
+              let displayMovies = document.createElement('img');
+              displayMovies.setAttribute('id', data.results[i].title);
+              displayMovies.setAttribute(
+                'src',
+                posterUrl + data.results[i].poster_path
+              );
 
-              movieList.setAttribute('id', data.results[i].title);
+              movieListEl.append(displayMovies);
 
-              movieList.textContent = data.results[i].title;
-
-              movieListEl.appendChild(movieList);
+              console.log(displayMovies);
             }
           });
         }
       });
     });
+
     movieGenre.textContent = data.genres[i].name;
 
     genreListEl.appendChild(movieGenre);
   }
 };
 
-var displayMovieInfo = () => {
-  let moviePage = document.createElement('div');
-  moviePage.setAttribute('id', 'display');
-  moviePage.textContent = $('#movies').val();
-  body.appendChild(moviePage);
-};
-
 searchMoviesGenre();
-document.querySelector('select').addEventListener('change', () => {
-  displayMovieInfo();
-});
+// document.querySelector('select').addEventListener('change', () => {
+//   displayMovieInfo();
+// });
