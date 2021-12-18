@@ -1,4 +1,4 @@
-.header img {
+/* .header img {
     float: left;
     width: 100px;
     height: 100px;
@@ -20,10 +20,10 @@
     width: auto;
     height: auto;
     display: flex;
-    /* align-items: center;
-    text-align: center; */
-    justify-content: space-around;
-}
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+} */
 
 body {
     background: #304543;
@@ -37,4 +37,31 @@ body {
 
 footer {
     margin-top: 50px;        
+}
+
+.header h1 {
+    display: inline-block;
+    text-align: center;
+    border: 0.5px solid #FFA500;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #828282;
+    font-family: 'Vollkorn', serif;
+    color:aliceblue;
+    padding: 1%;
+    margin-top: 20px;
+}
+
+.header {
+    text-align: center;
+    letter-spacing: 2px;
+    height: 8em;
+    /* padding: 2em 10%; */
+}
+
+.logo {
+    vertical-align:middle;
+    width: 100px;
+    height: 100px;
+    float: left;
+    position:relative;
 }
