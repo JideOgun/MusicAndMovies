@@ -42,7 +42,7 @@
 
   display: flexbox;
   text-align: center;
-  background-color: rgb(148, 211, 223);
+  background: #304543;
 }
 
 .movies {
@@ -51,4 +51,5 @@
 
   display: flex;
   justify-content: space-evenly;
+  background: #304543;
 }
