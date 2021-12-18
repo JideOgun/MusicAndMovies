@@ -1,12 +1,16 @@
+let body = document.body;
 let apiKey = '1fcb095f3dea632c59c58e8920d44217';
 let baseUrl = 'https://api.themoviedb.org/3/';
 let genreSearch = 'genre/movie/list?api_key=';
 let moviesByGenre = 'discover/movie?api_key=' + apiKey + '&with_genres=';
 let langEn = '&language=en-US';
+let moviePoster = 'https://image.tmdb.org/t/p/w342';
 
 let genreListEl = document.querySelector('#genres');
 let movieListEl = document.querySelector('#movies');
 let movieInfoEl = document.querySelector('#movieInfo');
+let moviePage = document.querySelector('display');
+let movieList = document.querySelector('#option');
 
 let movieGenreNums = [
   28, 12, 16, 35, 80, 99, 18, 10751, 14, 36, 27, 10402, 9648, 10749, 878, 10770,
@@ -36,6 +40,7 @@ let getMovieGenre = (data) => {
     movieGenre.dataset.name = `${data.genres[i].name}`;
     movieGenre.addEventListener('click', (event) => {
       movieListEl.textContent = '';
+
       let apiUrl = ''.concat(
         baseUrl + moviesByGenre + movieGenreNums[i] + langEn
       );
@@ -45,6 +50,7 @@ let getMovieGenre = (data) => {
           response.json().then((data) => {
             for (let i = 0; i < data.results.length; i++) {
               let movieList = document.createElement('option');
+
               movieList.setAttribute('id', data.results[i].title);
 
               movieList.textContent = data.results[i].title;
@@ -62,7 +68,10 @@ let getMovieGenre = (data) => {
 };
 
 var displayMovieInfo = () => {
-  console.log();
+  let moviePage = document.createElement('div');
+  moviePage.setAttribute('id', 'display');
+  moviePage.textContent = $('#movies').val();
+  body.appendChild(moviePage);
 };
 
 searchMoviesGenre();
