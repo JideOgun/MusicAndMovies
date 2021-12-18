@@ -1,4 +1,3 @@
-let body = document.body;
 let apiKey = '1fcb095f3dea632c59c58e8920d44217';
 let baseUrl = 'https://api.themoviedb.org/3/';
 let posterUrl = 'https://image.tmdb.org/t/p/w342';
@@ -43,7 +42,12 @@ let getMovieGenre = (data) => {
       movieListEl.textContent = '';
 
       let apiUrl = ''.concat(
-        baseUrl + moviesByGenre + movieGenreNums[i] + langEn
+        baseUrl +
+          moviesByGenre +
+          movieGenreNums[i] +
+          langEn +
+          '&adult=false' +
+          '&page=11'
       );
 
       fetch(apiUrl).then((response) => {
