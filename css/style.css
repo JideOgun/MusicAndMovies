@@ -1,38 +1,46 @@
 .btn {
-    background-color: aquamarine;
+  background-color: aquamarine;
 }
 
 #new-releases {
-    background-color: rgb(148, 211, 223);
+  background-color: rgb(148, 211, 223);
 }
 
-.nar-div{
-    background-color: beige;
-    text-align: center;
+.nar-div {
+  background-color: beige;
+  text-align: center;
 }
 
 .body {
-    background-color: bisque;
+  background-color: bisque;
 }
 
 #track-detail {
-    text-align: center;
-    background-color: rgb(148, 211, 223);
+  text-align: center;
+  background-color: rgb(148, 211, 223);
 }
 
 .row {
-    text-align: center;
-    background-color: rgb(148, 211, 223);
+  text-align: center;
+  background-color: rgb(148, 211, 223);
 }
 
 .droplist {
-    text-align: center;
-    background-color: rgb(148, 211, 223);
+  text-align: center;
+  background-color: rgb(148, 211, 223);
 }
-.musicmoviesheader{
-    text-align: center;
+.musicmoviesheader {
+  text-align: center;
 }
 
-.group1{
-    text-align: center;
+.group1 {
+  text-align: center;
+}
+
+#genres {
+  width: 100%;
+}
+
+.movies {
+  height: 3rem;
 }

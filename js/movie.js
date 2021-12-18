@@ -17,8 +17,6 @@ let movieGenreNums = [
   53, 10752, 37,
 ];
 
-// genreArray = [];
-
 // This will call TMDB api to generate genres
 var searchMoviesGenre = () => {
   let apiUrl = ''.concat(baseUrl + genreSearch + apiKey + langEn);
@@ -37,6 +35,8 @@ let getMovieGenre = (data) => {
   for (let i = 0; i < data.genres.length; i++) {
     let movieGenre = document.createElement('button');
     movieGenre.setAttribute('id', data.genres[i].id);
+    movieGenre.setAttribute('class', 'btn-secondary');
+    movieGenre.setAttribute('style', 'margin: 1rem .5rem');
     movieGenre.dataset.name = `${data.genres[i].name}`;
     movieGenre.addEventListener('click', (event) => {
       $('#movies').html('');
@@ -48,18 +48,18 @@ let getMovieGenre = (data) => {
         if (response.ok) {
           response.json().then((data) => {
             for (let i = 0; i < data.results.length; i++) {
-              let movieList = document.createElement('button');
-              movieList.setAttribute('id', data.results[i]);
+              let movieList = document.createElement('option');
+              movieList.setAttribute('id', data.results[i].title);
+
               movieList.textContent = data.results[i].title;
               movieListEl.appendChild(movieList);
-              console.log(data.results[i]);
+              console.log(movieList);
             }
           });
         }
       });
     });
     movieGenre.textContent = data.genres[i].name;
-    // genreArray.push(movieGenre.textContent);
 
     genreListEl.appendChild(movieGenre);
   }
