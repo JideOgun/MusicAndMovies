@@ -18,6 +18,8 @@ let movieGenreNums = [
   53, 10752, 37,
 ];
 
+let genreArray = [];
+
 // let movieGenreSelect = document.querySelector('#moviegenre-select');
 // let movieGenre = document.querySelector('#genre-option');
 
@@ -34,11 +36,16 @@ var searchMoviesGenre = () => {
   });
 };
 
+// var getGenre = () => {
+//   getMovieGenre();
+// }
+
 // This will append the genres to a drop down list
 let getMovieGenre = (data) => {
   for (let i = 0; i < data.genres.length; i++) {
     let movieGenre = document.createElement('option');
     movieGenre.textContent = data.genres[i].name;
+    genreArray.push(movieGenre.textContent);
 
     genreListEl.appendChild(movieGenre);
   }
@@ -46,30 +53,28 @@ let getMovieGenre = (data) => {
 };
 
 let searchMovies = (movieGenre) => {
-  console.log(movieGenre.genres[0].id);
-
   for (let i = 0; i < movieGenreNums.length; i++) {
-    if (movieGenre.genres[i].id === movieGenreNums[i]) {
-      let apiUrl = ''.concat(
-        baseUrl + moviesByGenre + movieGenreNums[i] + langEn
-      );
+    // genreArray.push(movieGenre.genres[i].name);
+    // console.log(genreArray);
 
-      fetch(apiUrl).then((response) => {
-        if (response.ok) {
-          response.json().then((data) => {
-            var movieList = document.createElement('option');
-            movieList.textContent = data.results[i].title;
+    let apiUrl = ''.concat(
+      baseUrl + moviesByGenre + movieGenreNums[i] + langEn
+    );
 
-            movieListEl.appendChild(movieList);
-            console.log(data.results[i].title);
-          });
-        }
-      });
-    } else {
-      console.log('oh no');
-    }
+    fetch(apiUrl).then((response) => {
+      if (response.ok) {
+        response.json().then((data) => {
+          var movieList = document.createElement('option');
+          movieList.textContent = data.results[i].title;
+
+          movieListEl.appendChild(movieList);
+          // console.log(data.results[i].title);
+        });
+      }
+    });
   }
 };
 
 searchMoviesGenre();
+
 // searchBtn.addEventListener('click', searchMoviesGenre);
