@@ -5,7 +5,11 @@ let movieListEl = document.querySelector('#movies');
 let movieInfoEl = document.querySelector('#movieInfo');
 let moviePage = document.querySelector('display');
 let movieList = document.querySelector('#option');
-let nextPageBtns = document.querySelector('.more-btn');
+let nextPageBtn = document.querySelector('#next');
+let previousPageBtn = document.querySelector('#previous');
+
+let genreData, movieData;
+let pageNum = 1;
 
 let movieGenreNums = [
   28, 12, 16, 35, 80, 99, 18, 10751, 14, 36, 27, 10402, 9648, 10749, 878, 10770,
@@ -22,9 +26,15 @@ var searchMoviesGenre = () => {
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
-      response.json().then(function (data) {
-        getMovieGenre(data);
-      });
+      response
+        .json()
+        .then(function (data) {
+          getMovieGenre(data);
+          genreData = data;
+        })
+        .catch(function (error) {
+          alert('There was a problem, try again later');
+        });
     }
   });
 };
@@ -33,11 +43,12 @@ var searchMoviesGenre = () => {
 let getMovieGenre = (data) => {
   for (let i = 0; i < data.genres.length; i++) {
     let movieGenre = document.createElement('button');
-    movieGenre.setAttribute('id', data.genres[i].id);
+    movieGenre.setAttribute('id', data.genres[i].name);
     movieGenre.setAttribute('class', 'btn-secondary');
     movieGenre.setAttribute('style', 'margin: 1rem .5rem');
     movieGenre.dataset.name = `${data.genres[i].name}`;
     movieGenre.addEventListener('click', (event) => {
+      resetBtns();
       movieListEl.textContent = '';
 
       let apiUrl = ''.concat(
@@ -45,12 +56,15 @@ let getMovieGenre = (data) => {
           apiKey +
           '&with_genres=' +
           movieGenreNums[i] +
-          '&language=en-US&adult=false&page=11'
+          '&language=en-US&adult=false&page=' +
+          pageNum
       );
 
       fetch(apiUrl).then((response) => {
         if (response.ok) {
           response.json().then((data) => {
+            movieData = data;
+            console.log(movieData);
             for (let i = 0; i < data.results.length; i++) {
               let movieInfoDiv = document.createElement('div');
               movieInfoDiv.setAttribute('id', 'movieDiv');
@@ -61,24 +75,31 @@ let getMovieGenre = (data) => {
               displayMovies.setAttribute('id', data.results[i].title);
               displayMovies.setAttribute(
                 'src',
-                'https://image.tmdb.org/t/p/w185' + data.results[i].poster_path
+                'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
               );
 
               // This adds an overview of the movie above the poster
-              displayMovies.addEventListener('click', (event) => {
-                let displayMovieOverview = document.createElement('div');
 
-                movieInfoDiv.prepend(displayMovieOverview);
-                displayMovieOverview.textContent = data.results[i].overview;
-              });
+              let displayMovieOverview = document.createElement('div');
 
-              let movieInfo = document.createElement('div');
-              movieInfo.setAttribute('id', 'info');
-              movieInfo.textContent = data.results[i].title;
+              displayMovieOverview.textContent = data.results[i].overview;
 
-              // Adds posters and title to page
+              let movieTitle = document.createElement('div');
+              movieTitle.setAttribute('id', 'info');
+              movieTitle.setAttribute(
+                'style',
+                'font-weight: bolder; text-decoration: underline'
+              );
+              movieTitle.textContent = data.results[i].title;
+
+              // Adds posters, titles, and overview to page
+
+              movieInfoDiv.append(
+                displayMovies,
+                movieTitle,
+                displayMovieOverview
+              );
               movieListEl.append(movieInfoDiv);
-              movieInfoDiv.append(movieInfo, displayMovies);
             }
           });
         }
@@ -91,6 +112,29 @@ let getMovieGenre = (data) => {
   }
 };
 
-searchMoviesGenre();
+var resetBtns = () => {
+  nextPageBtn.textContent = 'Next';
+  previousPageBtn.textContent = 'Previous';
+};
 
-// nextPageBtns.addEventListener('click', () => {});
+nextPageBtn.addEventListener('click', () => {
+  window.scrollTo(0, 0);
+  pageNum++;
+  genreListEl.innerHTML = '';
+  movieListEl.innerHTML = '';
+  nextPageBtn.textContent = 'Select Genre To See Next Page';
+
+  searchMoviesGenre();
+});
+
+previousPageBtn.addEventListener('click', () => {
+  window.scrollTo(0, 0);
+  pageNum--;
+  genreListEl.innerHTML = '';
+  movieListEl.innerHTML = '';
+  previousPageBtn.textContent = 'Select Genre To See Previous Page';
+
+  searchMoviesGenre();
+});
+
+searchMoviesGenre();
