@@ -29,7 +29,7 @@ var searchMoviesGenre = () => {
   });
 };
 
-// This will append the genres to buttons and link to a movie drop down list
+// This will append the genres to buttons and link to a movie display page
 let getMovieGenre = (data) => {
   for (let i = 0; i < data.genres.length; i++) {
     let movieGenre = document.createElement('button');
@@ -56,15 +56,18 @@ let getMovieGenre = (data) => {
               movieInfoDiv.setAttribute('id', 'movieDiv');
               movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
 
+              // This generates the posters and titles
               let displayMovies = document.createElement('img');
               displayMovies.setAttribute('id', data.results[i].title);
               displayMovies.setAttribute(
                 'src',
                 'https://image.tmdb.org/t/p/w185' + data.results[i].poster_path
               );
+
+              // This adds an overview of the movie above the poster
               displayMovies.addEventListener('click', (event) => {
                 let displayMovieOverview = document.createElement('div');
-                displayMovieOverview.setAttribute('style', 'z-index: 1');
+
                 movieInfoDiv.prepend(displayMovieOverview);
                 displayMovieOverview.textContent = data.results[i].overview;
               });
@@ -73,6 +76,7 @@ let getMovieGenre = (data) => {
               movieInfo.setAttribute('id', 'info');
               movieInfo.textContent = data.results[i].title;
 
+              // Adds posters and title to page
               movieListEl.append(movieInfoDiv);
               movieInfoDiv.append(movieInfo, displayMovies);
             }
