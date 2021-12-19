@@ -45,7 +45,7 @@ let getMovieGenre = (data) => {
           apiKey +
           '&with_genres=' +
           movieGenreNums[i] +
-          '&language=en-US&adult=false&page=1'
+          '&language=en-US&adult=false&page=11'
       );
 
       fetch(apiUrl).then((response) => {
@@ -72,9 +72,6 @@ let getMovieGenre = (data) => {
               let movieInfo = document.createElement('div');
               movieInfo.setAttribute('id', 'info');
               movieInfo.textContent = data.results[i].title;
-              console.log(data.results[i].title);
-              console.log(data.results[i].release_date);
-              console.log(data.results[i].overview);
 
               movieListEl.append(movieInfoDiv);
               movieInfoDiv.append(movieInfo, displayMovies);
