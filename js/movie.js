@@ -92,3 +92,5 @@ let getMovieGenre = (data) => {
 };
 
 searchMoviesGenre();
+
+// nextPageBtns.addEventListener('click', () => {});
