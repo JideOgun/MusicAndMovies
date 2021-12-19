@@ -1,16 +1,11 @@
 let apiKey = '1fcb095f3dea632c59c58e8920d44217';
-let baseUrl = 'https://api.themoviedb.org/3/';
-let posterUrl = 'https://image.tmdb.org/t/p/w342';
-let genreSearch = 'genre/movie/list?api_key=';
-let moviesByGenre = 'discover/movie?api_key=' + apiKey + '&with_genres=';
-let langEn = '&language=en-US';
-let moviePoster = 'https://image.tmdb.org/t/p/w342';
 
 let genreListEl = document.querySelector('#genres');
 let movieListEl = document.querySelector('#movies');
 let movieInfoEl = document.querySelector('#movieInfo');
 let moviePage = document.querySelector('display');
 let movieList = document.querySelector('#option');
+let nextPageBtns = document.querySelector('.more-btn');
 
 let movieGenreNums = [
   28, 12, 16, 35, 80, 99, 18, 10751, 14, 36, 27, 10402, 9648, 10749, 878, 10770,
@@ -19,7 +14,11 @@ let movieGenreNums = [
 
 // This will call TMDB api to generate genres
 var searchMoviesGenre = () => {
-  let apiUrl = ''.concat(baseUrl + genreSearch + apiKey + langEn);
+  let apiUrl = ''.concat(
+    'https://api.themoviedb.org/3/genre/movie/list?api_key=' +
+      apiKey +
+      '&language=en-US'
+  );
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
@@ -42,28 +41,43 @@ let getMovieGenre = (data) => {
       movieListEl.textContent = '';
 
       let apiUrl = ''.concat(
-        baseUrl +
-          moviesByGenre +
+        'https://api.themoviedb.org/3/discover/movie?api_key=' +
+          apiKey +
+          '&with_genres=' +
           movieGenreNums[i] +
-          langEn +
-          '&adult=false' +
-          '&page=11'
+          '&language=en-US&adult=false&page=1'
       );
 
       fetch(apiUrl).then((response) => {
         if (response.ok) {
           response.json().then((data) => {
             for (let i = 0; i < data.results.length; i++) {
+              let movieInfoDiv = document.createElement('div');
+              movieInfoDiv.setAttribute('id', 'movieDiv');
+              movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
+
               let displayMovies = document.createElement('img');
               displayMovies.setAttribute('id', data.results[i].title);
               displayMovies.setAttribute(
                 'src',
-                posterUrl + data.results[i].poster_path
+                'https://image.tmdb.org/t/p/w185' + data.results[i].poster_path
               );
+              displayMovies.addEventListener('click', (event) => {
+                let displayMovieOverview = document.createElement('div');
+                displayMovieOverview.setAttribute('style', 'z-index: 1');
+                movieInfoDiv.prepend(displayMovieOverview);
+                displayMovieOverview.textContent = data.results[i].overview;
+              });
 
-              movieListEl.append(displayMovies);
+              let movieInfo = document.createElement('div');
+              movieInfo.setAttribute('id', 'info');
+              movieInfo.textContent = data.results[i].title;
+              console.log(data.results[i].title);
+              console.log(data.results[i].release_date);
+              console.log(data.results[i].overview);
 
-              console.log(apiUrl);
+              movieListEl.append(movieInfoDiv);
+              movieInfoDiv.append(movieInfo, displayMovies);
             }
           });
         }

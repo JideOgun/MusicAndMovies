@@ -40,23 +40,16 @@
 /* start of Movie page styling */
 
 #genres {
-  position: fixed;
   width: 100%;
-
   display: flexbox;
   text-align: center;
   background: #304543;
-}
-
-.movies {
-  padding-top: 6rem;
 }
 
 .movies,
 .more-btn {
   width: 100%;
   margin: 0 auto;
-
   display: flex;
   justify-content: space-evenly;
   background: #304543;
