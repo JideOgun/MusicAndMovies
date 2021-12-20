@@ -45,7 +45,7 @@ let getMovieGenre = (data) => {
     let movieGenre = document.createElement('button');
     movieGenre.setAttribute('id', data.genres[i].id);
     movieGenre.setAttribute('class', 'btn-secondary');
-    movieGenre.setAttribute('style', 'margin: 1rem .5rem');
+    movieGenre.setAttribute('style', 'margin: 1rem .5rem; color: goldenrod');
     movieGenre.dataset.name = `${data.genres[i].name}`;
     movieGenre.addEventListener('click', (event) => {
       resetBtns();
@@ -83,9 +83,13 @@ let getMovieGenre = (data) => {
 
               // This adds an overview of the movie above the poster
 
-              let displayMovieOverview = document.createElement('div');
+              let displayMovieOverview = document.createElement('p');
 
               displayMovieOverview.textContent = data.results[i].overview;
+              displayMovieOverview.setAttribute(
+                'style',
+                'padding: 1rem; color: goldenrod; '
+              );
 
               let movieTitle = document.createElement('div');
               movieTitle.setAttribute('id', 'info');
@@ -156,7 +160,7 @@ nextPageBtn.addEventListener('click', () => {
 
             // This adds an overview of the movie above the poster
 
-            let displayMovieOverview = document.createElement('div');
+            let displayMovieOverview = document.createElement('p');
 
             displayMovieOverview.textContent = data.results[i].overview;
 
@@ -220,7 +224,7 @@ previousPageBtn.addEventListener('click', () => {
 
             // This adds an overview of the movie above the poster
 
-            let displayMovieOverview = document.createElement('div');
+            let displayMovieOverview = document.createElement('p');
 
             displayMovieOverview.textContent = data.results[i].overview;
 
