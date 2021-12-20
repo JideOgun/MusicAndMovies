@@ -1,51 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MM</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Vollkorn:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/homepage.css">
-</head>
-<body>
-    <div id="logo-container" class="container-fluid">
-        <a><img id="logo" src="./assets/images/MM.png"></a>
-    </div>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Vollkorn:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/homepage.css" />
+  </head>
+  <body>
     <div class="header">
-        <h1>Music and Movies</h1>
+      <a href="homepage.html">
+        <img src="./assets/images/MM.png" alt="logo" class="logo" />
+      </a>
+      <h1>Music & Movies</h1>
+      <div class="dropdown">
+        <button class="dropbtn">Meet the Team</button>
+        <div class="dropdown-content">
+          <a href="#">Craig</a>
+          <a href="#">Jide</a>
+          <a href="#">Hoa</a>
+          <a href="#">Marcus</a>
+          <a href="#">Miguel</a>
+        </div>
+      </div>
     </div>
-    
+
     <div class="container">
-        <div class="row">
-          <div id="card-1" class="col-sm-6 d-flex justify-content-center">
-            <div class="card" style="width: 20rem;">
-              <img id="cassette" class="card-img-top" src="./assets/images/2.png" alt="retro cassette tape">
-              <div class="card-body">
-                <h5 class="card-title">Music</h5>
-                <p class="card-text">If you want to Jam</p>
-                <a href="#" type="button" class="btn btn-warning">Click Here</a>
-              </div>
-            </div>
-          </div>
-          <div id="card-2" class="col-sm-6 d-flex justify-content-center">
-            <div class="card" style="width: 20rem;">
-              <img id="glasses" class="card-img-top" src="./assets/images/3.png" alt="3D glasses">
-              <div class="card-body">
-                <h5 class="card-title">Movies</h5>
-                <p class="card-text">Grab some popcorn</p>
-                <a href="#" type="button" class="btn btn-warning">Click Here</a>
-              </div>
+      <div class="row">
+        <div id="card-1" class="col-sm-6 d-flex justify-content-center">
+          <div class="card" style="width: 20rem">
+            <img
+              id="cassette"
+              class="card-img-top"
+              src="./assets/images/2.png"
+              alt="retro cassette tape"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Music</h5>
+              <p class="card-text">If you want to Jam</p>
+              <a href="./MusicPage.html" type="button" class="btn btn-warning"
+                >Click Here</a
+              >
             </div>
           </div>
         </div>
+        <div id="card-2" class="col-sm-6 d-flex justify-content-center">
+          <div class="card" style="width: 20rem">
+            <img
+              id="glasses"
+              class="card-img-top"
+              src="./assets/images/3.png"
+              alt="3D glasses"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Movies</h5>
+              <p class="card-text">Grab some popcorn</p>
+              <a href="moviepage.html" type="button" class="btn btn-warning"
+                >Click Here</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-<footer>
-  <p></p>  
-</footer>    
-    <div><p>&copy 2020 Gryffindor</p></div>
-</body>
+    <footer class="page-footer font-small pt-4">
+      <div class="footer-copyright text-center py-3">
+        © 2021 Copyright:
+        <a href="">Gryffindor-One Tech</a>
+      </div>
+    </footer>
+  </body>
 </html>
