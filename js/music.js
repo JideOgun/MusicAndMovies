@@ -203,7 +203,7 @@ var searchInput = document.getElementById('search-music')
 
 async function searchMusic () {
 
-    const result = await fetch(`https://api.spotify.com/v1/search?q=name:${searchInput.value}&type=track&include_external=audio`, {
+    const result = await fetch(`https://api.spotify.com/v1/search?q=name:${searchInput.value}&type=track,artist&include_external=audio`, {
         method: 'GET',
         headers: { 'Authorization' : 'Bearer ' + token}
     });
@@ -214,22 +214,12 @@ async function searchMusic () {
    var searchResultsEl = document.getElementById('search-results');
 
    function displaySearch() {
-       
+    searchResultsEl.textContent = "";
        for( var i = 0; i < data.tracks.items.length; i++) {
           var searchlist = document.createElement('li');
           searchlist.textContent = data.tracks.items[i].name;
           searchResultsEl.append(searchlist);
        }
-    //    for( var i = 0; i < data.albums.items.length; i++) {
-    //     var searchlist = document.createElement('li');
-    //     searchlist.textContent = data.albums.items[i].name;
-    //     searchResultsEl.append(searchlist);
-    //  }
-    //  for( var i = 0; i < data.artists.items.length; i++) {
-    //     var searchlist = document.createElement('li');
-    //     searchlist.textContent = data.artists.items[i].name;
-    //     searchResultsEl.append(searchlist);
-    //  }
    }
    displaySearch();
            // function to log track Id to local storage to be used by the getTrackDetail function
@@ -249,7 +239,6 @@ var token = localStorage.getItem('token')
 var tracksEndPoint = localStorage.getItem('tracksEndPoint')
 // console.log(token);
 spotifyGenres(token);
-// btnEl.addEventListener('click', spotifyTracks(token, tracksEndPoint));
 spotifyNewRelease (token);
 apiController();
  searchEl.addEventListener('click', searchMusic)
