@@ -19,7 +19,7 @@ WHEN I click the search button</br>
 THEN I am presented with chosen options for that movie</br>
 
 ### Developed By
-Jide Ogu</br>
+Jide Ogunbanjo</br>
 Marcus Morua</br>
 Hoa Pham</br>
 Craig Jensen</br>
