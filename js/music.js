@@ -9,7 +9,7 @@ const getSpotifyToken = async() => {
         method: 'POST',
         headers: {
             'Content-Type' : 'application/x-www-form-urlencoded',
-            'Authorization' : 'Basic ' + (btoa('75195b645b894213b9018c1562267908' + ':' + '93152cc4c4c84ea7b2ba88d3b693ae4f'))
+            'Authorization' : 'Basic ' + (btoa(`${cliend_Id}` + ':' + `${client_Secret}`))
         },
         body: 'grant_type=client_credentials'
     });
@@ -190,10 +190,7 @@ async function spotifyNewRelease (token) {
 
         newReleasediv.append(img);
         newReleaseEl.append(newReleasediv);
-
-
-     }
-    
+     }  
  }
  displayNewReleases();
 
@@ -206,14 +203,45 @@ var searchInput = document.getElementById('search-music')
 
 async function searchMusic () {
 
-    const result = await fetch(`https://api.spotify.com/v1/search?q=name:${searchInput.value.trim()}&type=album,artist,track&include_external=audio`, {
+    const result = await fetch(`https://api.spotify.com/v1/search?q=name:${searchInput.value}&type=track&include_external=audio`, {
         method: 'GET',
         headers: { 'Authorization' : 'Bearer ' + token}
     });
 
     const data = await result.json();
     console.log(data);
-   
+   // function to display search results to the dom
+   var searchResultsEl = document.getElementById('search-results');
+
+   function displaySearch() {
+       
+       for( var i = 0; i < data.tracks.items.length; i++) {
+          var searchlist = document.createElement('li');
+          searchlist.textContent = data.tracks.items[i].name;
+          searchResultsEl.append(searchlist);
+       }
+    //    for( var i = 0; i < data.albums.items.length; i++) {
+    //     var searchlist = document.createElement('li');
+    //     searchlist.textContent = data.albums.items[i].name;
+    //     searchResultsEl.append(searchlist);
+    //  }
+    //  for( var i = 0; i < data.artists.items.length; i++) {
+    //     var searchlist = document.createElement('li');
+    //     searchlist.textContent = data.artists.items[i].name;
+    //     searchResultsEl.append(searchlist);
+    //  }
+   }
+   displaySearch();
+           // function to log track Id to local storage to be used by the getTrackDetail function
+           $('ul li').click(function(e) {
+            trackIndex = $(this).index()
+            console.log(trackIndex)
+           
+           trackId = data.tracks.items[trackIndex].id;
+        console.log(trackId)
+            localStorage.setItem('trackId', trackId)
+            spotifyTrack (trackId);
+            }) 
 }
 
 var btnEl = document.getElementById('btn-id')
