@@ -163,6 +163,10 @@ nextPageBtn.addEventListener('click', () => {
             let displayMovieOverview = document.createElement('p');
 
             displayMovieOverview.textContent = data.results[i].overview;
+            displayMovieOverview.setAttribute(
+              'style',
+              'padding: 1rem; color: goldenrod; '
+            );
 
             let movieTitle = document.createElement('div');
             movieTitle.setAttribute('id', 'info');
@@ -227,6 +231,10 @@ previousPageBtn.addEventListener('click', () => {
             let displayMovieOverview = document.createElement('p');
 
             displayMovieOverview.textContent = data.results[i].overview;
+            displayMovieOverview.setAttribute(
+              'style',
+              'padding: 1rem; color: goldenrod; '
+            );
 
             let movieTitle = document.createElement('div');
             movieTitle.setAttribute('id', 'info');
