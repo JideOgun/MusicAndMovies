@@ -43,13 +43,16 @@ var searchMoviesGenre = () => {
 let getMovieGenre = (data) => {
   for (let i = 0; i < data.genres.length; i++) {
     let movieGenre = document.createElement('button');
-    movieGenre.setAttribute('id', data.genres[i].name);
+    movieGenre.setAttribute('id', data.genres[i].id);
     movieGenre.setAttribute('class', 'btn-secondary');
     movieGenre.setAttribute('style', 'margin: 1rem .5rem');
     movieGenre.dataset.name = `${data.genres[i].name}`;
     movieGenre.addEventListener('click', (event) => {
       resetBtns();
+      pageNum = 1;
       movieListEl.textContent = '';
+
+      localStorage.setItem('movieId', movieGenre.id);
 
       let apiUrl = ''.concat(
         'https://api.themoviedb.org/3/discover/movie?api_key=' +
@@ -122,8 +125,62 @@ nextPageBtn.addEventListener('click', () => {
   pageNum++;
   genreListEl.innerHTML = '';
   movieListEl.innerHTML = '';
-  nextPageBtn.textContent = 'Select Genre To See Next Page';
 
+  for (let i = 0; i < 1; i++) {
+    let apiUrl = ''.concat(
+      'https://api.themoviedb.org/3/discover/movie?api_key=' +
+        apiKey +
+        '&with_genres=' +
+        localStorage.getItem('movieId') +
+        '&language=en-US&adult=false&page=' +
+        pageNum
+    );
+
+    fetch(apiUrl).then((response) => {
+      if (response.ok) {
+        response.json().then((data) => {
+          movieData = data;
+          console.log(movieData);
+          for (let i = 0; i < data.results.length; i++) {
+            let movieInfoDiv = document.createElement('div');
+            movieInfoDiv.setAttribute('id', 'movieDiv');
+            movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
+
+            // This generates the posters and titles
+            let displayMovies = document.createElement('img');
+            displayMovies.setAttribute('id', data.results[i].title);
+            displayMovies.setAttribute(
+              'src',
+              'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
+            );
+
+            // This adds an overview of the movie above the poster
+
+            let displayMovieOverview = document.createElement('div');
+
+            displayMovieOverview.textContent = data.results[i].overview;
+
+            let movieTitle = document.createElement('div');
+            movieTitle.setAttribute('id', 'info');
+            movieTitle.setAttribute(
+              'style',
+              'font-weight: bolder; text-decoration: underline'
+            );
+            movieTitle.textContent = data.results[i].title;
+
+            // Adds posters, titles, and overview to page
+
+            movieInfoDiv.append(
+              displayMovies,
+              movieTitle,
+              displayMovieOverview
+            );
+            movieListEl.append(movieInfoDiv);
+          }
+        });
+      }
+    });
+  }
   searchMoviesGenre();
 });
 
@@ -132,7 +189,62 @@ previousPageBtn.addEventListener('click', () => {
   pageNum--;
   genreListEl.innerHTML = '';
   movieListEl.innerHTML = '';
-  previousPageBtn.textContent = 'Select Genre To See Previous Page';
+
+  for (let i = 0; i < 1; i++) {
+    let apiUrl = ''.concat(
+      'https://api.themoviedb.org/3/discover/movie?api_key=' +
+        apiKey +
+        '&with_genres=' +
+        localStorage.getItem('movieId') +
+        '&language=en-US&adult=false&page=' +
+        pageNum
+    );
+
+    fetch(apiUrl).then((response) => {
+      if (response.ok) {
+        response.json().then((data) => {
+          movieData = data;
+          console.log(movieData);
+          for (let i = 0; i < data.results.length; i++) {
+            let movieInfoDiv = document.createElement('div');
+            movieInfoDiv.setAttribute('id', 'movieDiv');
+            movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
+
+            // This generates the posters and titles
+            let displayMovies = document.createElement('img');
+            displayMovies.setAttribute('id', data.results[i].title);
+            displayMovies.setAttribute(
+              'src',
+              'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
+            );
+
+            // This adds an overview of the movie above the poster
+
+            let displayMovieOverview = document.createElement('div');
+
+            displayMovieOverview.textContent = data.results[i].overview;
+
+            let movieTitle = document.createElement('div');
+            movieTitle.setAttribute('id', 'info');
+            movieTitle.setAttribute(
+              'style',
+              'font-weight: bolder; text-decoration: underline'
+            );
+            movieTitle.textContent = data.results[i].title;
+
+            // Adds posters, titles, and overview to page
+
+            movieInfoDiv.append(
+              displayMovies,
+              movieTitle,
+              displayMovieOverview
+            );
+            movieListEl.append(movieInfoDiv);
+          }
+        });
+      }
+    });
+  }
 
   searchMoviesGenre();
 });
