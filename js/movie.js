@@ -2,7 +2,6 @@ let apiKey = '1fcb095f3dea632c59c58e8920d44217';
 
 let genreListEl = document.querySelector('#genres');
 let movieListEl = document.querySelector('#movies');
-let movieInfoEl = document.querySelector('#movieInfo');
 let moviePage = document.querySelector('display');
 let movieList = document.querySelector('#option');
 let nextPageBtn = document.querySelector('#next');
@@ -44,8 +43,9 @@ let getMovieGenre = (data) => {
   for (let i = 0; i < data.genres.length; i++) {
     let movieGenre = document.createElement('button');
     movieGenre.setAttribute('id', data.genres[i].id);
-    movieGenre.setAttribute('class', 'btn-secondary');
+    movieGenre.setAttribute('class', 'button is-dark is-small is-rounded');
     movieGenre.setAttribute('style', 'margin: 1rem .5rem; color: goldenrod');
+
     movieGenre.dataset.name = `${data.genres[i].name}`;
     movieGenre.addEventListener('click', (event) => {
       resetBtns();
@@ -71,7 +71,14 @@ let getMovieGenre = (data) => {
             for (let i = 0; i < data.results.length; i++) {
               let movieInfoDiv = document.createElement('div');
               movieInfoDiv.setAttribute('id', 'movieDiv');
-              movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
+              movieInfoDiv.setAttribute(
+                'style',
+                'width: 342px; color: white; text-align: center'
+              );
+              movieInfoDiv.setAttribute(
+                'class',
+                'column is-one-fifth is-full-mobile'
+              );
 
               // This generates the posters and titles
               let displayMovies = document.createElement('img');
@@ -149,6 +156,7 @@ nextPageBtn.addEventListener('click', () => {
             let movieInfoDiv = document.createElement('div');
             movieInfoDiv.setAttribute('id', 'movieDiv');
             movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
+            movieInfoDiv.setAttribute('class', 'column is-one-fifth');
 
             // This generates the posters and titles
             let displayMovies = document.createElement('img');
@@ -217,6 +225,7 @@ previousPageBtn.addEventListener('click', () => {
             let movieInfoDiv = document.createElement('div');
             movieInfoDiv.setAttribute('id', 'movieDiv');
             movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
+            movieInfoDiv.setAttribute('class', 'column is-one-fifth');
 
             // This generates the posters and titles
             let displayMovies = document.createElement('img');
