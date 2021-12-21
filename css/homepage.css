@@ -51,6 +51,10 @@ body {
     margin: 30px 50px 0 0;
 }
 
+#links {
+    margin-right: 100px;
+}
+
 /* CONTENT */
 #card-container {
     display: flex;
