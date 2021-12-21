@@ -1,10 +1,13 @@
+// Global variables
 let apiKey = '1fcb095f3dea632c59c58e8920d44217';
 
+// Page variables
 let genreListEl = document.querySelector('#genres');
 let movieListEl = document.querySelector('#movies');
 let nextPageBtn = document.querySelector('#next');
 let previousPageBtn = document.querySelector('#previous');
 
+// Modal variables
 let modalEl = document.querySelector('.modal');
 let modalBg = document.querySelector('.modal-background');
 let modalContent = document.querySelector('.content');
@@ -58,6 +61,7 @@ let getMovieGenre = (data) => {
 
       localStorage.setItem('movieId', movieGenre.id);
 
+      // Allows movie posters to display
       let apiUrl = ''.concat(
         'https://api.themoviedb.org/3/discover/movie?api_key=' +
           apiKey +
@@ -92,7 +96,7 @@ let getMovieGenre = (data) => {
                 'src',
                 'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
               );
-
+              // Modal component
               displayMovies.addEventListener('click', () => {
                 modalEl.classList.add('is-active');
 
@@ -104,7 +108,7 @@ let getMovieGenre = (data) => {
                 displayMovieOverview.textContent = data.results[i].overview;
               });
 
-              // Adds posters, titles, and overview to page
+              // Adds posters to page
 
               movieInfoDiv.append(displayMovies);
               movieListEl.append(movieInfoDiv);
@@ -120,11 +124,13 @@ let getMovieGenre = (data) => {
   }
 };
 
+// Reset function
 var resetBtns = () => {
   nextPageBtn.textContent = 'Next';
   previousPageBtn.textContent = 'Previous';
 };
 
+// Buttons for next page
 nextPageBtn.addEventListener('click', () => {
   window.scrollTo(0, 0);
   pageNum++;
@@ -164,8 +170,7 @@ nextPageBtn.addEventListener('click', () => {
               'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
             );
 
-            // This adds an overview of the movie
-
+            // Modal for next button
             displayMovies.addEventListener('click', () => {
               modalEl.classList.add('is-active');
 
@@ -177,13 +182,8 @@ nextPageBtn.addEventListener('click', () => {
               displayMovieOverview.textContent = data.results[i].overview;
             });
 
-            // Adds posters, titles, and overview to page
-
-            movieInfoDiv.append(
-              displayMovies
-              // movieTitle,
-              // displayMovieOverview
-            );
+            // Adds posters to page
+            movieInfoDiv.append(displayMovies);
             movieListEl.append(movieInfoDiv);
           }
         });
@@ -193,6 +193,7 @@ nextPageBtn.addEventListener('click', () => {
   searchMoviesGenre();
 });
 
+// Button for previous page
 previousPageBtn.addEventListener('click', () => {
   window.scrollTo(0, 0);
   pageNum--;
@@ -232,8 +233,7 @@ previousPageBtn.addEventListener('click', () => {
               'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
             );
 
-            // This adds an overview of the movie
-
+            // Modal for previous button
             displayMovies.addEventListener('click', () => {
               modalEl.classList.add('is-active');
 
@@ -245,13 +245,9 @@ previousPageBtn.addEventListener('click', () => {
               displayMovieOverview.textContent = data.results[i].overview;
             });
 
-            // Adds posters, titles, and overview to page
+            // Adds posters to page
 
-            movieInfoDiv.append(
-              displayMovies
-              // movieTitle,
-              // displayMovieOverview
-            );
+            movieInfoDiv.append(displayMovies);
             movieListEl.append(movieInfoDiv);
           }
         });
@@ -262,6 +258,7 @@ previousPageBtn.addEventListener('click', () => {
   searchMoviesGenre();
 });
 
+// Modal event listeners
 modalBg.addEventListener('click', () => {
   modalEl.classList.remove('is-active');
 });
@@ -270,4 +267,5 @@ modalBtn.addEventListener('click', () => {
   modalEl.classList.remove('is-active');
 });
 
+// Start function
 searchMoviesGenre();
