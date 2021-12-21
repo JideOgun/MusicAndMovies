@@ -53,7 +53,19 @@ img {
 }
 
 img:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgb(47, 47, 47);
+}
+
+.title {
+  text-align: center;
+  text-decoration: underline;
+  color: goldenrod;
+}
+
+.content {
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
 }
 
 .row {
