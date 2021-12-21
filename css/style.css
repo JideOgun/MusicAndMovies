@@ -36,37 +36,3 @@
 .group1 {
   text-align: center;
 }
-
-/* start of Movie page styling */
-
-#genres {
-  width: 100%;
-  display: flexbox;
-  text-align: center;
-  background: #304543;
-}
-
-.movies,
-.more-btn {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-evenly;
-  background: #304543;
-}
-
-.more-btn {
-  height: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-}
-
-.more-btn:hover {
-  background: #3f5a57;
-}
-
-img {
-  padding: 1rem 0;
-}

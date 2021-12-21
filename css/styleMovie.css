@@ -1,0 +1,57 @@
+html {
+  background: #304543;
+}
+
+#genres {
+  width: 100%;
+  display: flexbox;
+  text-align: center;
+  background: #304543;
+}
+
+.button:hover {
+  background-color: dimgray;
+}
+
+.movies {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: #304543;
+}
+
+.more-btn {
+  width: 50%;
+  margin: 0 auto;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: goldenrod;
+  background: #304543;
+}
+
+#next {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+#previous {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.more-btn:hover {
+  background: #3f5a57;
+}
+
+img {
+  padding: 1rem 0;
+}
+
+.row {
+  text-align: center;
+}
