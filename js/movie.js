@@ -43,7 +43,7 @@ let getMovieGenre = (data) => {
   for (let i = 0; i < data.genres.length; i++) {
     let movieGenre = document.createElement('button');
     movieGenre.setAttribute('id', data.genres[i].id);
-    movieGenre.setAttribute('class', 'button is-dark is-small');
+    movieGenre.setAttribute('class', 'button is-dark is-small is-rounded');
     movieGenre.setAttribute('style', 'margin: 1rem .5rem; color: goldenrod');
 
     movieGenre.dataset.name = `${data.genres[i].name}`;
@@ -71,8 +71,14 @@ let getMovieGenre = (data) => {
             for (let i = 0; i < data.results.length; i++) {
               let movieInfoDiv = document.createElement('div');
               movieInfoDiv.setAttribute('id', 'movieDiv');
-              movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
-              movieInfoDiv.setAttribute('class', 'column is-one-fifth');
+              movieInfoDiv.setAttribute(
+                'style',
+                'width: 342px; color: white; text-align: center'
+              );
+              movieInfoDiv.setAttribute(
+                'class',
+                'column is-one-fifth is-full-mobile'
+              );
 
               // This generates the posters and titles
               let displayMovies = document.createElement('img');
@@ -84,14 +90,6 @@ let getMovieGenre = (data) => {
 
               // This adds an overview of the movie above the poster
 
-              let displayMovieOverview = document.createElement('p');
-
-              displayMovieOverview.textContent = data.results[i].overview;
-              displayMovieOverview.setAttribute(
-                'style',
-                'padding: 1rem; color: goldenrod; '
-              );
-
               let movieTitle = document.createElement('div');
               movieTitle.setAttribute('id', 'info');
               movieTitle.setAttribute(
@@ -99,6 +97,14 @@ let getMovieGenre = (data) => {
                 'font-weight: bolder; text-decoration: underline'
               );
               movieTitle.textContent = data.results[i].title;
+
+              let displayMovieOverview = document.createElement('p');
+
+              displayMovieOverview.textContent = data.results[i].overview;
+              displayMovieOverview.setAttribute(
+                'style',
+                'padding: 1rem; color: goldenrod; '
+              );
 
               // Adds posters, titles, and overview to page
 
@@ -149,7 +155,10 @@ nextPageBtn.addEventListener('click', () => {
           for (let i = 0; i < data.results.length; i++) {
             let movieInfoDiv = document.createElement('div');
             movieInfoDiv.setAttribute('id', 'movieDiv');
-            movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
+            movieInfoDiv.setAttribute(
+              'style',
+              'width: 342px; color: white; text-align: center'
+            );
             movieInfoDiv.setAttribute('class', 'column is-one-fifth');
 
             // This generates the posters and titles
@@ -162,14 +171,6 @@ nextPageBtn.addEventListener('click', () => {
 
             // This adds an overview of the movie above the poster
 
-            let displayMovieOverview = document.createElement('p');
-
-            displayMovieOverview.textContent = data.results[i].overview;
-            displayMovieOverview.setAttribute(
-              'style',
-              'padding: 1rem; color: goldenrod; '
-            );
-
             let movieTitle = document.createElement('div');
             movieTitle.setAttribute('id', 'info');
             movieTitle.setAttribute(
@@ -177,6 +178,14 @@ nextPageBtn.addEventListener('click', () => {
               'font-weight: bolder; text-decoration: underline'
             );
             movieTitle.textContent = data.results[i].title;
+
+            let displayMovieOverview = document.createElement('p');
+
+            displayMovieOverview.textContent = data.results[i].overview;
+            displayMovieOverview.setAttribute(
+              'style',
+              'padding: 1rem; color: goldenrod; '
+            );
 
             // Adds posters, titles, and overview to page
 
@@ -218,7 +227,10 @@ previousPageBtn.addEventListener('click', () => {
           for (let i = 0; i < data.results.length; i++) {
             let movieInfoDiv = document.createElement('div');
             movieInfoDiv.setAttribute('id', 'movieDiv');
-            movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
+            movieInfoDiv.setAttribute(
+              'style',
+              'width: 342px; color: white; text-align: center'
+            );
             movieInfoDiv.setAttribute('class', 'column is-one-fifth');
 
             // This generates the posters and titles
@@ -231,14 +243,6 @@ previousPageBtn.addEventListener('click', () => {
 
             // This adds an overview of the movie above the poster
 
-            let displayMovieOverview = document.createElement('p');
-
-            displayMovieOverview.textContent = data.results[i].overview;
-            displayMovieOverview.setAttribute(
-              'style',
-              'padding: 1rem; color: goldenrod; '
-            );
-
             let movieTitle = document.createElement('div');
             movieTitle.setAttribute('id', 'info');
             movieTitle.setAttribute(
@@ -246,6 +250,14 @@ previousPageBtn.addEventListener('click', () => {
               'font-weight: bolder; text-decoration: underline'
             );
             movieTitle.textContent = data.results[i].title;
+
+            let displayMovieOverview = document.createElement('p');
+
+            displayMovieOverview.textContent = data.results[i].overview;
+            displayMovieOverview.setAttribute(
+              'style',
+              'padding: 1rem; color: goldenrod; '
+            );
 
             // Adds posters, titles, and overview to page
 
