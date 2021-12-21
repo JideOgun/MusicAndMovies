@@ -43,7 +43,7 @@ let getMovieGenre = (data) => {
   for (let i = 0; i < data.genres.length; i++) {
     let movieGenre = document.createElement('button');
     movieGenre.setAttribute('id', data.genres[i].id);
-    movieGenre.setAttribute('class', 'button is-dark is-small');
+    movieGenre.setAttribute('class', 'button is-dark is-small is-rounded');
     movieGenre.setAttribute('style', 'margin: 1rem .5rem; color: goldenrod');
 
     movieGenre.dataset.name = `${data.genres[i].name}`;
@@ -71,8 +71,14 @@ let getMovieGenre = (data) => {
             for (let i = 0; i < data.results.length; i++) {
               let movieInfoDiv = document.createElement('div');
               movieInfoDiv.setAttribute('id', 'movieDiv');
-              movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
-              movieInfoDiv.setAttribute('class', 'column is-one-fifth');
+              movieInfoDiv.setAttribute(
+                'style',
+                'width: 342px; color: white; text-align: center'
+              );
+              movieInfoDiv.setAttribute(
+                'class',
+                'column is-one-fifth is-full-mobile'
+              );
 
               // This generates the posters and titles
               let displayMovies = document.createElement('img');
