@@ -66,8 +66,8 @@ let getMovieGenre = (data) => {
       fetch(apiUrl).then((response) => {
         if (response.ok) {
           response.json().then((data) => {
-            movieData = data;
-            console.log(movieData);
+            // movieData = data;
+            // console.log(movieData);
             for (let i = 0; i < data.results.length; i++) {
               let movieInfoDiv = document.createElement('div');
               movieInfoDiv.setAttribute('id', 'movieDiv');
@@ -163,6 +163,10 @@ nextPageBtn.addEventListener('click', () => {
             let displayMovieOverview = document.createElement('p');
 
             displayMovieOverview.textContent = data.results[i].overview;
+            displayMovieOverview.setAttribute(
+              'style',
+              'padding: 1rem; color: goldenrod; '
+            );
 
             let movieTitle = document.createElement('div');
             movieTitle.setAttribute('id', 'info');
@@ -227,6 +231,10 @@ previousPageBtn.addEventListener('click', () => {
             let displayMovieOverview = document.createElement('p');
 
             displayMovieOverview.textContent = data.results[i].overview;
+            displayMovieOverview.setAttribute(
+              'style',
+              'padding: 1rem; color: goldenrod; '
+            );
 
             let movieTitle = document.createElement('div');
             movieTitle.setAttribute('id', 'info');
