@@ -1,72 +1,15 @@
 body {
     background-color: #304543;
 }
+/* NAV */
 #title {
     color: aliceblue;
 }
+
 #header-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-
-#card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 05%;
-    margin-right: 1%;
-    margin-left: 1%;
-    margin-bottom: 15%;
-}
-
-#card-1 img, 
-#card-2 img{
-    max-height: 75%;
-    max-width: 75%;
-    border-radius: 50%;
-    position: relative;
-    top:45%;
-    left:50%;
-    transform:translate(-50%, -50%);
-}
-
-#card-1, 
-#card-2 {
-box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
-transition: 0.3s;
-background-color: white;
-/* border-radius: 50%; */
-/* max-width: 70%; */
-/* overflow: hidden; */
-white-space: normal;
-}
-
-#card-1:hover,
-#card-2:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,2);
-}
-
-#card-content {
-    padding: 2px 16px;
-    margin-right: 5px;
-    background-color: #f04e3e;
-}
-
-#card-content button {
-    color: #fcca64;
-}
-
-#card-content a {
-    color: black;
-}
-
-#card-content h4,
-#card-content button {
-    /* display: inline-block; */
-    padding:2px;
-    margin: 5px;
-    font-family: 'Space Mono', monospace;
 }
 
 #site-header { 
@@ -104,12 +47,74 @@ white-space: normal;
     float: right;
 }
 
+#dropdown-team {
+    margin: 30px 50px 0 0;
+}
+
+/* CONTENT */
+#card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 05%;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-bottom: 15%;
+}
+
+#card-1 img, 
+#card-2 img{
+    max-height: 100%;
+    max-width: 75%;
+    border-radius: 50%;
+    position: relative;
+    top:45%;
+    left:50%;
+    transform:translate(-50%, -50%);
+}
+
+#card-1, 
+#card-2 {
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
+transition: 0.3s;
+background-color: white;
+/* border-radius: 50%; */
+/* max-width: 70%; */
+/* overflow: hidden; */
+white-space: normal;
+}
+
+#card-1:hover,
+#card-2:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,2);
+}
+
+#card-content {
+    padding: 2px 16px;
+    margin-right: 0;
+    background-color: #f04e3e;
+}
+
+#card-content button {
+    color: #fcca64;
+}
+
+#card-content a {
+    color: black;
+}
+
+#card-content h4,
+#card-content button {
+    /* display: inline-block; */
+    padding:2px;
+    margin: 5px;
+    font-family: 'Space Mono', monospace;
+}
+
+
 @media (max-width: 800px) {
     #card-1, #card-2 {
       flex: 100%;
     }
 }
 
-#dropdown-team {
-    margin: 30px 50px 0 0;
-}
