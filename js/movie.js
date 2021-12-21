@@ -2,12 +2,13 @@ let apiKey = '1fcb095f3dea632c59c58e8920d44217';
 
 let genreListEl = document.querySelector('#genres');
 let movieListEl = document.querySelector('#movies');
-let moviePage = document.querySelector('display');
-let movieList = document.querySelector('#option');
 let nextPageBtn = document.querySelector('#next');
 let previousPageBtn = document.querySelector('#previous');
 
-let genreData, movieData;
+let modalEl = document.querySelector('.modal');
+let modalBg = document.querySelector('.modal-background');
+let modalContent = document.querySelector('.content');
+
 let pageNum = 1;
 
 let movieGenreNums = [
@@ -29,7 +30,6 @@ var searchMoviesGenre = () => {
         .json()
         .then(function (data) {
           getMovieGenre(data);
-          genreData = data;
         })
         .catch(function (error) {
           alert('There was a problem, try again later');
@@ -88,31 +88,32 @@ let getMovieGenre = (data) => {
                 'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
               );
 
-              // This adds an overview of the movie above the poster
+              displayMovies.addEventListener('click', () => {
+                modalEl.classList.add('is-active');
+                console.log('clicked');
+                localStorage.setItem('movieTitle', data.results[i].title);
+                localStorage.setItem('movieInfo', data.results[i].overview);
+                let movieTitle = document.querySelector('.title');
+                movieTitle.textContent = data.results[i].title;
+                let displayMovieOverview = document.querySelector('.content');
+                displayMovieOverview.textContent = data.results[i].overview;
+              });
+              // This adds an overview of the movie;
 
-              let movieTitle = document.createElement('div');
-              movieTitle.setAttribute('id', 'info');
-              movieTitle.setAttribute(
-                'style',
-                'font-weight: bolder; text-decoration: underline'
-              );
-              movieTitle.textContent = data.results[i].title;
+              // movieTitle.setAttribute('id', 'info');
+              // movieTitle.setAttribute(
+              //   'style',
+              //   'font-weight: bolder; text-decoration: underline'
+              // );
 
-              let displayMovieOverview = document.createElement('p');
-
-              displayMovieOverview.textContent = data.results[i].overview;
-              displayMovieOverview.setAttribute(
-                'style',
-                'padding: 1rem; color: goldenrod; '
-              );
+              // displayMovieOverview.setAttribute(
+              //   'style',
+              //   'padding: 1rem; color: goldenrod; '
+              // );
 
               // Adds posters, titles, and overview to page
 
-              movieInfoDiv.append(
-                displayMovies,
-                movieTitle,
-                displayMovieOverview
-              );
+              movieInfoDiv.append(displayMovies);
               movieListEl.append(movieInfoDiv);
             }
           });
@@ -169,30 +170,25 @@ nextPageBtn.addEventListener('click', () => {
               'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
             );
 
-            // This adds an overview of the movie above the poster
+            // This adds an overview of the movie
 
-            let movieTitle = document.createElement('div');
-            movieTitle.setAttribute('id', 'info');
-            movieTitle.setAttribute(
-              'style',
-              'font-weight: bolder; text-decoration: underline'
-            );
-            movieTitle.textContent = data.results[i].title;
-
-            let displayMovieOverview = document.createElement('p');
-
-            displayMovieOverview.textContent = data.results[i].overview;
-            displayMovieOverview.setAttribute(
-              'style',
-              'padding: 1rem; color: goldenrod; '
-            );
+            displayMovies.addEventListener('click', () => {
+              modalEl.classList.add('is-active');
+              console.log('clicked');
+              localStorage.setItem('movieTitle', data.results[i].title);
+              localStorage.setItem('movieInfo', data.results[i].overview);
+              let movieTitle = document.querySelector('.title');
+              movieTitle.textContent = data.results[i].title;
+              let displayMovieOverview = document.querySelector('.content');
+              displayMovieOverview.textContent = data.results[i].overview;
+            });
 
             // Adds posters, titles, and overview to page
 
             movieInfoDiv.append(
-              displayMovies,
-              movieTitle,
-              displayMovieOverview
+              displayMovies
+              // movieTitle,
+              // displayMovieOverview
             );
             movieListEl.append(movieInfoDiv);
           }
@@ -241,30 +237,25 @@ previousPageBtn.addEventListener('click', () => {
               'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
             );
 
-            // This adds an overview of the movie above the poster
+            // This adds an overview of the movie
 
-            let movieTitle = document.createElement('div');
-            movieTitle.setAttribute('id', 'info');
-            movieTitle.setAttribute(
-              'style',
-              'font-weight: bolder; text-decoration: underline'
-            );
-            movieTitle.textContent = data.results[i].title;
-
-            let displayMovieOverview = document.createElement('p');
-
-            displayMovieOverview.textContent = data.results[i].overview;
-            displayMovieOverview.setAttribute(
-              'style',
-              'padding: 1rem; color: goldenrod; '
-            );
+            displayMovies.addEventListener('click', () => {
+              modalEl.classList.add('is-active');
+              console.log('clicked');
+              localStorage.setItem('movieTitle', data.results[i].title);
+              localStorage.setItem('movieInfo', data.results[i].overview);
+              let movieTitle = document.querySelector('.title');
+              movieTitle.textContent = data.results[i].title;
+              let displayMovieOverview = document.querySelector('.content');
+              displayMovieOverview.textContent = data.results[i].overview;
+            });
 
             // Adds posters, titles, and overview to page
 
             movieInfoDiv.append(
-              displayMovies,
-              movieTitle,
-              displayMovieOverview
+              displayMovies
+              // movieTitle,
+              // displayMovieOverview
             );
             movieListEl.append(movieInfoDiv);
           }
@@ -274,6 +265,10 @@ previousPageBtn.addEventListener('click', () => {
   }
 
   searchMoviesGenre();
+});
+
+modalBg.addEventListener('click', () => {
+  modalEl.classList.remove('is-active');
 });
 
 searchMoviesGenre();
