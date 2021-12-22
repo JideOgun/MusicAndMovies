@@ -18,7 +18,7 @@ body {
 #site-header { 
     /* border-bottom: 1px solid #ccc; */
     padding: .5em 1em;
-    background-color: 	#ced2ba;
+    background-color: aliceblue;
 }
 
 #site-header::after {
@@ -129,7 +129,7 @@ white-space: normal;
 }
 
 .footer {
-    background-color: #ced2ba;;
+    background-color: aliceblue;
 }
 
 .footer a,
