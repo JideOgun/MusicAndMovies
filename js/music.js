@@ -105,12 +105,10 @@ async function spotifyTracks () {
         tracklistEl.textContent = "";
         for (var i = 0; i < data.items.length; i++) {
             
-            newdiv = document.createElement('li');
-            newA = document.createElement('a')
-            newA.setAttribute('href', '#');  newA.setAttribute('id', 'track-id');
-            newA.textContent = data.items[i].track.name;
-            newdiv.append(newA)
-            tracklistEl.append(newdiv);
+            newlist = document.createElement('li');
+            newlist.setAttribute('href', '#');  newlist.setAttribute('id', 'track-id');
+            newlist.textContent = data.items[i].track.name;
+            tracklistEl.append(newlist);
         }
         
         // function to log track Id to local storage to be used by the getTrackDetail function
@@ -153,7 +151,7 @@ trackDetailEl.textContent = "";
         sound.src      = data.preview_url;
         sound.type     = 'audio/mpeg';
         var artistname = data.artists[0].name;
-        img.src = data.album.images[0].url
+        img.src = data.album.images[1].url
         newTrackdiv.textContent = data.album.name;
         newdivforImg.append(img);
         trackDetailEl.append(artistname);
@@ -169,7 +167,7 @@ trackDetailEl.textContent = "";
 
 
 async function spotifyNewRelease (token) {
-    var limit = 10;
+    var limit = 40;
     const result = await fetch(`https://api.spotify.com/v1/browse/new-releases?limit=${limit}`, {
         method: 'GET',
         headers: { 'Authorization' : 'Bearer ' + token}
@@ -180,14 +178,24 @@ async function spotifyNewRelease (token) {
  function displayNewReleases() {
      var newReleaseEl =  document.getElementById('new-releases')
      for( var i = 0; i < data.albums.items.length; i++) {
+         artistname= data.albums.items[i].artists[0].name;
         var newReleasediv = document.createElement('div');
-        newReleasediv.className = "col";
-        
-        artistname= data.albums.items[i].artists[0].name;
+        newReleasediv.className = "column is-one-quarter";
+        var namediv = document.createElement('div');
+        namediv.className = "columns";
+        var artistdiv = document.createElement('div');
+        artistdiv.className = "columns";
+        var releasediv = document.createElement('div');
+        releasediv.className = "columns";
+        namediv.textContent = data.albums.items[i].name;
+        artistdiv.textContent = data.albums.items[i].artists[0].name
+        releasediv.textContent = data.albums.items[i].release_date
         var img = document.createElement('img');
-        img.src = data.albums.items[i].images[1].url;
-        newReleasediv.textContent = artistname + ': ' + data.albums.items[i].name + ' Release Date: ' + data.albums.items[i].release_date;
-
+        img.className = "columns"
+        img.src = data.albums.items[i].images[0].url;
+        newReleasediv.append(namediv);
+        newReleasediv.append(releasediv);
+        newReleasediv.append(artistdiv);
         newReleasediv.append(img);
         newReleaseEl.append(newReleasediv);
      }  
@@ -217,6 +225,7 @@ async function searchMusic () {
     searchResultsEl.textContent = "";
        for( var i = 0; i < data.tracks.items.length; i++) {
           var searchlist = document.createElement('li');
+          searchlist.className = "searchlist";
           searchlist.textContent = data.tracks.items[i].name;
           searchResultsEl.append(searchlist);
        }

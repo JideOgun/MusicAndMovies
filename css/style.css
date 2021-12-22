@@ -1,9 +1,19 @@
-.btn {
+/* .btn {
     background-color: aquamarine;
-}
+} */
 
 #new-releases {
-    background-color: rgb(148, 211, 223);
+    background-color:  rgb(9, 43, 14);
+color: bisque;
+text-align: center;
+}
+
+.searchlist {
+    color: bisque;
+    text-align: center;
+    font-style: italic;
+    font-size: 20px;
+    font-family: cursive;
 }
 
 .nar-div{
@@ -12,27 +22,44 @@
 }
 
 .body {
-    background-color: bisque;
+    background-color: rgb(9, 43, 14);
 }
 
 #track-detail {
     text-align: center;
-    background-color: rgb(148, 211, 223);
+    background-color:  rgb(7, 80, 18);
 }
 
-.row {
+#track-list {
+    background-color:rgb(7, 80, 18);
     text-align: center;
-    background-color: rgb(148, 211, 223);
+    color: bisque;
+    font-style: italic;
+    font-size: 20px;
+    font-family: cursive;
 }
+
+.columns {
+   color: bisque; 
+  text-align: right; 
+  font-style: italic;
+} 
 
 .droplist {
     text-align: center;
-    background-color: rgb(148, 211, 223);
+    background-color:  rgb(7, 80, 18);
 }
 .musicmoviesheader{
     text-align: center;
+    font-size: 50px;
+    font-weight: 200;
+    color: bisque;
 }
 
 .group1{
     text-align: center;
+}
+
+#search-results {
+    font-family: monospace;
 }
