@@ -10,9 +10,18 @@ SO THAT I can get a preview of its content</br>
 * This is a user friendly app for users who love entertainment, this app has a music and movie database.
 
 ## Framework
-* Javascript
-* Bulma CDN
+* HTML
 * CSS
+* Javascript
+* jQuery
+* Bulma.io
+
+## Tool Box
+* Google Fonts
+* Canva
+* Jira
+* Spotify
+* The Movie Database API
 
 ## Acceptance Criteria
 GIVEN a genre dropdown with form inputs</br>
