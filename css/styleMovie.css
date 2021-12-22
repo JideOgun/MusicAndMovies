@@ -45,11 +45,27 @@ html {
 }
 
 .more-btn:hover {
-  background: #3f5a57;
+  color: rgb(253, 222, 142);
 }
 
 img {
-  padding: 1rem 0;
+  padding: 1rem 1rem;
+}
+
+img:hover {
+  background-color: rgb(47, 47, 47);
+}
+
+.title {
+  text-align: center;
+  text-decoration: underline;
+  color: goldenrod;
+}
+
+.content {
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
 }
 
 .row {

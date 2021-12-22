@@ -23,14 +23,25 @@
     </header>
     <main>
       <div id="container">
-        <div id="movies" class="movies columns is-multiline"></div>
+        <div id="movies" class="movies columns is-desktop is-multiline"></div>
       </div>
 
       <div class="more-btn">
-        <button id="previous" class="more-btn btn-secondary">Previous</button>
-        <button id="next" class="more-btn">Next</button>
+        <button id="previous" class="more-btn is-clickable">Previous</button>
+        <button id="next" class="more-btn is-clickable">Next</button>
       </div>
     </main>
+
+    <!-- modal -->
+
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content has-background-dark px-5 py-5">
+        <div class="title"></div>
+        <p class="content"></p>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+    </div>
     <footer></footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./js/movie.js"></script>
