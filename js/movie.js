@@ -37,9 +37,7 @@ var searchMoviesGenre = () => {
         .then(function (data) {
           getMovieGenre(data);
         })
-        .catch(function (error) {
-          alert('There was a problem, try again later');
-        });
+        .catch(function (error) {});
     }
   });
 };
@@ -56,11 +54,12 @@ let getMovieGenre = (data) => {
     movieGenre.setAttribute('style', 'margin: 1rem .5rem; color: goldenrod');
 
     movieGenre.dataset.name = `${data.genres[i].name}`;
+
     movieGenre.addEventListener('click', (event) => {
       resetBtns();
       pageNum = 1;
       movieListEl.textContent = '';
-
+      localStorage.setItem('movieGenre', movieGenre.dataset.name);
       localStorage.setItem('movieId', movieGenre.id);
 
       // Allows movie posters to display
@@ -112,6 +111,11 @@ let getMovieGenre = (data) => {
 
               // Adds posters to page
 
+              localStorage.setItem('pageNumber', data.page);
+              pageNumber.innerHTML =
+                localStorage.getItem('movieGenre') +
+                ' Page ' +
+                localStorage.getItem('pageNumber');
               movieInfoDiv.append(displayMovies);
               movieListEl.append(movieInfoDiv);
             }
@@ -155,7 +159,6 @@ nextPageBtn.addEventListener('click', () => {
           movieData = data;
 
           for (let i = 0; i < data.results.length; i++) {
-            console.log(data.page);
             let movieInfoDiv = document.createElement('div');
             movieInfoDiv.setAttribute('id', 'movieDiv');
             movieInfoDiv.setAttribute(
@@ -184,7 +187,11 @@ nextPageBtn.addEventListener('click', () => {
               let displayMovieOverview = document.querySelector('.content');
               displayMovieOverview.textContent = data.results[i].overview;
             });
-
+            localStorage.setItem('pageNumber', data.page);
+            pageNumber.innerHTML =
+              localStorage.getItem('movieGenre') +
+              ' Page ' +
+              localStorage.getItem('pageNumber');
             // Adds posters to page
             movieInfoDiv.append(displayMovies);
             movieListEl.append(movieInfoDiv);
@@ -247,7 +254,11 @@ previousPageBtn.addEventListener('click', () => {
               let displayMovieOverview = document.querySelector('.content');
               displayMovieOverview.textContent = data.results[i].overview;
             });
-
+            localStorage.setItem('pageNumber', data.page);
+            pageNumber.innerHTML =
+              localStorage.getItem('movieGenre') +
+              ' Page ' +
+              localStorage.getItem('pageNumber');
             // Adds posters to page
 
             movieInfoDiv.append(displayMovies);
