@@ -1,5 +1,5 @@
 html {
-  background: #304543;
+  background: rgb(9, 43, 14);
 }
 
 .pageTitle {
@@ -17,7 +17,7 @@ html {
   width: 100%;
   display: flexbox;
   text-align: center;
-  background: #304543;
+  background: rgb(9, 43, 14);
 }
 
 .pageNumber {
@@ -33,7 +33,7 @@ html {
   width: 100%;
   display: flex;
   justify-content: center;
-  background: #304543;
+  background: rgb(9, 43, 14);
 }
 
 .more-btn {
@@ -45,7 +45,7 @@ html {
   align-items: center;
   font-size: 20px;
   color: goldenrod;
-  background: #304543;
+  background: rgb(9, 43, 14);
 }
 
 #next {
