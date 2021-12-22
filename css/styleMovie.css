@@ -20,6 +20,11 @@ html {
   background: #304543;
 }
 
+.pageNumber {
+  text-align: center;
+  color: goldenrod;
+}
+
 .button:hover {
   background-color: dimgray;
 }
