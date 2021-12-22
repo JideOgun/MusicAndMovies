@@ -2,6 +2,17 @@ html {
   background: #304543;
 }
 
+.pageTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: goldenrod;
+}
+
+#home {
+  color: goldenrod;
+}
+
 #genres {
   width: 100%;
   display: flexbox;
