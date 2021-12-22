@@ -37,10 +37,10 @@ Craig Jensen</br>
 Miguel Osorio</br>
 
 ## GIF
-![Demo]()
+![Demo](https://github.com/JideOgun/MusicAndMovies/blob/develop/assets/images/MM.gif)
 
 ## Screenshot
-![homepage]()
+![homepage](https://github.com/JideOgun/MusicAndMovies/blob/develop/assets/images/homepage.JPG)
 
 ![movie](https://user-images.githubusercontent.com/91167771/147129923-ded48fc6-c293-46f1-8839-d7ddab6ea0a0.JPG)
 
