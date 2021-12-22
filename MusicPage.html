@@ -5,47 +5,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group 1 Music and Movies</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/styleMusic.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Vollkorn:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="./css/MusicStyle.css" />
     
 </head>
-<body class="body">
-    <h1 class="group1">GROUP 1 ENTERTAINMENT PORTAL</h1>
-  <h3 class="musicmoviesheader"> MUSIC AND MOVIES HOMEPAGE</h1> 
-    <label for="search-music">Search for music and Artists</label>
-    <input type="search" id="search-music" name="searchmusic">
-    <button id="search-music-btn">Search</button>
+<br>
+<h1 class="musicmoviesheader ">MUSIC</h1>
+<button id="home" class="button is-clickable is-success is-rounded" onclick="window.location='homepage.html';">
+ Homepage
+</button>
+<button id="movie" class="button is-clickable is-success is-rounded" onclick="window.location='moviepage.html';">
+  MoviePage
+</button>
+<br>
+<br>
+<br>
+<body class="body container is-fluid">
+   <div class="control">
+    <label for="search-music"></label>
+    <input class="input is-medium is-rounded" type="search" id="search-music" name="searchmusic" placeholder="Search for Music and Artists">
+    <button class="button is-success is-medium is-fullwidth is-rounded" id="search-music-btn">Search</button>
 
     <ul id="search-results">
 
     </ul>
+  <br>
+  <div class='container'>
+    
+      <div class="droplist card control">
+        <form>
+        <br>
+        <br>
+        <br>
+          <div class="select is-rounded is-medium">
+            <select class="select is-success is-rounded" id="genre-select">
+              <option id="genre-option">Select Genre</option>
+            </select><br>
 
-
-<div class="nar-div card container-fluid">
+            <select  class="select is-success is-rounded" id="playlist-select">
+              <option>Select Playlist</option>
+            </select><br>
+            </div>
+         </form>
+      
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      </div>
+      <br>
+       <div id="track-div card">
+        <button class="button is-clickable is-success is-rounded"  id="btn_prev">Show Prev</button>
+        <button  class="button is-clickable is-success is-rounded"   id="btn_next">Show Next</button>
+        <br>
+        <br>
+        <ul id="track-list"></ul>
+       </div>
+  
+    <div class = "trackdetail card" id="track-detail">
+    </div>
+  </div>
+<div class="nar-div card container.is-full-hd">
   <h4>NEW ALBUM RELEASES</h4>
-    <div class="row justify-content-center" id="new-releases"></div>
+  <br>
+    <div class="columns is-multiline " id="new-releases">
+
+    </div>
 </div>
 
 
-  <div class='container'>
-    <div class="row">
-      <div class="droplist card col">
-        <form>
-            <label for='Genre' class="">Choose a Genre:</label> 
-            <select name='' id="genre-select"><option id="genre-option">Select</option></select><br>
-            <label for='playlist'>Choose a Playlist:</label>
-            <select name='' id="playlist-select"><option>Select</option></select><br>
-         </form>
-      </div>
-<br>
-      
-    <div id="track-div card">
-        <ul id="track-list"></ul>
-    </div>
-  </div>
-    <div class = "trackdetail card" id="track-detail"></div>
-  </div>
-  
+ 
   
 
 </body>

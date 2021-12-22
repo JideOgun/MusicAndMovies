@@ -2,6 +2,17 @@ html {
   background: #304543;
 }
 
+.pageTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: goldenrod;
+}
+
+#home {
+  color: goldenrod;
+}
+
 #genres {
   width: 100%;
   display: flexbox;
@@ -50,6 +61,22 @@ html {
 
 img {
   padding: 1rem 1rem;
+}
+
+img:hover {
+  background-color: rgb(47, 47, 47);
+}
+
+.title {
+  text-align: center;
+  text-decoration: underline;
+  color: goldenrod;
+}
+
+.content {
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
 }
 
 .row {

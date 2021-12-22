@@ -32,4 +32,9 @@ Craig Jensen</br>
 Miguel Osorio</br>
 
 ## Screenshot
+![homepage](https://user-images.githubusercontent.com/91167771/147129952-a46f9850-ce91-4d42-bcd7-2212aafbe8bc.JPG)
+
+![movie](https://user-images.githubusercontent.com/91167771/147129923-ded48fc6-c293-46f1-8839-d7ddab6ea0a0.JPG)
+
+![music](https://user-images.githubusercontent.com/91167771/147129936-2c58703f-95af-49f8-ad7a-874284c148d8.JPG)
 
