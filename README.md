@@ -1,11 +1,10 @@
+## Link
+
 ## User Story
 AS AN entertainment enthusiast</br>
 I WANT the option to filter music by its genre and playlist</br>
 I ALSO WANT the option to filter movies by its genre and movie title</br>
 SO THAT I can get a preview of its content</br>
-
-## Link
-
 
 ## Description
 * This is a user friendly app for users who love entertainment, this app has a music and movie database.
@@ -36,7 +35,7 @@ Hoa Pham</br>
 Craig Jensen</br>
 Miguel Osorio</br>
 
-## GIF
+## DEMO
 ![Demo](https://github.com/JideOgun/MusicAndMovies/blob/develop/assets/images/MM.gif)
 
 ## Screenshot
