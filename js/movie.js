@@ -155,7 +155,11 @@ nextPageBtn.addEventListener('click', () => {
           for (let i = 0; i < data.results.length; i++) {
             let movieInfoDiv = document.createElement('div');
             movieInfoDiv.setAttribute('id', 'movieDiv');
-            movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
+
+            movieInfoDiv.setAttribute(
+              'style',
+              'width: 342px; color: white; text-align: center'
+            );
             movieInfoDiv.setAttribute('class', 'column is-one-fifth');
 
             // This generates the posters and titles
@@ -224,7 +228,10 @@ previousPageBtn.addEventListener('click', () => {
           for (let i = 0; i < data.results.length; i++) {
             let movieInfoDiv = document.createElement('div');
             movieInfoDiv.setAttribute('id', 'movieDiv');
-            movieInfoDiv.setAttribute('style', 'width: 342px; color: white');
+            movieInfoDiv.setAttribute(
+              'style',
+              'width: 342px; color: white; text-align: center'
+            );
             movieInfoDiv.setAttribute('class', 'column is-one-fifth');
 
             // This generates the posters and titles
