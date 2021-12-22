@@ -25,14 +25,27 @@
   background-color: rgb(148, 211, 223);
 }
 
+.columns {
+   color: bisque; 
+  text-align: right; 
+  font-style: italic;
+} 
+
 .droplist {
-  text-align: center;
-  background-color: rgb(148, 211, 223);
+    text-align: center;
+    background-color:  rgb(7, 80, 18);
 }
-.musicmoviesheader {
-  text-align: center;
+.musicmoviesheader{
+    text-align: center;
+    font-size: 50px;
+    font-weight: 200;
+    color: bisque;
 }
 
-.group1 {
-  text-align: center;
+.group1{
+    text-align: center;
+}
+
+#search-results {
+    font-family: monospace;
 }
