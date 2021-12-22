@@ -24,7 +24,11 @@ text-align: center;
 
 #track-detail {
     text-align: center;
-    background-color:  rgb(7, 80, 18);
+    background-color:  rgb(21, 156, 41);
+    color: rgb(196, 255, 199);
+    font-style: italic;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #track-list {

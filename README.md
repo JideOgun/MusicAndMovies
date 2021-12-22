@@ -6,7 +6,14 @@ SO THAT I can get a preview of its content</br>
 
 ## Link
 
+
 ## Description
+* This is a user friendly app for users who love entertainment, this app has a music and movie database.
+
+## Framework
+* Javascript
+* Bulma CDN
+* CSS
 
 ## Acceptance Criteria
 GIVEN a genre dropdown with form inputs</br>
@@ -29,5 +36,13 @@ Hoa Pham</br>
 Craig Jensen</br>
 Miguel Osorio</br>
 
+## GIF
+![Demo](https://github.com/JideOgun/MusicAndMovies/blob/develop/assets/images/MM.gif)
+
 ## Screenshot
+![homepage](https://github.com/JideOgun/MusicAndMovies/blob/develop/assets/images/homepage.JPG)
+
+![movie](https://user-images.githubusercontent.com/91167771/147129923-ded48fc6-c293-46f1-8839-d7ddab6ea0a0.JPG)
+
+![music](https://user-images.githubusercontent.com/91167771/147129936-2c58703f-95af-49f8-ad7a-874284c148d8.JPG)
 

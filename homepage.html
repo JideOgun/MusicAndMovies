@@ -28,7 +28,7 @@
     <!-- drop down -->
     <div id="dropdown-team" class="dropdown">
       <div class="dropdown-trigger">
-        <button class="button is-danger" aria-haspopup="true" aria-controls="dropdown-menu">
+        <button id="teambtn" class="button" aria-haspopup="true" aria-controls="dropdown-menu">
           <span>The Team</span>
         </button>
       </div>
@@ -44,7 +44,7 @@
           <a href="https://github.com/mmorua" class="dropdown-item">
             Marcus
           </a>
-          <a href="#" class="dropdown-item">
+          <a href="https://github.com/hoapham96" class="dropdown-item">
             Hoa
           </a>
           <a href="https://github.com/miguelxosorio" class="dropdown-item">
@@ -58,22 +58,46 @@
 </header>
 <!-- Menu Cards -->
 <div id="card-container">
+  <!-- Card 1 -->
   <div id="card-1">
-    <img src="./assets/images/2.png" alt="cassette" style="width:100%">
+    <img src="./assets/images/2.png" alt="cassette" style="width:100%" id="img-1">
     <div id="card-content">
       <h4><b>For Music</b></h4>
       <button class="button is-large is-warning is-fullwidth"><a href="MusicPage.html">CLICK HERE!</a></button>
     </div>
   </div>
+  <!-- Card 2 -->
   <div id="card-2">
-    <img src="./assets/images/3.png" alt="3d glasses" style="width:100%">
+    <img src="./assets/images/3.png" alt="3d glasses" style="width:100%" id="img-2">
     <div id="card-content">
       <h4><b>For Movies</b></h4>
       <button class="button is-medium is-warning is-large is-fullwidth"><a href="moviepage.html">CLICK HERE!</a></button>
     </div>
   </div>
-</div>  
+</div>
 <!-- End of Menu Cards-->
+<!-- Modal 1-->
+<div class="modal" id="modal1">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <p class="image is-4by3">
+      <img src="https://media.giphy.com/media/dNJr3cahxHPIMRyLKy/giphy.gif" alt="">
+    </p>
+  </div>
+  <button id="close-1" class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<!-- Modal 2 -->
+<div class="modal" id="modal2">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <p class="image is-4by3">
+      <img src="https://media.giphy.com/media/vjwACwDxB0hZ6/giphy.gif" alt="">
+    </p>
+  </div>
+  <button id="close-2" class="modal-close is-large" aria-label="close"></button>
+</div>
+
 <footer class="footer">
   <div class="content has-text-centered">
     <p id="footer-p">
@@ -81,6 +105,6 @@
     </p>
   </div>
 </footer>
-<script src="js/homepage.js"></script>    
+<script src="./js/homepage.js"></script>    
 </body>
 </html>
