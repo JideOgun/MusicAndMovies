@@ -6,6 +6,7 @@ let genreListEl = document.querySelector('#genres');
 let movieListEl = document.querySelector('#movies');
 let nextPageBtn = document.querySelector('#next');
 let previousPageBtn = document.querySelector('#previous');
+let pageNumber = document.querySelector('.pageNumber');
 
 // Modal variables
 let modalEl = document.querySelector('.modal');
@@ -153,6 +154,7 @@ nextPageBtn.addEventListener('click', () => {
           movieData = data;
 
           for (let i = 0; i < data.results.length; i++) {
+            console.log(data.page);
             let movieInfoDiv = document.createElement('div');
             movieInfoDiv.setAttribute('id', 'movieDiv');
             movieInfoDiv.setAttribute(
