@@ -7,6 +7,7 @@ let movieListEl = document.querySelector('#movies');
 let nextPageBtn = document.querySelector('#next');
 let previousPageBtn = document.querySelector('#previous');
 let pageNumber = document.querySelector('.pageNumber');
+let homeBtn = document.querySelector('.home');
 
 // Modal variables
 let modalEl = document.querySelector('.modal');
