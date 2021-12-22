@@ -1,13 +1,12 @@
 body {
-    /* background-color: #304543; */
+    background-color: #304543;
     /* background-color: rgb(9, 43, 14); */
-    background-color: #ED8C66;
+    /* background-color: #ED8C66; */
 }
 
 /* NAV */
 #title {
-    color: aliceblue;
-    
+    color:#304543;
 }
 
 #header-container {
@@ -19,7 +18,7 @@ body {
 #site-header { 
     /* border-bottom: 1px solid #ccc; */
     padding: .5em 1em;
-    background-color: rgb(9, 43, 14);
+    background-color: 	#ced2ba;
 }
 
 #site-header::after {
@@ -55,6 +54,14 @@ body {
 
 #dropdown-team {
     margin: 100px 50px 0 0;
+}
+
+#teambtn {
+    background-color: #304543;
+}
+
+#teambtn span {
+    color: aliceblue;
 }
 
 #links {
@@ -122,13 +129,13 @@ white-space: normal;
 }
 
 .footer {
-    background-color: rgb(9, 43, 14);;
+    background-color: #ced2ba;;
 }
 
 .footer a,
 .footer p,
 .footer strong {
-    color:aliceblue;
+    color:#304543;
 }
 
 @media (max-width: 800px) {

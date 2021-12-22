@@ -15,28 +15,26 @@ var modalBtn2 = document.getElementById('img-2');
 var modalTwo = document.getElementById('modal2');
 var closeBtn2 = document.getElementById('close-2');
 
+// Activating the Modals
 function showModalOne() {
   if (modalOne.style.display === "none") {
-    modalOne.style.display = "flex  ";
+    modalOne.style.display = "flex";
   } else {
     modalOne.style.display = "none";
   }
 }
 
 function showModalTwo() {
-  
   if (modalTwo.style.display === "none") {
     modalTwo.style.display = "flex";
   } else {
     modalTwo.style.display = "none";
   }
-
 }
-
 modalBtn1.addEventListener("click", showModalOne);
 modalBtn2.addEventListener("click", showModalTwo);
 
-
+// Closing the Modals
 function closeModal() {
 console.log(true);
 modalOne.style.display = "none";
