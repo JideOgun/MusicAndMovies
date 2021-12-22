@@ -32,12 +32,9 @@ var searchMoviesGenre = () => {
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
-      response
-        .json()
-        .then(function (data) {
-          getMovieGenre(data);
-        })
-        .catch(function (error) {});
+      response.json().then(function (data) {
+        getMovieGenre(data);
+      });
     }
   });
 };
