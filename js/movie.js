@@ -58,6 +58,36 @@ let getMovieGenre = () => {
   });
 };
 
+// Adds second image to modal and activates link to movie website if available
+var getMovieSite = () => {
+  let apiUrl = ''.concat(
+    'https://api.themoviedb.org/3/movie/' +
+      localStorage.getItem('movieId') +
+      '?api_key=' +
+      apiKey +
+      '&language=en-US'
+  );
+  fetch(apiUrl).then((response) => {
+    if (response.ok) {
+      response.json().then(function (data) {
+        localStorage.setItem('backdrop', data.backdrop_path);
+        localStorage.setItem('website', data.homepage);
+        let modalImg = document.querySelector('.image');
+        modalImg.setAttribute(
+          'src',
+          'https://image.tmdb.org/t/p/w342' + localStorage.getItem('backdrop')
+        );
+        if (localStorage.getItem('website') == '') {
+          console.log('No website available');
+        } else {
+          let modalLink = document.querySelector('.link');
+          modalLink.setAttribute('href', localStorage.getItem('website'));
+        }
+      });
+    }
+  });
+};
+
 // Displays movie data
 var displayMovieData = (data) => {
   for (let i = 0; i < moviePosters; i++) {
@@ -87,8 +117,10 @@ var displayMovieData = (data) => {
       movieTitle.textContent = data.results[i].title;
       let displayMovieOverview = document.querySelector('.content');
       displayMovieOverview.textContent = data.results[i].overview;
-      console.log(data.results[i].id);
+
+      getMovieSite();
     });
+
     // Adds posters to page
     localStorage.setItem('pageNumber', data.page);
     pageNumber.innerHTML =

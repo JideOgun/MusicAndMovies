@@ -6,11 +6,11 @@ html {
   text-align: center;
   font-size: 2.5rem;
   font-weight: bolder;
-  color: goldenrod;
+  color: #ffe08a;
 }
 
 #home {
-  color: goldenrod;
+  color: #ffe08a;
 }
 
 .genreContainer {
@@ -36,7 +36,7 @@ html {
 
 .pageNumber {
   text-align: center;
-  color: goldenrod;
+  color: #ffe08a;
 }
 
 .button:hover {
@@ -58,7 +58,7 @@ html {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  color: goldenrod;
+  color: #ffe08a;
   background: rgb(9, 43, 14);
 }
 
@@ -89,11 +89,15 @@ img:hover {
 .title {
   text-align: center;
   text-decoration: underline;
-  color: goldenrod;
+  color: #ffe08a;
 }
 
 .content {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   color: white;
+}
+
+.image {
+  margin: 0 auto;
 }
