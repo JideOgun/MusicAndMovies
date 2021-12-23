@@ -3,7 +3,6 @@ let apiKey = '1fcb095f3dea632c59c58e8920d44217';
 
 // Page variables
 let genreListEl = document.querySelector('#genres').children;
-
 let movieListEl = document.querySelector('#movies');
 let nextPageBtn = document.querySelector('#next');
 let previousPageBtn = document.querySelector('#previous');
@@ -16,6 +15,7 @@ let modalBg = document.querySelector('.modal-background');
 let modalContent = document.querySelector('.content');
 let modalBtn = document.querySelector('.modal-close');
 
+// Counter variables
 let pageNum = 1;
 let moviePosters = 20;
 
@@ -24,6 +24,7 @@ let movieGenreNums = [
   53, 10752, 37,
 ];
 
+// Genre click event starts the api call to list movie posters
 for (let i = 0; i < movieGenreNums[i]; i++) {
   genreListEl[i].addEventListener('click', (event) => {
     localStorage.setItem('movieGenre', genreListEl[i].textContent);
@@ -35,13 +36,11 @@ for (let i = 0; i < movieGenreNums[i]; i++) {
   });
 }
 
-// This will append the genres to buttons and link to a movie display page
+// Api call and display of movie posters
 let getMovieGenre = () => {
   movieListEl.innerHTML = '';
 
-  for (let i = 0; i < 20; i++) {
-    // Allows movie posters to display
-
+  for (let i = 0; i < moviePosters; i++) {
     let apiUrl = ''.concat(
       'https://api.themoviedb.org/3/discover/movie?api_key=' +
         apiKey +
@@ -82,7 +81,7 @@ let getMovieGenre = () => {
             let displayMovieOverview = document.querySelector('.content');
             displayMovieOverview.textContent = data.results[i].overview;
           });
-          // Adds posters to page
+          // Adds page number to local and adds page number and movie posters to page
           localStorage.setItem('pageNumber', data.page);
           pageNumber.innerHTML =
             localStorage.getItem('movieGenre') +
