@@ -13,14 +13,25 @@ html {
   color: goldenrod;
 }
 
-#genres {
+.genreContainer {
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#genres {
+  width: 75%;
+  display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 1rem 0;
 
   background: rgb(9, 43, 14);
+}
+
+.genreBtn {
+  margin: 0.5rem 1rem;
 }
 
 .pageNumber {
