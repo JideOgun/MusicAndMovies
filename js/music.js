@@ -260,7 +260,7 @@ async function spotifyNewRelease(token) {
                 artistdiv.textContent = data.albums.items[i].artists[0].name
                 releasediv.textContent = data.albums.items[i].release_date
                 var img = document.createElement('img');
-                img.className = "columns"
+                img.className = "card"
                 img.src = data.albums.items[i].images[0].url;
                 newReleasediv.append(namediv);
                 newReleasediv.append(releasediv);
