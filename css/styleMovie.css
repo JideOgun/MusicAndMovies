@@ -101,3 +101,8 @@ img:hover {
 .image {
   margin: 0 auto;
 }
+
+.alert {
+  text-align: center;
+  color: red;
+}

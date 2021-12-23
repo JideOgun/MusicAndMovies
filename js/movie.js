@@ -14,6 +14,8 @@ let modalEl = document.querySelector('.modal');
 let modalBg = document.querySelector('.modal-background');
 let modalContent = document.querySelector('.content');
 let modalBtn = document.querySelector('.modal-close');
+let modalLink = document.querySelector('.link');
+let modalAlert = document.querySelector('.alert');
 
 // Counter variables
 let pageNum = 1;
@@ -72,16 +74,18 @@ var getMovieSite = () => {
       response.json().then(function (data) {
         localStorage.setItem('backdrop', data.backdrop_path);
         localStorage.setItem('website', data.homepage);
+
         let modalImg = document.querySelector('.image');
         modalImg.setAttribute(
           'src',
           'https://image.tmdb.org/t/p/w342' + localStorage.getItem('backdrop')
         );
-        if (localStorage.getItem('website') == '') {
-          console.log('No website available');
+
+        if (data.homepage === '') {
+          modalAlert.textContent = 'No Website Available';
         } else {
-          let modalLink = document.querySelector('.link');
           modalLink.setAttribute('href', localStorage.getItem('website'));
+          modalLink.setAttribute('target', '_blank');
         }
       });
     }
@@ -110,14 +114,15 @@ var displayMovieData = (data) => {
     // Modal component
     displayMovies.addEventListener('click', () => {
       modalEl.classList.add('is-active');
+
       localStorage.setItem('movieTitle', data.results[i].title);
       localStorage.setItem('movieInfo', data.results[i].overview);
       localStorage.setItem('movieId', data.results[i].id);
+
       let movieTitle = document.querySelector('.title');
       movieTitle.textContent = data.results[i].title;
       let displayMovieOverview = document.querySelector('.content');
       displayMovieOverview.textContent = data.results[i].overview;
-
       getMovieSite();
     });
 
@@ -150,6 +155,10 @@ previousPageBtn.addEventListener('click', () => {
 
 // Modal event listeners
 modalBg.addEventListener('click', () => {
+  modalLink.removeAttribute('target', '_blank');
+  modalAlert.textContent = '';
+
+  modalLink.removeAttribute('href');
   modalEl.classList.remove('is-active');
 });
 
