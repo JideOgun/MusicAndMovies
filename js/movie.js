@@ -50,13 +50,8 @@ let getMovieGenre = () => {
 
   fetch(apiUrl).then((response) => {
     if (response.ok) {
-<<<<<<< HEAD
-      response.json().then((data) => {
-        displayMovieData(data);
-=======
       response.json().then(function (data) {
         getMovieGenre(data);
->>>>>>> c11ff348e629da3ae7a40ba820a4c9d382eaf28d
       });
     }
   });
