@@ -155,13 +155,15 @@ previousPageBtn.addEventListener('click', () => {
 
 // Modal event listeners
 modalBg.addEventListener('click', () => {
-  modalLink.removeAttribute('target', '_blank');
+  modalLink.removeAttribute('target');
   modalAlert.textContent = '';
-
   modalLink.removeAttribute('href');
   modalEl.classList.remove('is-active');
 });
 
 modalBtn.addEventListener('click', () => {
+  modalLink.removeAttribute('target');
+  modalAlert.textContent = '';
+  modalLink.removeAttribute('href');
   modalEl.classList.remove('is-active');
 });
