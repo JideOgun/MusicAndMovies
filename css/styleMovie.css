@@ -6,26 +6,37 @@ html {
   text-align: center;
   font-size: 2.5rem;
   font-weight: bolder;
-  color: goldenrod;
+  color: #ffe08a;
 }
 
 #home {
-  color: goldenrod;
+  color: #ffe08a;
+}
+
+.genreContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #genres {
-  width: 100%;
+  width: 75%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 1rem 0;
 
   background: rgb(9, 43, 14);
 }
 
+.genreBtn {
+  margin: 0.5rem 1rem;
+}
+
 .pageNumber {
   text-align: center;
-  color: goldenrod;
+  color: #ffe08a;
 }
 
 .button:hover {
@@ -47,7 +58,7 @@ html {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  color: goldenrod;
+  color: #ffe08a;
   background: rgb(9, 43, 14);
 }
 
@@ -64,7 +75,7 @@ html {
 }
 
 .more-btn:hover {
-  color: rgb(253, 222, 142);
+  background-color: rgb(13, 71, 22);
 }
 
 img {
@@ -78,11 +89,20 @@ img:hover {
 .title {
   text-align: center;
   text-decoration: underline;
-  color: goldenrod;
+  color: #ffe08a;
 }
 
 .content {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   color: white;
+}
+
+.image {
+  margin: 0 auto;
+}
+
+.alert {
+  text-align: center;
+  color: red;
 }
