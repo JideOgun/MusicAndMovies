@@ -52,7 +52,7 @@ let getMovieGenre = () => {
   fetch(apiUrl).then((response) => {
     if (response.ok) {
       response.json().then(function (data) {
-        getMovieGenre(data);
+        displayMovieData(data);
       });
     }
   });
