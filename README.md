@@ -50,7 +50,7 @@ Miguel Osorio</br>
 ## Screenshot
 ![homepage](https://github.com/JideOgun/MusicAndMovies/blob/develop/assets/images/homepage.JPG)
 
-![movie](https://user-images.githubusercontent.com/91167771/147129923-ded48fc6-c293-46f1-8839-d7ddab6ea0a0.JPG)
+![movie](https://github.com/JideOgun/MusicAndMovies/blob/develop/assets/images/movie.JPG)
 
 ![music](https://user-images.githubusercontent.com/91167771/147129936-2c58703f-95af-49f8-ad7a-874284c148d8.JPG)
 
