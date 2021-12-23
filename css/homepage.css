@@ -1,12 +1,12 @@
 body {
-    background-color: #304543;
-    /* background-color: rgb(9, 43, 14); */
+    /* background-color: #304543; */
+    background-color: #092b0e;
     /* background-color: #ED8C66; */
 }
 
 /* NAV */
 #title {
-    color:#304543;
+    color:#092b0e;
 }
 
 #header-container {
@@ -57,7 +57,7 @@ body {
 }
 
 #teambtn {
-    background-color: #304543;
+    background-color: #092b0e;
 }
 
 #teambtn span {
