@@ -15,8 +15,11 @@ html {
 
 #genres {
   width: 100%;
-  display: flexbox;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1rem 0;
+
   background: rgb(9, 43, 14);
 }
 
@@ -82,8 +85,4 @@ img:hover {
   text-align: center;
   font-size: 1.5rem;
   color: white;
-}
-
-.row {
-  text-align: center;
 }
