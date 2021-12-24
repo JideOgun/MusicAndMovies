@@ -17,9 +17,199 @@
   </head>
   <body>
     <header>
-      <div id="genre-search" class="genre-search">
-        <div id="genres" class="genres"></div>
+      <div class="pageTitle">Movie Database</div>
+      <button
+        id="home"
+        class="button is-clickable is-dark is-rounded"
+        onclick="window.location='index.html';"
+      >
+        Homepage
+      </button>
+      <button
+        id="home"
+        class="button is-clickable is-dark is-rounded"
+        onclick="window.location='MusicPage.html';"
+      >
+        MusicPage
+      </button>
+
+     <div class="genreContainer">
+        <nav id="genres" class="genres">
+          <button id="28"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Action</button
+          ><button id="12"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Adventure</button
+          ><button id="16"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Animation</button
+          ><button id="35"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Comedy</button
+          ><button id="80"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Crime</button
+          ><button id="99"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Documentary</button
+          ><button id="18"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Drama</button
+          ><button id="10751"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Family</buttonid
+          ><button id="14"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Fantasy</button
+          ><button id="36"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            History</button
+          ><button id="27"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Horror</button
+          ><button id="10402"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Music</button
+          ><button id="9648"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Mystery</button
+          ><button id="10749"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Romance</button
+          ><button id="878"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Science Fiction</button
+          ><button id="10770"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            TV Movie</button
+          ><button id="53"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Thriller</button
+          ><button id="10752"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            War</button
+          ><button id="37"
+            class="
+              genreBtn
+              button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable
+            "
+          >
+            Western
+          </button>
+        </nav>
       </div>
+      <div class="pageNumber"></div>
     </header>
     <main>
       <div id="container">
@@ -27,10 +217,26 @@
       </div>
 
       <div class="more-btn">
-        <button id="previous" class="more-btn btn-secondary">Previous</button>
-        <button id="next" class="more-btn">Next</button>
+        <button id="previous" class="more-btn is-clickable">Previous</button>
+
+        <button id="next" class="more-btn is-clickable">Next</button>
       </div>
     </main>
+
+    <!-- modal -->
+
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content has-background-dark px-5 py-5">
+        <div class="title"></div>
+        <p class="content"></p>
+        <a class="link">
+        <img alt="backdrop" class="image">
+        </a>
+        <p class="alert"></p>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+    </div>
     <footer></footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./js/movie.js"></script>

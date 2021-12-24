@@ -1,0 +1,70 @@
+
+#new-releases {
+  background-color: rgb(9, 43, 14);
+  color: bisque;
+  text-align: center;
+  margin: 5px;
+}
+
+.searchlist {
+  color: bisque;
+  text-align: center;
+  font-style: italic;
+  font-size: 20px;
+  font-family: cursive;
+}
+
+.nar-div {
+  background-color: beige;
+  text-align: center;
+}
+
+.body {
+  background-color: rgb(9, 43, 14);
+}
+
+#track-detail {
+    text-align: center;
+    background-color:  rgb(21, 156, 41);
+    color: rgb(196, 255, 199);
+    font-style: italic;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#track-list {
+  background-color: rgb(7, 80, 18);
+  text-align: center;
+  color: bisque;
+  font-style: italic;
+  font-size: 20px;
+  font-family: cursive;
+}
+
+.columns {
+  color: bisque;
+  text-align: right;
+  font-style: italic;
+}
+.columns:not(:last-child) {
+  margin-left: 0;
+}
+
+.droplist {
+  text-align: center;
+  background-color: rgb(7, 80, 18);
+}
+.musicmoviesheader {
+  text-align: center;
+  font-size: 50px;
+  font-weight: 200;
+  color: bisque;
+}
+
+.group1 {
+  text-align: center;
+}
+
+#search-results {
+  font-family: monospace;
+}
