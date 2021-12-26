@@ -1,16 +1,40 @@
+:root {
+  --bgClr: rgb(9, 43, 14);
+  --textClr: #ffe08a;
+  --hoverClr: rgb(13, 71, 22);
+}
+
 html {
-  background: rgb(9, 43, 14);
+  background: var(--bgClr);
 }
 
 .pageTitle {
   text-align: center;
   font-size: 2.5rem;
   font-weight: bolder;
-  color: #ffe08a;
+  color: var(--textClr);
 }
 
-#home {
-  color: #ffe08a;
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#home,
+#searchBtn {
+  margin: 0 1rem;
+  color: var(--textClr);
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+#input {
+  text-transform: capitalize;
 }
 
 .genreContainer {
@@ -25,71 +49,80 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 1rem 0;
+  padding: 0.125rem 0;
 
-  background: rgb(9, 43, 14);
+  background: var(--bgClr);
 }
 
 .genreBtn {
   margin: 0.5rem 1rem;
 }
 
-.pageNumber {
+.searchPageNum,
+.genrePageNum {
+  margin: 0 auto;
+
   text-align: center;
-  color: #ffe08a;
 }
 
-.button:hover {
-  background-color: dimgray;
+.pageNumberInput,
+.genreNumberInput {
+  width: 7%;
+  display: flex;
+  margin: 0 auto;
+}
+
+.pageNumber,
+.pageName {
+  text-align: center;
+  color: var(--textClr);
 }
 
 .movies {
   width: 100%;
   display: flex;
   justify-content: center;
-  background: rgb(9, 43, 14);
+  background: var(--bgClr);
 }
 
 .more-btn {
-  width: 50%;
-  margin: 0 auto;
-  height: 3rem;
+  width: 25%;
+  margin: 1rem auto;
+  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
-  color: #ffe08a;
-  background: rgb(9, 43, 14);
+  font-size: large;
+  color: var(--textClr);
+  background: var(--bgClr);
 }
 
-#next {
-  position: fixed;
-  bottom: 0;
-  right: 0;
+#nextSearch,
+#previousSearch {
+  position: relative;
+  top: -3rem;
 }
 
-#previous {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-}
-
-.more-btn:hover {
-  background-color: rgb(13, 71, 22);
+#next:hover,
+#previous:hover,
+#genres > button:hover,
+#home:hover,
+#searchBtn:hover,
+#searchPageNumId:hover,
+#genrePageNumId:hover,
+#modal-close:hover,
+img:hover {
+  background-color: var(--hoverClr);
 }
 
 img {
   padding: 1rem 1rem;
 }
 
-img:hover {
-  background-color: rgb(47, 47, 47);
-}
-
 .title {
   text-align: center;
   text-decoration: underline;
-  color: #ffe08a;
+  color: var(--textClr);
 }
 
 .content {
@@ -105,4 +138,13 @@ img:hover {
 .alert {
   text-align: center;
   color: red;
+}
+
+.modal-close {
+  position: absolute;
+  transform: translate(1.25rem, -1.25rem);
+}
+
+.modal-content {
+  background-color: var(--bgClr);
 }

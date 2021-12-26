@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
+
+    <!--  Stylesheets and Fonts -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
@@ -17,21 +19,36 @@
   </head>
   <body>
     <header>
+
+      <!-- Title -->
+<div class="title-card">
       <div class="pageTitle">Movie Database</div>
+
+      <!-- Nav buttons -->
+   <nav class="nav">
       <button
         id="home"
         class="button is-clickable is-dark is-rounded"
         onclick="window.location='index.html';"
       >
-        Homepage
+        Home Page
       </button>
       <button
         id="home"
         class="button is-clickable is-dark is-rounded"
         onclick="window.location='MusicPage.html';"
       >
-        MusicPage
+        Music Page
       </button>
+    
+<div class="search-container">
+        <input id="input" class="input is-small" type="text" placeholder="Search by Keyword..">
+        <button  id="searchBtn" class="searchBtn button is-clickable is-dark is-rounded">Search</button>
+      
+    </div>
+  </nav>
+  </div>
+      <!-- Genre Buttons -->'
 
      <div class="genreContainer">
         <nav id="genres" class="genres">
@@ -209,35 +226,76 @@
           </button>
         </nav>
       </div>
+      <div class="pageName"></div>
       <div class="pageNumber"></div>
     </header>
     <main>
+
+      <!-- Next and Previous page buttons -->
+<div class="searchPageNum">
+  <input placeholder="Page Number"  type="number" min="2" oninput="validity.valid||(value='');" class="pageNumberInput input is-small">
+  <button id="searchPageNumId" class="searchBtn button
+  has-text-warning
+  is-dark is-small is-rounded is-clickable">Enter</button></div>
+
+  <div class="genrePageNum">
+    <input placeholder="Page Number"  type="number" min="2" oninput="validity.valid||(value!='');"class="genreNumberInput input is-small">
+    <button id="genrePageNumId" class="searchBtn button
+    has-text-warning
+    is-dark is-small is-rounded is-clickable">Enter</button></div>
+
+      <div class="more-btn">
+        <button id="previous" class="more-btn button
+        has-text-warning
+        is-dark is-small is-rounded is-clickable">Previous</button>
+
+        
+
+        <button id="next" class="more-btn button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable">Next</button>
+      </div>
+      <div class="more-btn">
+        <button id="previousSearch" class="more-btn button
+        has-text-warning
+        is-dark is-small is-rounded is-clickable">Previous</button>
+
+        <button id="nextSearch" class="more-btn button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable">Next</button>
+      </div>
+
+      <!-- Movie Posters -->
+
       <div id="container">
         <div id="movies" class="movies columns is-desktop is-multiline"></div>
       </div>
 
-      <div class="more-btn">
-        <button id="previous" class="more-btn is-clickable">Previous</button>
-
-        <button id="next" class="more-btn is-clickable">Next</button>
-      </div>
+      
     </main>
 
     <!-- modal -->
 
     <div class="modal">
       <div class="modal-background"></div>
-      <div class="modal-content has-background-dark px-5 py-5">
+      <div class="modal-content px-5 py-5">
         <div class="title"></div>
         <p class="content"></p>
         <a class="link">
-        <img alt="backdrop" class="image">
+        <img class="image">
         </a>
+        <ul class="videos"></ul>
         <p class="alert"></p>
-        <button class="modal-close is-large" aria-label="close"></button>
+        <button id="modal-close" class="modal-close is-large" aria-label="close"></button>
       </div>
     </div>
+
+    <!-- Footer -->
+
     <footer></footer>
+
+    <!-- Scripts -->
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./js/movie.js"></script>
   </body>
