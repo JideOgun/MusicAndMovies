@@ -104,7 +104,9 @@ html {
 }
 
 #next:hover,
+#nextSearch:hover,
 #previous:hover,
+#previousSearch:hover,
 #genres > button:hover,
 #home:hover,
 #searchBtn:hover,
@@ -147,4 +149,8 @@ img {
 
 .modal-content {
   background-color: var(--bgClr);
+}
+
+body.modal-open {
+  overflow: hidden;
 }

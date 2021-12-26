@@ -1,302 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
 
-    <!--  Stylesheets and Fonts -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Vollkorn:wght@500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" type="text/css" href="./css/styleMovie.css" />
-    <title>Movies</title>
-  </head>
-  <body>
-    <header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
 
-      <!-- Title -->
-<div class="title-card">
+  <!--  Stylesheets and Fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Vollkorn:wght@500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="./css/styleMovie.css" />
+  <title>Movies</title>
+</head>
+
+<body>
+
+  <header>
+
+    <!-- Title -->
+    <div class="title-card">
       <div class="pageTitle">Movie Database</div>
 
       <!-- Nav buttons -->
-   <nav class="nav">
-      <button
-        id="home"
-        class="button is-clickable is-dark is-rounded"
-        onclick="window.location='index.html';"
-      >
-        Home Page
-      </button>
-      <button
-        id="home"
-        class="button is-clickable is-dark is-rounded"
-        onclick="window.location='MusicPage.html';"
-      >
-        Music Page
-      </button>
-    
-<div class="search-container">
-        <input id="input" class="input is-small" type="text" placeholder="Search by Keyword..">
-        <button  id="searchBtn" class="searchBtn button is-clickable is-dark is-rounded">Search</button>
-      
-    </div>
-  </nav>
-  </div>
-      <!-- Genre Buttons -->'
+      <nav class="nav">
+        <button id="home" class="button is-clickable is-dark is-rounded" onclick="window.location='index.html';">
+          Home Page
+        </button>
+        <button id="home" class="button is-clickable is-dark is-rounded" onclick="window.location='MusicPage.html';">
+          Music Page
+        </button>
 
-     <div class="genreContainer">
-        <nav id="genres" class="genres">
-          <button id="28"
-            class="
+        <div class="search-container">
+          <input id="input" class="input is-small" type="text" placeholder="Search by Keyword..">
+          <button id="searchBtn" class="searchBtn button is-clickable is-dark is-rounded">Search</button>
+
+        </div>
+      </nav>
+    </div>
+    <!-- Genre Buttons -->'
+
+    <div class="genreContainer">
+      <nav id="genres" class="genres">
+        <button id="28" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Action</button
-          ><button id="12"
-            class="
+            ">
+          Action</button><button id="12" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Adventure</button
-          ><button id="16"
-            class="
+            ">
+          Adventure</button><button id="16" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Animation</button
-          ><button id="35"
-            class="
+            ">
+          Animation</button><button id="35" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Comedy</button
-          ><button id="80"
-            class="
+            ">
+          Comedy</button><button id="80" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Crime</button
-          ><button id="99"
-            class="
+            ">
+          Crime</button><button id="99" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Documentary</button
-          ><button id="18"
-            class="
+            ">
+          Documentary</button><button id="18" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Drama</button
-          ><button id="10751"
-            class="
+            ">
+          Drama</button><button id="10751" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Family</buttonid
-          ><button id="14"
-            class="
+            ">
+          Family</buttonid><button id="14" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Fantasy</button
-          ><button id="36"
-            class="
+            ">
+            Fantasy</button><button id="36" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            History</button
-          ><button id="27"
-            class="
+            ">
+            History</button><button id="27" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Horror</button
-          ><button id="10402"
-            class="
+            ">
+            Horror</button><button id="10402" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Music</button
-          ><button id="9648"
-            class="
+            ">
+            Music</button><button id="9648" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Mystery</button
-          ><button id="10749"
-            class="
+            ">
+            Mystery</button><button id="10749" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Romance</button
-          ><button id="878"
-            class="
+            ">
+            Romance</button><button id="878" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Science Fiction</button
-          ><button id="10770"
-            class="
+            ">
+            Science Fiction</button><button id="10770" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            TV Movie</button
-          ><button id="53"
-            class="
+            ">
+            TV Movie</button><button id="53" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            Thriller</button
-          ><button id="10752"
-            class="
+            ">
+            Thriller</button><button id="10752" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
-            War</button
-          ><button id="37"
-            class="
+            ">
+            War</button><button id="37" class="
               genreBtn
               button
               has-text-warning
               is-dark is-small is-rounded is-clickable
-            "
-          >
+            ">
             Western
           </button>
-        </nav>
-      </div>
-      <div class="pageName"></div>
-      <div class="pageNumber"></div>
-    </header>
-    <main>
+      </nav>
+    </div>
+    <div class="pageName"></div>
+    <div class="pageNumber"></div>
+  </header>
+  <main>
 
-      <!-- Next and Previous page buttons -->
-<div class="searchPageNum">
-  <input placeholder="Page Number"  type="number" min="2" oninput="validity.valid||(value='');" class="pageNumberInput input is-small">
-  <button id="searchPageNumId" class="searchBtn button
+    <!-- Next and Previous page buttons -->
+    <div class="searchPageNum">
+      <input placeholder="Page Number" type="number" min="2" oninput="validity.valid||(value='');"
+        class="pageNumberInput input is-small">
+      <button id="searchPageNumId" class="searchBtn button
   has-text-warning
-  is-dark is-small is-rounded is-clickable">Enter</button></div>
-
-  <div class="genrePageNum">
-    <input placeholder="Page Number"  type="number" min="2" oninput="validity.valid||(value!='');"class="genreNumberInput input is-small">
-    <button id="genrePageNumId" class="searchBtn button
-    has-text-warning
-    is-dark is-small is-rounded is-clickable">Enter</button></div>
-
-      <div class="more-btn">
-        <button id="previous" class="more-btn button
-        has-text-warning
-        is-dark is-small is-rounded is-clickable">Previous</button>
-
-        
-
-        <button id="next" class="more-btn button
-              has-text-warning
-              is-dark is-small is-rounded is-clickable">Next</button>
-      </div>
-      <div class="more-btn">
-        <button id="previousSearch" class="more-btn button
-        has-text-warning
-        is-dark is-small is-rounded is-clickable">Previous</button>
-
-        <button id="nextSearch" class="more-btn button
-              has-text-warning
-              is-dark is-small is-rounded is-clickable">Next</button>
-      </div>
-
-      <!-- Movie Posters -->
-
-      <div id="container">
-        <div id="movies" class="movies columns is-desktop is-multiline"></div>
-      </div>
-
-      
-    </main>
-
-    <!-- modal -->
-
-    <div class="modal">
-      <div class="modal-background"></div>
-      <div class="modal-content px-5 py-5">
-        <div class="title"></div>
-        <p class="content"></p>
-        <a class="link">
-        <img class="image">
-        </a>
-        <ul class="videos"></ul>
-        <p class="alert"></p>
-        <button id="modal-close" class="modal-close is-large" aria-label="close"></button>
-      </div>
+  is-dark is-small is-rounded is-clickable">Enter</button>
     </div>
 
-    <!-- Footer -->
+    <div class="genrePageNum">
+      <input placeholder="Page Number" type="number" min="2" oninput="validity.valid||(value!='');"
+        class="genreNumberInput input is-small">
+      <button id="genrePageNumId" class="searchBtn button
+    has-text-warning
+    is-dark is-small is-rounded is-clickable">Enter</button>
+    </div>
 
-    <footer></footer>
+    <div class="more-btn">
+      <button id="previous" class="more-btn button
+        has-text-warning
+        is-dark is-small is-rounded is-clickable">Previous</button>
 
-    <!-- Scripts -->
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="./js/movie.js"></script>
-  </body>
+
+      <button id="next" class="more-btn button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable">Next</button>
+    </div>
+    <div class="more-btn">
+      <button id="previousSearch" class="more-btn button
+        has-text-warning
+        is-dark is-small is-rounded is-clickable">Previous</button>
+
+      <button id="nextSearch" class="more-btn button
+              has-text-warning
+              is-dark is-small is-rounded is-clickable">Next</button>
+    </div>
+
+    <!-- Movie Posters -->
+
+    <div id="container">
+      <div id="movies" class="movies columns is-desktop is-multiline"></div>
+    </div>
+
+
+  </main>
+
+  <!-- modal -->
+
+  <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content px-5 py-5">
+      <div class="title"></div>
+      <p class="content"></p>
+      <a class="link">
+        <img class="image">
+      </a>
+      <ul class="videos"></ul>
+      <p class="alert"></p>
+      <button id="modal-close" class="modal-close is-large" aria-label="close"></button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+
+  <footer></footer>
+
+  <!-- Scripts -->
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="./js/movie.js"></script>
+</body>
+
 </html>
