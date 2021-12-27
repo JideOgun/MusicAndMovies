@@ -150,7 +150,3 @@ img {
 .modal-content {
   background-color: var(--bgClr);
 }
-
-body.modal-open {
-  overflow: hidden;
-}

@@ -2,6 +2,7 @@
 let apiKey = '1fcb095f3dea632c59c58e8920d44217';
 
 // Page variables
+let noScroll = document.querySelector('#container');
 let genreListEl = document.querySelector('#genres').children;
 let movieListEl = document.querySelector('#movies');
 let nextPageBtn = document.querySelector('#next');
@@ -119,6 +120,7 @@ var displayMovieData = (data) => {
       movieTitle.textContent = data.results[i].title;
       let displayMovieOverview = document.querySelector('.content');
       displayMovieOverview.textContent = data.results[i].overview;
+      $('html').css('overflow', 'hidden');
       getMovieSite();
       getVideoData();
     });
@@ -177,7 +179,7 @@ var siteLinkHandler = () => {
   }
 };
 
-// links trailers on modal
+// links trailers on modal.  Still working on this
 var getVideoData = () => {
   let apiUrl =
     'https://api.themoviedb.org/3/movie/' +
@@ -225,6 +227,8 @@ for (let i = 0; i < movieGenreNums[i]; i++) {
   });
 }
 
+// Event Handlers
+
 // Buttons for next page
 $('#next').click(() => {
   pageNum++;
@@ -262,7 +266,6 @@ $('#searchBtn').click((e) => {
   if ($('#input').val() !== '') {
     e.preventDefault();
     pageNum = 1;
-
     $('.genrePageNum').hide();
     $('.searchPageNum').show();
     $('#nextSearch').show();
@@ -352,6 +355,7 @@ $('.modal-background').click(() => {
   modalAlert.textContent = '';
   modalLink.removeAttribute('href');
   modalEl.classList.remove('is-active');
+  $('html').removeAttr('style');
 });
 
 $('.modal-close').click(() => {
@@ -359,4 +363,5 @@ $('.modal-close').click(() => {
   modalAlert.textContent = '';
   modalLink.removeAttribute('href');
   modalEl.classList.remove('is-active');
+  $('html').removeAttr('style');
 });
