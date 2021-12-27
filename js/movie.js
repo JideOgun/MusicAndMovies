@@ -172,20 +172,22 @@ var siteLinkHandler = () => {
     'https://image.tmdb.org/t/p/w342' + localStorage.getItem('backdrop')
   );
 
-  if (
-    localStorage.getItem('website') === '' ||
-    localStorage.getItem('backdrop') === 'null'
-  ) {
+  if (localStorage.getItem('website') === '') {
     modalAlert.textContent = 'Website Not Available';
     modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
-    modalImg.setAttribute('style', 'padding: 0');
     modalImg.setAttribute('src', './assets/images/MM.png');
+
+    modalImg.setAttribute('style', 'padding: 0; cursor: not-allowed');
   } else {
     modalLink.setAttribute('href', localStorage.getItem('website'));
     modalLink.setAttribute('target', '_blank');
   }
-};
 
+  if (localStorage.getItem('backdrop') === 'null') {
+    modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
+    modalImg.setAttribute('src', './assets/images/MM.png');
+  }
+};
 // links trailers on modal.  Still working on this
 var getVideoData = () => {
   let apiUrl =
