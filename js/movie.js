@@ -259,23 +259,25 @@ $('#previousSearch').click(() => {
 
 // Search  button click handler
 $('#searchBtn').click((e) => {
-  e.preventDefault();
+  if ($('#input').val() !== '') {
+    e.preventDefault();
+    pageNum = 1;
 
-  pageNum = 1;
-  $('.genrePageNum').hide();
-  $('.searchPageNum').show();
-  $('#nextSearch').show();
-  $('#previous').hide();
-  $('#next').hide();
-  $('#previousSearch').hide();
-  localStorage.removeItem('movieGenre');
-  localStorage.setItem('searchField', searchText.value);
-  pageName.textContent =
-    'Searching for Keyword: ' +
-    localStorage.getItem('searchField').toUpperCase();
-  $('input').val('');
-  $('.searchPageNum').val('');
-  searchHandler();
+    $('.genrePageNum').hide();
+    $('.searchPageNum').show();
+    $('#nextSearch').show();
+    $('#previous').hide();
+    $('#next').hide();
+    $('#previousSearch').hide();
+    localStorage.removeItem('movieGenre');
+    localStorage.setItem('searchField', searchText.value);
+    pageName.textContent =
+      'Searching for Keyword: ' +
+      localStorage.getItem('searchField').toUpperCase();
+    $('input').val('');
+    $('.searchPageNum').val('');
+    searchHandler();
+  }
 });
 
 // Choose page handlers
@@ -291,38 +293,46 @@ var genrePage = () => {
 
 // Enables keypress enter for searchbars
 $('#input').keypress(function (e) {
-  if (e.which == 13) {
+  if (e.which == 13 && $('#input').val() !== '') {
     $('#searchBtn').click();
     $('.searchPageNum').show();
   }
 });
 
 $('.pageNumberInput').keypress(function (e) {
-  if (e.which == 13) {
+  if (e.which == 13 && $('.pageNumberInput').val() !== '') {
     $('#searchPageNumId').click();
   }
 });
 
 $('.genreNumberInput').keypress(function (e) {
-  if (e.which == 13) {
+  if (e.which == 13 && $('.genreNumberInput').val() !== '') {
     $('#genrePageNumId').click();
   }
 });
 
 // Search page number click event handler
 $('#searchPageNumId').click(() => {
-  localStorage.setItem('pageNumber', $('.pageNumberInput').val());
-  $('.pageNumberInput').val('');
-  $('#previousSearch').show();
-  searchPage();
+  if ($('.pageNumberInput').val() == '') {
+    console.log();
+  } else {
+    localStorage.setItem('pageNumber', $('.pageNumberInput').val());
+    $('.pageNumberInput').val('');
+    $('#previousSearch').show();
+    searchPage();
+  }
 });
 
 // Genre page number click event handler
 $('#genrePageNumId').click(() => {
-  localStorage.setItem('pageNumber', $('.genreNumberInput').val());
-  $('.genreNumberInput').val('');
-  $('#previous').show();
-  genrePage();
+  if ($('.genreNumberInput').val() == '') {
+    console.log();
+  } else {
+    localStorage.setItem('pageNumber', $('.genreNumberInput').val());
+    $('.genreNumberInput').val('');
+    $('#previous').show();
+    genrePage();
+  }
 });
 
 // Gets rid of all buttons and clears storage on load
