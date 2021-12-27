@@ -2,7 +2,6 @@
 let apiKey = '1fcb095f3dea632c59c58e8920d44217';
 
 // Page variables
-let noScroll = document.querySelector('#container');
 let genreListEl = document.querySelector('#genres').children;
 let movieListEl = document.querySelector('#movies');
 let nextPageBtn = document.querySelector('#next');
@@ -103,9 +102,12 @@ var displayMovieData = (data) => {
         'src',
         'https://image.tmdb.org/t/p/w342null'
       );
+
+      displayMovies.setAttribute('src', './assets/images/MM.png');
+      displayMovies.removeClass('class', 'is-clickable');
       displayMovies.setAttribute(
         'style',
-        'width: 100%; height: 100%; color: red; font-size: 1.25em'
+        'width: 100%; height: 100%; color: red; font-size: 1.25em;'
       );
     }
     // Modal component
@@ -170,9 +172,14 @@ var siteLinkHandler = () => {
     'https://image.tmdb.org/t/p/w342' + localStorage.getItem('backdrop')
   );
 
-  if (localStorage.getItem('website') === '') {
+  if (
+    localStorage.getItem('website') === '' ||
+    localStorage.getItem('backdrop') === 'null'
+  ) {
     modalAlert.textContent = 'Website Not Available';
     modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
+    modalImg.setAttribute('style', 'padding: 0');
+    modalImg.setAttribute('src', './assets/images/MM.png');
   } else {
     modalLink.setAttribute('href', localStorage.getItem('website'));
     modalLink.setAttribute('target', '_blank');
