@@ -178,6 +178,7 @@ var siteLinkHandler = () => {
     modalImg.setAttribute('style', 'padding: 0; cursor: not-allowed');
   } else if (localStorage.getItem('backdrop') === 'null') {
     modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
+
     modalImg.setAttribute('src', './assets/images/MM.png');
     modalImg.setAttribute('style', 'cursor: pointer');
     modalLink.setAttribute('href', localStorage.getItem('website'));
@@ -360,6 +361,7 @@ $(document).ready(() => {
 // Modal event listeners
 $('.modal-background').click(() => {
   modalLink.removeAttribute('target');
+  modalImg.removeAttribute('alt');
   modalAlert.textContent = '';
   modalLink.removeAttribute('href');
   modalEl.classList.remove('is-active');
@@ -368,6 +370,7 @@ $('.modal-background').click(() => {
 
 $('.modal-close').click(() => {
   modalLink.removeAttribute('target');
+  modalImg.removeAttribute('alt');
   modalAlert.textContent = '';
   modalLink.removeAttribute('href');
   modalEl.classList.remove('is-active');
