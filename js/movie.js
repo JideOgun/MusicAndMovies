@@ -16,6 +16,7 @@ let searchText = document.querySelector('#input');
 let modalEl = document.querySelector('.modal');
 let modalBg = document.querySelector('.modal-background');
 let modalContent = document.querySelector('.content');
+let modalImg = document.querySelector('.image');
 let modalBtn = document.querySelector('.modal-close');
 let modalLink = document.querySelector('.link');
 let modalAlert = document.querySelector('.alert');
@@ -160,34 +161,27 @@ var getMovieSite = () => {
 
 // Links to movies available webpage
 var siteLinkHandler = () => {
-  let modalImg = document.querySelector('.image');
-  modalImg.setAttribute(
-    'alt',
-    localStorage.getItem('movieTitle') + ': ' + 'Image Not Available'
-  );
-
-  modalImg.setAttribute('style', 'color: red; font-size: 1.125em');
-  modalImg.setAttribute(
-    'src',
-    'https://image.tmdb.org/t/p/w342' + localStorage.getItem('backdrop')
-  );
-
   if (localStorage.getItem('website') === '') {
     modalAlert.textContent = 'Website Not Available';
     modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
     modalImg.setAttribute('src', './assets/images/MM.png');
 
     modalImg.setAttribute('style', 'padding: 0; cursor: not-allowed');
+  } else if (localStorage.getItem('backdrop') === 'null') {
+    modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
+    modalImg.setAttribute('src', './assets/images/MM.png');
   } else {
     modalLink.setAttribute('href', localStorage.getItem('website'));
     modalLink.setAttribute('target', '_blank');
-  }
-
-  if (localStorage.getItem('backdrop') === 'null') {
-    modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
-    modalImg.setAttribute('src', './assets/images/MM.png');
+    modalImg.setAttribute('alt', localStorage.getItem('movieTitle'));
+    modalImg.setAttribute('style', 'color: red; font-size: 1.125em');
+    modalImg.setAttribute(
+      'src',
+      'https://image.tmdb.org/t/p/w342' + localStorage.getItem('backdrop')
+    );
   }
 };
+
 // links trailers on modal.  Still working on this
 var getVideoData = () => {
   let apiUrl =
