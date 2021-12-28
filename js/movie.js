@@ -20,6 +20,8 @@ let modalImg = document.querySelector('.image');
 let modalBtn = document.querySelector('.modal-close');
 let modalLink = document.querySelector('.link');
 let modalAlert = document.querySelector('.alert');
+let modalTrailer = document.querySelector('.trailers');
+let modalVideoList = document.querySelector('.videos');
 
 // Counter variables
 let pageNum = 1;
@@ -157,7 +159,19 @@ var getMovieSite = () => {
 
 // Links to movies available webpage
 var siteLinkHandler = () => {
-  if (localStorage.getItem('website') === '') {
+  if (
+    localStorage.getItem('website') !== '' &&
+    localStorage.getItem('backdrop') !== 'null'
+  ) {
+    modalLink.setAttribute('href', localStorage.getItem('website'));
+    modalImg.setAttribute(
+      'src',
+      'https://image.tmdb.org/t/p/w342' + localStorage.getItem('backdrop')
+    );
+    modalLink.setAttribute('target', '_blank');
+    modalImg.setAttribute('alt', localStorage.getItem('movieTitle'));
+    modalImg.setAttribute('style', 'cursor: pointer');
+  } else if (localStorage.getItem('website') === '') {
     modalAlert.textContent = 'Website Not Available';
     modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
     modalImg.setAttribute('src', './assets/images/MM.png');
@@ -165,15 +179,9 @@ var siteLinkHandler = () => {
   } else if (localStorage.getItem('backdrop') === 'null') {
     modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
     modalImg.setAttribute('src', './assets/images/MM.png');
-  } else {
+    modalImg.setAttribute('style', 'cursor: pointer');
     modalLink.setAttribute('href', localStorage.getItem('website'));
     modalLink.setAttribute('target', '_blank');
-    modalImg.setAttribute('alt', localStorage.getItem('movieTitle'));
-    modalImg.setAttribute('style', 'color: red; font-size: 1.125em');
-    modalImg.setAttribute(
-      'src',
-      'https://image.tmdb.org/t/p/w342' + localStorage.getItem('backdrop')
-    );
   }
 };
 
@@ -187,18 +195,18 @@ var getVideoData = () => {
     if (response.ok) {
       response.json().then((video) => {
         for (var i = 0; i < video.results.length; i++) {
-          if (video.results[i].site == 'YouTube') {
+          if (video.results[i].type === 'Trailer') {
+            console.log(video.results[i]);
             let videoKey = video.results[i].key;
-            let videoList = document.createElement('li');
-            let videoListLink = document.createElement('a');
 
-            // console.log(videoKey);
-            // console.log(video.results[i].site);
+            modalVideoList.setAttribute('href', 'https://youtu.be/' + videoKey);
+            modalVideoList.setAttribute('target', '_blank');
+            modalVideoList.textContent = video.results[i].name;
+            console.log(modalVideoList);
           }
         }
       });
     }
-    console.log(response);
   });
 };
 
