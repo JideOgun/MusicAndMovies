@@ -87,14 +87,15 @@ var displayMovieData = (data) => {
     // This generates the posters and titles
     let displayMovies = document.createElement('img');
     displayMovies.setAttribute('id', data.results[i].title);
-    displayMovies.setAttribute('class', 'is-clickable is-clipped');
-    displayMovies.setAttribute(
-      'alt',
-      data.results[i].title + ': ' + 'Image Not Available'
-    );
+
+    displayMovies.setAttribute('alt', data.results[i].title);
     displayMovies.setAttribute(
       'src',
       'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
+    );
+    displayMovies.setAttribute(
+      'style',
+      'width: 100%; height: 100%; color: red; font-size: 1.25em; cursor: pointer;'
     );
 
     // Displays alt message if no poster available
@@ -105,11 +106,6 @@ var displayMovieData = (data) => {
       );
 
       displayMovies.setAttribute('src', './assets/images/MM.png');
-      displayMovies.removeClass('class', 'is-clickable');
-      displayMovies.setAttribute(
-        'style',
-        'width: 100%; height: 100%; color: red; font-size: 1.25em;'
-      );
     }
     // Modal component
     displayMovies.addEventListener('click', () => {
@@ -165,7 +161,6 @@ var siteLinkHandler = () => {
     modalAlert.textContent = 'Website Not Available';
     modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
     modalImg.setAttribute('src', './assets/images/MM.png');
-
     modalImg.setAttribute('style', 'padding: 0; cursor: not-allowed');
   } else if (localStorage.getItem('backdrop') === 'null') {
     modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
@@ -224,7 +219,8 @@ for (let i = 0; i < movieGenreNums[i]; i++) {
       $('.pageNumberInput').val('');
       pageName.textContent =
         'Searching by Genre: ' +
-        localStorage.getItem('movieGenre').toUpperCase();
+        localStorage.getItem('movieGenre').charAt(0).toUpperCase() +
+        localStorage.getItem('movieGenre').slice(1);
       getMovieGenre();
     }
   });
@@ -279,7 +275,8 @@ $('#searchBtn').click((e) => {
     localStorage.setItem('searchField', searchText.value);
     pageName.textContent =
       'Searching for Keyword: ' +
-      localStorage.getItem('searchField').toUpperCase();
+      localStorage.getItem('searchField').charAt(0).toUpperCase() +
+      localStorage.getItem('searchField').slice(1);
     $('input').val('');
     $('.searchPageNum').val('');
     searchHandler();

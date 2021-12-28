@@ -150,3 +150,22 @@ img {
 .modal-content {
   background-color: var(--bgClr);
 }
+
+@media screen and (max-width: 768px) {
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .genreNumberInput,
+  .pageNumberInput {
+    width: 20%;
+  }
+
+  #next,
+  #previous,
+  #nextSearch,
+  #previousSearch {
+    width: 50%;
+  }
+}
