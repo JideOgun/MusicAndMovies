@@ -16,19 +16,26 @@ let searchText = document.querySelector('#input');
 let modalEl = document.querySelector('.modal');
 let modalBg = document.querySelector('.modal-background');
 let modalContent = document.querySelector('.content');
+let modalImg = document.querySelector('.image');
 let modalBtn = document.querySelector('.modal-close');
 let modalLink = document.querySelector('.link');
 let modalAlert = document.querySelector('.alert');
+let modalTrailerDiv = document.querySelector('.trailerBox');
+let videoLink = document.querySelector('.videos');
+let videoLinkTitle = document.querySelector('.titleSmall');
 
 // Counter variables
 let pageNum = 1;
 let removePrevious = 2;
+let removeNext = 499;
 let moviePosters = 20;
 
 let movieGenreNums = [
   28, 12, 16, 35, 80, 99, 18, 10751, 14, 36, 27, 10402, 9648, 10749, 878, 10770,
   53, 10752, 37,
 ];
+
+// Api calls
 
 // Api call for genre
 let getMovieGenre = () => {
@@ -73,66 +80,6 @@ var searchHandler = () => {
   });
 };
 
-// Displays movie data
-var displayMovieData = (data) => {
-  for (let i = 0; i < moviePosters; i++) {
-    let movieInfoDiv = document.createElement('div');
-    movieInfoDiv.setAttribute('id', 'movieDiv');
-    movieInfoDiv.setAttribute(
-      'style',
-      'width: 342px; color: white; text-align: center'
-    );
-    movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
-    // This generates the posters and titles
-    let displayMovies = document.createElement('img');
-    displayMovies.setAttribute('id', data.results[i].title);
-    displayMovies.setAttribute('class', 'is-clickable is-clipped');
-    displayMovies.setAttribute(
-      'alt',
-      data.results[i].title + ': ' + 'Image Not Available'
-    );
-    displayMovies.setAttribute(
-      'src',
-      'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
-    );
-
-    // Displays alt message if no poster available
-    if (displayMovies.src == 'https://image.tmdb.org/t/p/w342null') {
-      displayMovies.removeAttribute(
-        'src',
-        'https://image.tmdb.org/t/p/w342null'
-      );
-      displayMovies.setAttribute(
-        'style',
-        'width: 100%; height: 100%; color: red; font-size: 1.25em'
-      );
-    }
-    // Modal component
-    displayMovies.addEventListener('click', () => {
-      modalEl.classList.add('is-active');
-
-      localStorage.setItem('movieTitle', data.results[i].title);
-      localStorage.setItem('movieInfo', data.results[i].overview);
-      localStorage.setItem('movieId', data.results[i].id);
-
-      let movieTitle = document.querySelector('.title');
-      movieTitle.textContent = data.results[i].title;
-      let displayMovieOverview = document.querySelector('.content');
-      displayMovieOverview.textContent = data.results[i].overview;
-      getMovieSite();
-      getVideoData();
-    });
-
-    // Adds posters to page
-    localStorage.setItem('pageNumber', data.page);
-
-    pageNumber.innerHTML = 'Page ' + pageNum;
-
-    movieInfoDiv.append(displayMovies);
-    movieListEl.append(movieInfoDiv);
-  }
-};
-
 // Adds second image to modal and activates link to movie website if available
 var getMovieSite = () => {
   let apiUrl = ''.concat(
@@ -147,37 +94,13 @@ var getMovieSite = () => {
       response.json().then((data) => {
         localStorage.setItem('backdrop', data.backdrop_path);
         localStorage.setItem('website', data.homepage);
-        console.log(data.title);
         siteLinkHandler();
       });
     }
   });
 };
 
-// Links to movies available webpage
-var siteLinkHandler = () => {
-  let modalImg = document.querySelector('.image');
-  modalImg.setAttribute(
-    'alt',
-    localStorage.getItem('movieTitle') + ': ' + 'Image Not Available'
-  );
-
-  modalImg.setAttribute('style', 'color: red; font-size: 1.125em');
-  modalImg.setAttribute(
-    'src',
-    'https://image.tmdb.org/t/p/w342' + localStorage.getItem('backdrop')
-  );
-
-  if (localStorage.getItem('website') === '') {
-    modalAlert.textContent = 'Website Not Available';
-    modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
-  } else {
-    modalLink.setAttribute('href', localStorage.getItem('website'));
-    modalLink.setAttribute('target', '_blank');
-  }
-};
-
-// links trailers on modal
+// Api call for trailers
 var getVideoData = () => {
   let apiUrl =
     'https://api.themoviedb.org/3/movie/' +
@@ -186,21 +109,129 @@ var getVideoData = () => {
   fetch(apiUrl).then((response) => {
     if (response.ok) {
       response.json().then((video) => {
-        for (var i = 0; i < video.results.length; i++) {
-          if (video.results[i].site == 'YouTube') {
-            let videoKey = video.results[i].key;
-            let videoList = document.createElement('li');
-            let videoListLink = document.createElement('a');
-
-            // console.log(videoKey);
-            // console.log(video.results[i].site);
-          }
-        }
+        displayVideos(video);
       });
     }
-    console.log(response);
   });
 };
+
+// Display script
+
+// Displays movie data
+var displayMovieData = (data) => {
+  for (let i = 0; i < moviePosters; i++) {
+    let movieInfoDiv = document.createElement('div');
+    movieInfoDiv.setAttribute('id', 'movieDiv');
+    movieInfoDiv.setAttribute(
+      'style',
+      'width: 342px; color: white; text-align: center'
+    );
+    movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
+
+    // This generates the posters and titles
+    let displayMovies = document.createElement('img');
+    displayMovies.setAttribute('id', data.results[i].title);
+
+    displayMovies.setAttribute('alt', data.results[i].title);
+    displayMovies.setAttribute(
+      'src',
+      'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
+    );
+    displayMovies.setAttribute('style', 'width: 100%; cursor: pointer;');
+
+    // Displays alt message if no poster available
+    if (displayMovies.src == 'https://image.tmdb.org/t/p/w342null') {
+      displayMovies.removeAttribute(
+        'src',
+        'https://image.tmdb.org/t/p/w342null'
+      );
+      let movieName = document.createElement('p');
+      movieName.setAttribute('class', 'titleSmall');
+      movieName.textContent = data.results[i].title;
+
+      movieInfoDiv.appendChild(movieName);
+
+      displayMovies.setAttribute('src', './assets/images/MM.png');
+      displayMovies.setAttribute('style', 'height: 50%');
+    }
+
+    // Modal component
+    displayMovies.addEventListener('click', () => {
+      modalEl.classList.add('is-active');
+
+      localStorage.setItem('movieTitle', data.results[i].title);
+      localStorage.setItem('movieInfo', data.results[i].overview);
+      localStorage.setItem('movieId', data.results[i].id);
+
+      let movieTitle = document.querySelector('.title');
+      movieTitle.textContent = data.results[i].title;
+      let displayMovieOverview = document.querySelector('.content');
+      displayMovieOverview.textContent = data.results[i].overview;
+      $('html').css('overflow', 'hidden');
+      getMovieSite();
+      getVideoData();
+    });
+
+    // Adds posters to page
+    localStorage.setItem('pageNumber', data.page);
+
+    pageNumber.innerHTML = 'Page ' + pageNum;
+
+    movieInfoDiv.append(displayMovies);
+    movieListEl.append(movieInfoDiv);
+  }
+};
+
+// Links to movies available webpage
+var siteLinkHandler = () => {
+  if (
+    localStorage.getItem('website') !== '' &&
+    localStorage.getItem('backdrop') !== 'null'
+  ) {
+    modalLink.setAttribute('href', localStorage.getItem('website'));
+    modalImg.setAttribute(
+      'src',
+      'https://image.tmdb.org/t/p/w342' + localStorage.getItem('backdrop')
+    );
+    modalLink.setAttribute('target', '_blank');
+    modalImg.setAttribute('alt', localStorage.getItem('movieTitle'));
+    modalImg.setAttribute('style', 'cursor: pointer');
+  } else if (localStorage.getItem('website') === '') {
+    modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
+    modalImg.setAttribute('src', './assets/images/MM.png');
+    modalImg.setAttribute(
+      'style',
+      'width: 50%; padding: 0; cursor: not-allowed'
+    );
+  } else if (localStorage.getItem('backdrop') === 'null') {
+    modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
+
+    modalImg.setAttribute('src', './assets/images/MM.png');
+    modalImg.setAttribute('style', 'width: 50%; cursor: pointer');
+    modalLink.setAttribute('href', localStorage.getItem('website'));
+    modalLink.setAttribute('target', '_blank');
+  }
+};
+
+// displays trailer links on modal
+var displayVideos = (video) => {
+  for (var i = 0; i < video.results.length; i++) {
+    if (video.results[i].site === 'YouTube') {
+      let videoKey = video.results[i].key;
+
+      let videoLink = document.createElement('a');
+      videoLink.setAttribute('class', 'videos');
+
+      videoLink.setAttribute('href', 'https://youtu.be/' + videoKey);
+      videoLink.setAttribute('target', '_blank');
+      videoLinkTitle.textContent = 'Trailers and Videos';
+      videoLink.textContent = video.results[i].name;
+      modalTrailerDiv.append(videoLink);
+    }
+  }
+};
+
+// Event Handlers
 
 // Genre click event starts the api call to list movie posters
 for (let i = 0; i < movieGenreNums[i]; i++) {
@@ -219,7 +250,8 @@ for (let i = 0; i < movieGenreNums[i]; i++) {
       $('.pageNumberInput').val('');
       pageName.textContent =
         'Searching by Genre: ' +
-        localStorage.getItem('movieGenre').toUpperCase();
+        localStorage.getItem('movieGenre').charAt(0).toUpperCase() +
+        localStorage.getItem('movieGenre').slice(1);
       getMovieGenre();
     }
   });
@@ -227,6 +259,9 @@ for (let i = 0; i < movieGenreNums[i]; i++) {
 
 // Buttons for next page
 $('#next').click(() => {
+  if (localStorage.getItem('pageNumber') == removeNext) {
+    $('#next').hide();
+  }
   pageNum++;
   $('#previous').show();
   getMovieGenre();
@@ -238,11 +273,15 @@ $('#previous').click(() => {
     $('#previous').hide();
   }
   pageNum--;
+  $('#next').show();
   getMovieGenre();
 });
 
 // Buttons for next page with search
 $('#nextSearch').click(() => {
+  if (localStorage.getItem('pageNumber') == removeNext) {
+    $('#next').hide();
+  }
   pageNum++;
   $('#previousSearch').show();
   searchHandler();
@@ -250,32 +289,35 @@ $('#nextSearch').click(() => {
 
 // Button for previous page with search
 $('#previousSearch').click(() => {
-  if (localStorage.getItem('pageNumber') == removePrevious) {
+  if (localStorage.getItem('pageNumber') === removePrevious) {
     $('#previousSearch').hide();
   }
   pageNum--;
+  $('#next').show();
   searchHandler();
 });
 
-// Search  button click handler
+// Search button click handler
 $('#searchBtn').click((e) => {
-  e.preventDefault();
-
-  pageNum = 1;
-  $('.genrePageNum').hide();
-  $('.searchPageNum').show();
-  $('#nextSearch').show();
-  $('#previous').hide();
-  $('#next').hide();
-  $('#previousSearch').hide();
-  localStorage.removeItem('movieGenre');
-  localStorage.setItem('searchField', searchText.value);
-  pageName.textContent =
-    'Searching for Keyword: ' +
-    localStorage.getItem('searchField').toUpperCase();
-  $('input').val('');
-  $('.searchPageNum').val('');
-  searchHandler();
+  if ($('#input').val() !== '') {
+    e.preventDefault();
+    pageNum = 1;
+    $('.genrePageNum').hide();
+    $('.searchPageNum').show();
+    $('#nextSearch').show();
+    $('#previous').hide();
+    $('#next').hide();
+    $('#previousSearch').hide();
+    localStorage.removeItem('movieGenre');
+    localStorage.setItem('searchField', searchText.value);
+    pageName.textContent =
+      'Searching for Keyword: ' +
+      localStorage.getItem('searchField').charAt(0).toUpperCase() +
+      localStorage.getItem('searchField').slice(1);
+    $('input').val('');
+    $('.searchPageNum').val('');
+    searchHandler();
+  }
 });
 
 // Choose page handlers
@@ -291,38 +333,44 @@ var genrePage = () => {
 
 // Enables keypress enter for searchbars
 $('#input').keypress(function (e) {
-  if (e.which == 13) {
+  if (e.which == 13 && $('#input').val() !== '') {
     $('#searchBtn').click();
     $('.searchPageNum').show();
   }
 });
 
 $('.pageNumberInput').keypress(function (e) {
-  if (e.which == 13) {
+  if (e.which == 13 && $('.pageNumberInput').val() !== '') {
     $('#searchPageNumId').click();
   }
 });
 
 $('.genreNumberInput').keypress(function (e) {
-  if (e.which == 13) {
+  if (e.which == 13 && $('.genreNumberInput').val() !== '') {
     $('#genrePageNumId').click();
   }
 });
 
 // Search page number click event handler
 $('#searchPageNumId').click(() => {
-  localStorage.setItem('pageNumber', $('.pageNumberInput').val());
-  $('.pageNumberInput').val('');
-  $('#previousSearch').show();
-  searchPage();
+  if ($('.pageNumberInput').val() == '') {
+  } else {
+    localStorage.setItem('pageNumber', $('.pageNumberInput').val());
+    $('.pageNumberInput').val('');
+    $('#previousSearch').show();
+    searchPage();
+  }
 });
 
 // Genre page number click event handler
 $('#genrePageNumId').click(() => {
-  localStorage.setItem('pageNumber', $('.genreNumberInput').val());
-  $('.genreNumberInput').val('');
-  $('#previous').show();
-  genrePage();
+  if ($('.genreNumberInput').val() == '') {
+  } else {
+    localStorage.setItem('pageNumber', $('.genreNumberInput').val());
+    $('.genreNumberInput').val('');
+    $('#previous').show();
+    genrePage();
+  }
 });
 
 // Gets rid of all buttons and clears storage on load
@@ -339,14 +387,22 @@ $(document).ready(() => {
 // Modal event listeners
 $('.modal-background').click(() => {
   modalLink.removeAttribute('target');
+  modalImg.removeAttribute('alt');
   modalAlert.textContent = '';
+  videoLinkTitle.textContent = '';
   modalLink.removeAttribute('href');
   modalEl.classList.remove('is-active');
+  $('.videos').text('');
+  $('html').removeAttr('style');
 });
 
 $('.modal-close').click(() => {
   modalLink.removeAttribute('target');
+  modalImg.removeAttribute('alt');
   modalAlert.textContent = '';
+  videoLinkTitle.textContent = '';
   modalLink.removeAttribute('href');
   modalEl.classList.remove('is-active');
+  $('.videos').text('');
+  $('html').removeAttr('style');
 });

@@ -82,6 +82,7 @@ html {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   background: var(--bgClr);
 }
 
@@ -151,6 +152,37 @@ img {
   background-color: var(--bgClr);
 }
 
-body.modal-open {
-  overflow: hidden;
+.videos {
+  display: flex;
+  justify-content: center;
+}
+
+.videos:hover {
+  color: var(--textClr);
+}
+
+.titleSmall {
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--textClr);
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .genreNumberInput,
+  .pageNumberInput {
+    width: 20%;
+  }
+
+  #next,
+  #previous,
+  #nextSearch,
+  #previousSearch {
+    width: 50%;
+  }
 }
