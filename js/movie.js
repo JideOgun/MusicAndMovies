@@ -135,10 +135,7 @@ var displayMovieData = (data) => {
       'src',
       'https://image.tmdb.org/t/p/w342' + data.results[i].poster_path
     );
-    displayMovies.setAttribute(
-      'style',
-      'width: 100%; height: 100%; color: red; font-size: 1.25em; cursor: pointer;'
-    );
+    displayMovies.setAttribute('style', 'width: 100%; cursor: pointer;');
 
     // Displays alt message if no poster available
     if (displayMovies.src == 'https://image.tmdb.org/t/p/w342null') {
@@ -146,6 +143,11 @@ var displayMovieData = (data) => {
         'src',
         'https://image.tmdb.org/t/p/w342null'
       );
+      let movieName = document.createElement('p');
+      movieName.setAttribute('class', 'titleSmall');
+      movieName.textContent = data.results[i].title;
+
+      movieInfoDiv.appendChild(movieName);
 
       displayMovies.setAttribute('src', './assets/images/MM.png');
       displayMovies.setAttribute('style', 'height: 50%');
@@ -192,7 +194,6 @@ var siteLinkHandler = () => {
     modalImg.setAttribute('alt', localStorage.getItem('movieTitle'));
     modalImg.setAttribute('style', 'cursor: pointer');
   } else if (localStorage.getItem('website') === '') {
-    modalAlert.textContent = 'Website Not Available';
     modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
     modalImg.setAttribute('src', './assets/images/MM.png');
     modalImg.setAttribute(
@@ -212,7 +213,6 @@ var siteLinkHandler = () => {
 // displays trailer links on modal
 var displayVideos = (video) => {
   for (var i = 0; i < video.results.length; i++) {
-    console.log(video);
     if (video.results[i].site === 'YouTube') {
       let videoKey = video.results[i].key;
 
@@ -343,7 +343,6 @@ $('.genreNumberInput').keypress(function (e) {
 // Search page number click event handler
 $('#searchPageNumId').click(() => {
   if ($('.pageNumberInput').val() == '') {
-    console.log();
   } else {
     localStorage.setItem('pageNumber', $('.pageNumberInput').val());
     $('.pageNumberInput').val('');
@@ -355,7 +354,6 @@ $('#searchPageNumId').click(() => {
 // Genre page number click event handler
 $('#genrePageNumId').click(() => {
   if ($('.genreNumberInput').val() == '') {
-    console.log();
   } else {
     localStorage.setItem('pageNumber', $('.genreNumberInput').val());
     $('.genreNumberInput').val('');

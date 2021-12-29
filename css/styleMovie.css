@@ -157,6 +157,10 @@ img {
   justify-content: center;
 }
 
+.videos:hover {
+  color: var(--textClr);
+}
+
 .titleSmall {
   font-size: 1.5rem;
   text-align: center;
