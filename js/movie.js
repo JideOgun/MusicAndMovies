@@ -27,6 +27,7 @@ let videoLinkTitle = document.querySelector('.titleSmall');
 // Counter variables
 let pageNum = 1;
 let removePrevious = 2;
+let removeNext = 499;
 let moviePosters = 20;
 
 let movieGenreNums = [
@@ -126,6 +127,7 @@ var displayMovieData = (data) => {
       'width: 342px; color: white; text-align: center'
     );
     movieInfoDiv.setAttribute('class', 'column is-one-fifth is-full-mobile');
+
     // This generates the posters and titles
     let displayMovies = document.createElement('img');
     displayMovies.setAttribute('id', data.results[i].title);
@@ -152,6 +154,7 @@ var displayMovieData = (data) => {
       displayMovies.setAttribute('src', './assets/images/MM.png');
       displayMovies.setAttribute('style', 'height: 50%');
     }
+
     // Modal component
     displayMovies.addEventListener('click', () => {
       modalEl.classList.add('is-active');
@@ -204,7 +207,7 @@ var siteLinkHandler = () => {
     modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
 
     modalImg.setAttribute('src', './assets/images/MM.png');
-    modalImg.setAttribute('style', 'cursor: pointer');
+    modalImg.setAttribute('style', 'width: 50%; cursor: pointer');
     modalLink.setAttribute('href', localStorage.getItem('website'));
     modalLink.setAttribute('target', '_blank');
   }
@@ -256,6 +259,9 @@ for (let i = 0; i < movieGenreNums[i]; i++) {
 
 // Buttons for next page
 $('#next').click(() => {
+  if (localStorage.getItem('pageNumber') == removeNext) {
+    $('#next').hide();
+  }
   pageNum++;
   $('#previous').show();
   getMovieGenre();
@@ -267,11 +273,15 @@ $('#previous').click(() => {
     $('#previous').hide();
   }
   pageNum--;
+  $('#next').show();
   getMovieGenre();
 });
 
 // Buttons for next page with search
 $('#nextSearch').click(() => {
+  if (localStorage.getItem('pageNumber') == removeNext) {
+    $('#next').hide();
+  }
   pageNum++;
   $('#previousSearch').show();
   searchHandler();
@@ -279,14 +289,15 @@ $('#nextSearch').click(() => {
 
 // Button for previous page with search
 $('#previousSearch').click(() => {
-  if (localStorage.getItem('pageNumber') == removePrevious) {
+  if (localStorage.getItem('pageNumber') === removePrevious) {
     $('#previousSearch').hide();
   }
   pageNum--;
+  $('#next').show();
   searchHandler();
 });
 
-// Search  button click handler
+// Search button click handler
 $('#searchBtn').click((e) => {
   if ($('#input').val() !== '') {
     e.preventDefault();
