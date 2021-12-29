@@ -20,8 +20,9 @@ let modalImg = document.querySelector('.image');
 let modalBtn = document.querySelector('.modal-close');
 let modalLink = document.querySelector('.link');
 let modalAlert = document.querySelector('.alert');
-let modalTrailer = document.querySelector('.trailers');
-let modalVideoList = document.querySelector('.videos');
+let modalTrailerDiv = document.querySelector('.trailerBox');
+let videoLink = document.querySelector('.videos');
+let videoLinkTitle = document.querySelector('.titleSmall');
 
 // Counter variables
 let pageNum = 1;
@@ -32,6 +33,8 @@ let movieGenreNums = [
   28, 12, 16, 35, 80, 99, 18, 10751, 14, 36, 27, 10402, 9648, 10749, 878, 10770,
   53, 10752, 37,
 ];
+
+// Api calls
 
 // Api call for genre
 let getMovieGenre = () => {
@@ -76,6 +79,43 @@ var searchHandler = () => {
   });
 };
 
+// Adds second image to modal and activates link to movie website if available
+var getMovieSite = () => {
+  let apiUrl = ''.concat(
+    'https://api.themoviedb.org/3/movie/' +
+      localStorage.getItem('movieId') +
+      '?api_key=' +
+      apiKey +
+      '&language=en-US'
+  );
+  fetch(apiUrl).then((response) => {
+    if (response.ok) {
+      response.json().then((data) => {
+        localStorage.setItem('backdrop', data.backdrop_path);
+        localStorage.setItem('website', data.homepage);
+        siteLinkHandler();
+      });
+    }
+  });
+};
+
+// Api call for trailers
+var getVideoData = () => {
+  let apiUrl =
+    'https://api.themoviedb.org/3/movie/' +
+    localStorage.getItem('movieId') +
+    '/videos?api_key=1fcb095f3dea632c59c58e8920d44217&language=en-US';
+  fetch(apiUrl).then((response) => {
+    if (response.ok) {
+      response.json().then((video) => {
+        displayVideos(video);
+      });
+    }
+  });
+};
+
+// Display script
+
 // Displays movie data
 var displayMovieData = (data) => {
   for (let i = 0; i < moviePosters; i++) {
@@ -108,6 +148,7 @@ var displayMovieData = (data) => {
       );
 
       displayMovies.setAttribute('src', './assets/images/MM.png');
+      displayMovies.setAttribute('style', 'height: 50%');
     }
     // Modal component
     displayMovies.addEventListener('click', () => {
@@ -136,27 +177,6 @@ var displayMovieData = (data) => {
   }
 };
 
-// Adds second image to modal and activates link to movie website if available
-var getMovieSite = () => {
-  let apiUrl = ''.concat(
-    'https://api.themoviedb.org/3/movie/' +
-      localStorage.getItem('movieId') +
-      '?api_key=' +
-      apiKey +
-      '&language=en-US'
-  );
-  fetch(apiUrl).then((response) => {
-    if (response.ok) {
-      response.json().then((data) => {
-        localStorage.setItem('backdrop', data.backdrop_path);
-        localStorage.setItem('website', data.homepage);
-        console.log(data.title);
-        siteLinkHandler();
-      });
-    }
-  });
-};
-
 // Links to movies available webpage
 var siteLinkHandler = () => {
   if (
@@ -175,7 +195,10 @@ var siteLinkHandler = () => {
     modalAlert.textContent = 'Website Not Available';
     modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
     modalImg.setAttribute('src', './assets/images/MM.png');
-    modalImg.setAttribute('style', 'padding: 0; cursor: not-allowed');
+    modalImg.setAttribute(
+      'style',
+      'width: 50%; padding: 0; cursor: not-allowed'
+    );
   } else if (localStorage.getItem('backdrop') === 'null') {
     modalImg.removeAttribute('src', 'https://image.tmdb.org/t/p/w342null');
 
@@ -186,30 +209,26 @@ var siteLinkHandler = () => {
   }
 };
 
-// links trailers on modal.  Still working on this
-var getVideoData = () => {
-  let apiUrl =
-    'https://api.themoviedb.org/3/movie/' +
-    localStorage.getItem('movieId') +
-    '/videos?api_key=1fcb095f3dea632c59c58e8920d44217&language=en-US';
-  fetch(apiUrl).then((response) => {
-    if (response.ok) {
-      response.json().then((video) => {
-        for (var i = 0; i < video.results.length; i++) {
-          if (video.results[i].type === 'Trailer') {
-            console.log(video.results[i]);
-            let videoKey = video.results[i].key;
+// displays trailer links on modal
+var displayVideos = (video) => {
+  for (var i = 0; i < video.results.length; i++) {
+    console.log(video);
+    if (video.results[i].site === 'YouTube') {
+      let videoKey = video.results[i].key;
 
-            modalVideoList.setAttribute('href', 'https://youtu.be/' + videoKey);
-            modalVideoList.setAttribute('target', '_blank');
-            modalVideoList.textContent = video.results[i].name;
-            console.log(modalVideoList);
-          }
-        }
-      });
+      let videoLink = document.createElement('a');
+      videoLink.setAttribute('class', 'videos');
+
+      videoLink.setAttribute('href', 'https://youtu.be/' + videoKey);
+      videoLink.setAttribute('target', '_blank');
+      videoLinkTitle.textContent = 'Trailers and Videos';
+      videoLink.textContent = video.results[i].name;
+      modalTrailerDiv.append(videoLink);
     }
-  });
+  }
 };
+
+// Event Handlers
 
 // Genre click event starts the api call to list movie posters
 for (let i = 0; i < movieGenreNums[i]; i++) {
@@ -234,8 +253,6 @@ for (let i = 0; i < movieGenreNums[i]; i++) {
     }
   });
 }
-
-// Event Handlers
 
 // Buttons for next page
 $('#next').click(() => {
@@ -363,8 +380,10 @@ $('.modal-background').click(() => {
   modalLink.removeAttribute('target');
   modalImg.removeAttribute('alt');
   modalAlert.textContent = '';
+  videoLinkTitle.textContent = '';
   modalLink.removeAttribute('href');
   modalEl.classList.remove('is-active');
+  $('.videos').text('');
   $('html').removeAttr('style');
 });
 
@@ -372,7 +391,9 @@ $('.modal-close').click(() => {
   modalLink.removeAttribute('target');
   modalImg.removeAttribute('alt');
   modalAlert.textContent = '';
+  videoLinkTitle.textContent = '';
   modalLink.removeAttribute('href');
   modalEl.classList.remove('is-active');
+  $('.videos').text('');
   $('html').removeAttr('style');
 });
