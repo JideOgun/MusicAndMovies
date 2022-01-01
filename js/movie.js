@@ -10,6 +10,7 @@ let pageNumber = document.querySelector('.pageNumber');
 let pageName = document.querySelector('.pageName');
 let homeBtn = document.querySelector('.home');
 let searchBtn = document.querySelector('#searchBtn');
+let pageSelectDiv = document.querySelector('.page-select');
 let searchText = document.querySelector('#input');
 
 // Modal variables
@@ -152,7 +153,7 @@ var displayMovieData = (data) => {
       movieInfoDiv.appendChild(movieName);
 
       displayMovies.setAttribute('src', './assets/images/MM.png');
-      displayMovies.setAttribute('style', 'height: 50%');
+      displayMovies.setAttribute('style', 'width: 100%');
     }
 
     // Modal component
@@ -235,17 +236,20 @@ var displayVideos = (video) => {
 
 // Genre click event starts the api call to list movie posters
 for (let i = 0; i < movieGenreNums[i]; i++) {
-  genreListEl[i].addEventListener('click', (event) => {
+  $(genreListEl[i]).click((e) => {
+    e.preventDefault();
     localStorage.setItem('movieGenre', genreListEl[i].textContent);
     localStorage.setItem('genre', movieGenreNums[i]);
     if (localStorage.getItem('genre') == movieGenreNums[i]) {
       pageNum = 1;
+
+      $('.page-select').removeAttr('data', 'searchPage');
+      $('.page-select').attr('data', 'genrePage');
+
       $('.genrePageNum').show();
-      $('.searchPageNum').hide();
       $('#previous').hide();
       $('#next').show();
-      $('#previousSearch').hide();
-      $('#nextSearch').hide();
+
       localStorage.removeItem('searchField');
       $('.pageNumberInput').val('');
       pageName.textContent =
@@ -257,57 +261,19 @@ for (let i = 0; i < movieGenreNums[i]; i++) {
   });
 }
 
-// Buttons for next page
-$('#next').click(() => {
-  if (localStorage.getItem('pageNumber') == removeNext) {
-    $('#next').hide();
-  }
-  pageNum++;
-  $('#previous').show();
-  getMovieGenre();
-});
-
-// Button for previous page
-$('#previous').click(() => {
-  if (localStorage.getItem('pageNumber') == removePrevious) {
-    $('#previous').hide();
-  }
-  pageNum--;
-  $('#next').show();
-  getMovieGenre();
-});
-
-// Buttons for next page with search
-$('#nextSearch').click(() => {
-  if (localStorage.getItem('pageNumber') == removeNext) {
-    $('#next').hide();
-  }
-  pageNum++;
-  $('#previousSearch').show();
-  searchHandler();
-});
-
-// Button for previous page with search
-$('#previousSearch').click(() => {
-  if (localStorage.getItem('pageNumber') === removePrevious) {
-    $('#previousSearch').hide();
-  }
-  pageNum--;
-  $('#next').show();
-  searchHandler();
-});
-
 // Search button click handler
 $('#searchBtn').click((e) => {
   if ($('#input').val() !== '') {
     e.preventDefault();
     pageNum = 1;
-    $('.genrePageNum').hide();
-    $('.searchPageNum').show();
-    $('#nextSearch').show();
+
+    $('.page-select').removeAttr('data', 'genrePage');
+    $('.page-select').attr('data', 'searchPage');
+
+    $('.genrePageNum').show();
     $('#previous').hide();
-    $('#next').hide();
-    $('#previousSearch').hide();
+    $('#next').show();
+
     localStorage.removeItem('movieGenre');
     localStorage.setItem('searchField', searchText.value);
     pageName.textContent =
@@ -320,45 +286,54 @@ $('#searchBtn').click((e) => {
   }
 });
 
-// Choose page handlers
-var searchPage = () => {
-  pageNum = localStorage.getItem('pageNumber');
-  searchHandler();
-};
+// Buttons for next page
+$('#next').click(() => {
+  pageNum++;
+  if ($('.page-select').attr('data') == 'genrePage') {
+    getMovieGenre();
+  } else if ($('.page-select').attr('data') === 'searchPage') {
+    searchHandler();
+  }
+  if (localStorage.getItem('pageNumber') == removeNext) {
+    $('#next').hide();
+  }
+  $('#previous').show();
+});
 
+// Button for previous page
+$('#previous').click(() => {
+  pageNum--;
+  if ($('.page-select').attr('data') == 'genrePage') {
+    getMovieGenre();
+  } else if ($('.page-select').attr('data') === 'searchPage') {
+    searchHandler();
+  }
+  if (localStorage.getItem('pageNumber') == removePrevious) {
+    $('#previous').hide();
+  }
+  $('#next').show();
+});
+
+// Choose page handlers
 var genrePage = () => {
   pageNum = localStorage.getItem('pageNumber');
-  getMovieGenre();
+  if ($('.page-select').attr('data') == 'genrePage') {
+    getMovieGenre();
+  } else if ($('.page-select').attr('data') === 'searchPage') {
+    searchHandler();
+  }
 };
 
 // Enables keypress enter for searchbars
 $('#input').keypress(function (e) {
   if (e.which == 13 && $('#input').val() !== '') {
     $('#searchBtn').click();
-    $('.searchPageNum').show();
-  }
-});
-
-$('.pageNumberInput').keypress(function (e) {
-  if (e.which == 13 && $('.pageNumberInput').val() !== '') {
-    $('#searchPageNumId').click();
   }
 });
 
 $('.genreNumberInput').keypress(function (e) {
   if (e.which == 13 && $('.genreNumberInput').val() !== '') {
     $('#genrePageNumId').click();
-  }
-});
-
-// Search page number click event handler
-$('#searchPageNumId').click(() => {
-  if ($('.pageNumberInput').val() == '') {
-  } else {
-    localStorage.setItem('pageNumber', $('.pageNumberInput').val());
-    $('.pageNumberInput').val('');
-    $('#previousSearch').show();
-    searchPage();
   }
 });
 
@@ -377,9 +352,6 @@ $('#genrePageNumId').click(() => {
 $(document).ready(() => {
   $('#previous').hide();
   $('#next').hide();
-  $('#previousSearch').hide();
-  $('#nextSearch').hide();
-  $('.searchPageNum').hide();
   $('.genrePageNum').hide();
   localStorage.clear();
 });

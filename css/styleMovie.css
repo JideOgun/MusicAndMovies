@@ -50,7 +50,6 @@ html {
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 0.125rem 0;
-
   background: var(--bgClr);
 }
 
@@ -58,14 +57,12 @@ html {
   margin: 0.5rem 1rem;
 }
 
-.searchPageNum,
 .genrePageNum {
   margin: 0 auto;
 
   text-align: center;
 }
 
-.pageNumberInput,
 .genreNumberInput {
   width: 7%;
   display: flex;
@@ -98,20 +95,11 @@ html {
   background: var(--bgClr);
 }
 
-#nextSearch,
-#previousSearch {
-  position: relative;
-  top: -3rem;
-}
-
 #next:hover,
-#nextSearch:hover,
 #previous:hover,
-#previousSearch:hover,
 #genres > button:hover,
 #home:hover,
 #searchBtn:hover,
-#searchPageNumId:hover,
 #genrePageNumId:hover,
 #modal-close:hover,
 img:hover {
@@ -148,6 +136,10 @@ img {
   transform: translate(1.25rem, -1.25rem);
 }
 
+.link {
+  width: 50%;
+}
+
 .modal-content {
   background-color: var(--bgClr);
 }
@@ -174,15 +166,12 @@ img {
     flex-wrap: wrap;
   }
 
-  .genreNumberInput,
-  .pageNumberInput {
+  .genreNumberInput {
     width: 20%;
   }
 
   #next,
-  #previous,
-  #nextSearch,
-  #previousSearch {
+  #previous {
     width: 50%;
   }
 }
