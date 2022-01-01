@@ -60,7 +60,7 @@ let getMovieGenre = () => {
   });
 };
 
-// Search bar handler
+// Api for search bar
 var searchHandler = () => {
   movieListEl.innerHTML = '';
   var searchUrl =
@@ -81,7 +81,7 @@ var searchHandler = () => {
   });
 };
 
-// Adds second image to modal and activates link to movie website if available
+// Api for website link and backdrop poster
 var getMovieSite = () => {
   let apiUrl = ''.concat(
     'https://api.themoviedb.org/3/movie/' +
@@ -141,7 +141,6 @@ var displayMovieData = (data) => {
     );
     displayMovies.setAttribute('style', 'width: 100%; cursor: pointer;');
 
-    // Displays alt message if no poster available
     if (displayMovies.src == 'https://image.tmdb.org/t/p/w342null') {
       displayMovies.removeAttribute(
         'src',
@@ -174,14 +173,16 @@ var displayMovieData = (data) => {
       getVideoData();
     });
 
-    // Adds posters to page
     localStorage.setItem('pageNumber', data.page);
 
     if (data.total_pages > removeNext) {
       pageNumber.innerHTML = 'Page ' + pageNum + ' of ' + 500;
     } else {
-      pageNumber.innerHTML =
-        'Page ' + pageNum + ' of ' + (data.total_pages - 1);
+      pageNumber.innerHTML = 'Page ' + pageNum + ' of ' + data.total_pages;
+    }
+
+    if (data.total_pages == pageNum) {
+      $('#next').hide();
     }
 
     movieInfoDiv.append(displayMovies);
@@ -190,9 +191,6 @@ var displayMovieData = (data) => {
   if (data.total_pages < removeNext) {
     $('input').removeAttr('max');
     $('input').attr({ max: data.total_pages });
-  }
-  if (pageNum == data.total_pages - 1) {
-    $('#next').hide();
   }
 };
 
@@ -327,6 +325,17 @@ $('#previous').click(() => {
   $('#next').show();
 });
 
+// Genre page number click event handler
+$('#genrePageNumId').click(() => {
+  if ($('.genreNumberInput').val() == '' || $('.genreNumberInput').val() == 1) {
+  } else {
+    localStorage.setItem('pageNumber', $('.genreNumberInput').val());
+    $('.genreNumberInput').val('');
+    $('#previous').show();
+    genrePage();
+  }
+});
+
 // Choose page handlers
 var genrePage = () => {
   pageNum = localStorage.getItem('pageNumber');
@@ -347,17 +356,6 @@ $('#input').keypress(function (e) {
 $('.genreNumberInput').keypress(function (e) {
   if (e.which == 13 && $('.genreNumberInput').val() !== '') {
     $('#genrePageNumId').click();
-  }
-});
-
-// Genre page number click event handler
-$('#genrePageNumId').click(() => {
-  if ($('.genreNumberInput').val() == '' || $('.genreNumberInput').val() == 1) {
-  } else {
-    localStorage.setItem('pageNumber', $('.genreNumberInput').val());
-    $('.genreNumberInput').val('');
-    $('#previous').show();
-    genrePage();
   }
 });
 

@@ -1,3 +1,4 @@
+/* color variables */
 :root {
   --bgClr: rgb(9, 43, 14);
   --textClr: #ffe08a;
@@ -7,7 +8,7 @@
 html {
   background: var(--bgClr);
 }
-
+/* Head section */
 .pageTitle {
   text-align: center;
   font-size: 2.5rem;
@@ -59,7 +60,6 @@ html {
 
 .genrePageNum {
   margin: 0 auto;
-
   text-align: center;
 }
 
@@ -75,6 +75,7 @@ html {
   color: var(--textClr);
 }
 
+/*Movie poster*/
 .movies {
   width: 100%;
   display: flex;
@@ -83,6 +84,7 @@ html {
   background: var(--bgClr);
 }
 
+/*Next and previous buttons*/
 .more-btn {
   width: 25%;
   margin: 1rem auto;
@@ -95,6 +97,7 @@ html {
   background: var(--bgClr);
 }
 
+/*Hover effects*/
 #next:hover,
 #previous:hover,
 #genres > button:hover,
@@ -106,6 +109,7 @@ img:hover {
   background-color: var(--hoverClr);
 }
 
+/*Modal style*/
 img {
   padding: 1rem 1rem;
 }
@@ -124,11 +128,6 @@ img {
 
 .image {
   margin: 0 auto;
-}
-
-.alert {
-  text-align: center;
-  color: red;
 }
 
 .modal-close {
@@ -160,6 +159,7 @@ img {
   text-decoration: underline;
 }
 
+/*Media query*/
 @media screen and (max-width: 768px) {
   .nav {
     display: flex;
