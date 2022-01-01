@@ -120,6 +120,7 @@ var getVideoData = () => {
 
 // Displays movie data
 var displayMovieData = (data) => {
+  $('input').attr('max', '499');
   for (let i = 0; i < moviePosters; i++) {
     let movieInfoDiv = document.createElement('div');
     movieInfoDiv.setAttribute('id', 'movieDiv');
@@ -176,10 +177,22 @@ var displayMovieData = (data) => {
     // Adds posters to page
     localStorage.setItem('pageNumber', data.page);
 
-    pageNumber.innerHTML = 'Page ' + pageNum;
+    if (data.total_pages > removeNext) {
+      pageNumber.innerHTML = 'Page ' + pageNum + ' of ' + 500;
+    } else {
+      pageNumber.innerHTML =
+        'Page ' + pageNum + ' of ' + (data.total_pages - 1);
+    }
 
     movieInfoDiv.append(displayMovies);
     movieListEl.append(movieInfoDiv);
+  }
+  if (data.total_pages < removeNext) {
+    $('input').removeAttr('max');
+    $('input').attr({ max: data.total_pages });
+  }
+  if (pageNum == data.total_pages - 1) {
+    $('#next').hide();
   }
 };
 
@@ -339,7 +352,7 @@ $('.genreNumberInput').keypress(function (e) {
 
 // Genre page number click event handler
 $('#genrePageNumId').click(() => {
-  if ($('.genreNumberInput').val() == '') {
+  if ($('.genreNumberInput').val() == '' || $('.genreNumberInput').val() == 1) {
   } else {
     localStorage.setItem('pageNumber', $('.genreNumberInput').val());
     $('.genreNumberInput').val('');
